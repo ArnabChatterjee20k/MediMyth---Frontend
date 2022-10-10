@@ -1,21 +1,34 @@
-import Tile from "./components/Category/Tile"
-import { PrimaryButton } from "./components/ui/Buttons"
-import Navbar from "./layouts/Navbar"
-import Footer from "./layouts/Footer"
-import { PrimaryLogo } from "./components/Logo/PrimaryLogo"
-import { SecondaryLogo } from "./components/Logo/SecondaryLogo"
-import DoctorPage from "./pages/DoctorProfile/DoctorPage"
-import CssBaseline from "@mui/material/CssBaseline"
-function App() {
+import DoctorPage from "./pages/DoctorProfile/DoctorPage";
+import CssBaseline from "@mui/material/CssBaseline";
+import { OptionTab } from "./components/DoctorProfile/OptionTab";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { doctorProfileActions } from "./data/DoctorProfileActions";
 
+function App() {
   return (
     <div className="App">
-      <CssBaseline/>
-      <DoctorPage />
-      {/* <div style={{height:"200px",width:"200px",background:"red",margin:"1rem"}}></div>
-      <div style={{height:"200px",width:"200px",background:"red",margin:"1rem"}}></div> */}
+      <CssBaseline />
+      <BrowserRouter>
+        <Routes>
+          <Route path="/doctor">
+            <Route path=":id" element={<DoctorPage edit={false} />}>
+              <Route index element={<h2>Booke</h2>} />
+            </Route>
+
+            <Route path="profile" element={<DoctorPage edit={true} />}>
+              <Route element={<OptionTab />}>
+                {doctorProfileActions.map(({ link, Componenent }) => {
+                  return (
+                    <Route key={link} path={link} element={<Componenent />} />
+                  );
+                })}
+              </Route>
+            </Route>
+          </Route>
+        </Routes>
+      </BrowserRouter>
     </div>
-  )
+  );
 }
 
-export default App
+export default App;

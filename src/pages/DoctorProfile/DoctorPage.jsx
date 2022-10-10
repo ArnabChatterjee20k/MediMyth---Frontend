@@ -1,9 +1,12 @@
 import React from 'react'
 import AboutDoctor from './DoctorSubPages/AboutDoctor'
-const DoctorPage = () => {
+import { Outlet } from 'react-router-dom'
+const DoctorPage = ({edit}) => {
   return (
     <>
-        <AboutDoctor edit={true}/>
+        <AboutDoctor edit={edit}/>
+        {/* for rendering the child */}
+        <Outlet/> 
     </>
   )
 }
