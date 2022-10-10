@@ -1,5 +1,5 @@
 import React from 'react'
-import AboutDoctor from './AboutDoctor'
+import AboutDoctor from './DoctorSubPages/AboutDoctor'
 const DoctorPage = () => {
   return (
     <>
