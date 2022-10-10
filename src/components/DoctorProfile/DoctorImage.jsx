@@ -10,7 +10,7 @@ const DoctorImage = ({ profilePicture, name }) => {
           maxWidth: "48rem",
           marginInline: "auto",
           marginBlockEnd: "2em",
-          minHeight: "1em",
+          minHeight: "1em"
         }}
       >
         <Box

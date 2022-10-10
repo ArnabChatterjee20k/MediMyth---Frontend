@@ -1,13 +1,13 @@
 import React from "react";
-import Background from "../assets/img/ProfileBackground.svg";
-import { SecondaryButton } from "../components/ui/Buttons";
+import Background from "../../assets/img/ProfileBackground.svg";
+import { SecondaryButton } from "../../components/ui/Buttons";
 import Box from "@mui/material/Box";
 import Stack from "@mui/material/Stack";
-import DoctorInfo from "../components/DoctorProfile/DoctorInfo";
-import DoctorImage from "../components/DoctorProfile/DoctorImage";
+import DoctorInfo from "../../components/DoctorProfile/DoctorInfo";
+import DoctorImage from "../../components/DoctorProfile/DoctorImage";
 import PropTypes from "prop-types";
 
-const DoctorProfile = ({ edit }) => {
+const AboutDoctor = ({ edit }) => {
   const dummyData = {
     name: "Arnab Chatterjee",
     reg: 3512,
@@ -36,27 +36,32 @@ const DoctorProfile = ({ edit }) => {
         />
 
         {/* edit profile button */}
-        {edit && (
-          <Stack
-            direction="row-reverse"
-            maxWidth="48rem"
-            marginX="auto"
-            marginY="1em"
-          >
+        <Stack
+          direction="row-reverse"
+          maxWidth="48rem"
+          marginX="auto"
+          marginY="1em"
+        >
+          {/* if edit is true then edit profile other wise book appointment*/}
+          {edit ? (
             <SecondaryButton>Edit Profile</SecondaryButton>
-          </Stack>
-        )}
+          ) : (
+            <SecondaryButton>Book</SecondaryButton>
+          )}
+        </Stack>
+
+        {/* About the doctor personal info */}
         <DoctorInfo doctorInfo={dummyData} />
       </Box>
     </Box>
   );
 };
 
-DoctorProfile.propTypes = {
+AboutDoctor.propTypes = {
   edit: PropTypes.bool.isRequired,
 };
-DoctorProfile.defaultProps = {
+AboutDoctor.defaultProps = {
   edit: true,
 };
 
-export default DoctorProfile;
+export default AboutDoctor;
