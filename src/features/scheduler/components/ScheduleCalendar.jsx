@@ -4,10 +4,7 @@ import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { StaticDatePicker } from "@mui/x-date-pickers/StaticDatePicker";
 import Stack from "@mui/material/Stack";
-import {
-  getWeekDay,
-  getDifferenceDates
-} from "../../../utils/dateTime";
+import { getWeekDay, getDifferenceDates } from "../../../utils/dateTime";
 import { DateFormat } from "../../../data/Constants";
 import { PickersDay } from "@mui/x-date-pickers/";
 import { getWeek, getWeekOfMonth } from "date-fns";
@@ -35,7 +32,7 @@ const dummyData = [
     booking_end: 2,
     booking_start: 1,
     clinic_name: "sdfd",
-    day: 2,
+    day: 4,
     fees: null,
     id: 1,
     medical_shop: "sdf",
@@ -44,7 +41,7 @@ const dummyData = [
     scheduled_data: 1,
     slot_end: "05:30:12",
     slot_start: "05:00:00",
-    specific_week: null,
+    specific_week: 3,
   },
   {
     address: "dsdff",
@@ -63,6 +60,23 @@ const dummyData = [
     slot_start: "05:00:00",
     specific_week: null,
   },
+  {
+    address: "dsdff",
+    appointment_data: [1, 2],
+    booking_end: 1,
+    booking_start: 90,
+    clinic_name: "sdfd",
+    day: 3,
+    fees: null,
+    id: 1,
+    medical_shop: "sdf",
+    patient_limit: null,
+    phone_no: "9812121212",
+    scheduled_data: 1,
+    slot_end: "05:30:12",
+    slot_start: "05:00:00",
+    specific_week: 4,
+  },
 ];
 // creating this dataStructure to access the schedules easily and accessing data becomes more cleaner using key value pair
 const ORDERED_SCHEDULE = {};
@@ -73,6 +87,7 @@ dummyData.map((element) => {
     ORDERED_SCHEDULE[element.day] = [element];
   }
 });
+console.log(ORDERED_SCHEDULE);
 
 export default function ScheduleCalendar() {
   const [value, setValue] = useState("");
@@ -90,27 +105,41 @@ export default function ScheduleCalendar() {
           renderDay={(date, selectedDays, pickersDayProps) => {
             // rendering the next dates and today if available
             const dateExists = schedules[getWeekDay(date)];
-            if (dateExists && getDifferenceDates(date, new Date()) >= 0) {
-              return (
+            let picker = null;
+            dateExists &&
+              getDifferenceDates(date, new Date()) >= 0 &&
+              dateExists?dateExists.map((schedule) => {
+                const isSelected = schedule.specific_week!==null?schedule.specific_week === getWeekOfMonth(date):true;
+                const isInBookingRange = getDifferenceDates(date,new Date())<=schedule.booking_start;
+                picker = (
+                  <PickersDay
+                    {...pickersDayProps}
+                    day={date}
+                    key={getWeekDay(date)}
+                    selected={isSelected}
+                    sx={{
+                      "&.MuiPickersDay-root":{
+                        backgroundColor: isSelected && isInBookingRange && "success.main",
+                      }
+                    }}
+                    onClick={() => console.log(getWeekOfMonth(date))}
+                  />
+                );
+              }):picker = (
                 <PickersDay
                   {...pickersDayProps}
                   day={date}
-                  selected={true}
                   key={getWeekDay(date)}
-                  onClick={()=>console.log(getWeekOfMonth(date))}
+                  disabled={true}
+                  sx={{
+                    "&.MuiPickersDay-root":{
+                      backgroundColor:"white",
+                    }
+                  }}
+                  onClick={() => console.log(getWeekOfMonth(date))}
                 />
-              );
-            } else {
-              return (
-                <PickersDay
-                  {...pickersDayProps}
-                  selected={false}
-                  day={date}
-                  disabled
-                  key={date}
-                />
-              );
-            }
+              );;
+            return picker;
           }}
           onChange={(newValue) => {
             setValue(newValue);
