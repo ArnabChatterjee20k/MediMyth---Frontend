@@ -1,16 +1,16 @@
-
 import CssBaseline from "@mui/material/CssBaseline";
 import { BrowserRouter} from "react-router-dom";
 import DoctorRoutes from "./routes/DoctorRoutes";
-
+import ScheduleCalendar  from "./features/scheduler/components/ScheduleCalendar";
 
 function App() {
   return (
     <div className="App">
       <CssBaseline />
-      <BrowserRouter>
+      {/* <BrowserRouter>
         <DoctorRoutes/>
-      </BrowserRouter>
+      </BrowserRouter> */}
+      <ScheduleCalendar/>
     </div>
   );
 }

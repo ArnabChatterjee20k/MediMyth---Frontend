@@ -1,2 +1,2 @@
 export const SiteName = "MediMyth"
-export const DateFormat = 'dd/MM/yyyy'
+export const DateFormat = 'MM/dd/yyyy'
