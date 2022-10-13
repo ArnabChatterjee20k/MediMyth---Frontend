@@ -1,9 +1,9 @@
 import Stack from "@mui/material/Stack";
 import TextField from "@mui/material/TextField";
 import { useScheduleData } from "../context/ScheduleContextProvider";
-
 export const SchduleDetails = () => {
   const { scheduleData, handleScheduleData } = useScheduleData();
+  console.log()
   return (
     <Stack
       gap={2}
@@ -32,6 +32,7 @@ export const SchduleDetails = () => {
       <TextField
         onChange={handleScheduleData}
         name="booking_start"
+        type="number"
         value={scheduleData["booking_start"]}
         placeholder="Default is 7 days before the slot"
         label="Booking Start Day"
@@ -44,8 +45,10 @@ export const SchduleDetails = () => {
       <TextField
         onChange={handleScheduleData}
         name="booking_end"
+        type="number"
         value={scheduleData["booking_end"]}
         placeholder="Hours before slot booking will end"
+        InputProps={{inputProps:{min:"24"}}}
         label="Booking End Time"
         required
         InputLabelProps={{ shrink: true }}
@@ -53,7 +56,8 @@ export const SchduleDetails = () => {
       <TextField
         onChange={handleScheduleData}
         name="fees"
-        type="type"
+        type="number"
+        InputProps={{inputProps:{min:"0"}}}
         value={scheduleData["fees"]}
         placeholder="Default is 0"
         label="Fees"
@@ -62,6 +66,8 @@ export const SchduleDetails = () => {
       <TextField
         onChange={handleScheduleData}
         name="patient_limit"
+        type="number"
+        InputProps={{inputProps:{min:"0"}}}
         value={scheduleData["patient_limit"]}
         placeholder="default null"
         label="Patient Limit"
