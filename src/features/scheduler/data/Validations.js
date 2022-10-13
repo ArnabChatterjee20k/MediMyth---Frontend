@@ -1,0 +1,1 @@
+export const isValidPhone = (phone)=>/^([0-9]){10}$/.test(phone)

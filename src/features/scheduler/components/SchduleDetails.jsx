@@ -1,6 +1,7 @@
 import Stack from "@mui/material/Stack";
 import TextField from "@mui/material/TextField";
 import { useScheduleData } from "../context/ScheduleContextProvider";
+import { isValidPhone } from "../data/Validations";
 export const SchduleDetails = () => {
   const { scheduleData, handleScheduleData } = useScheduleData();
   console.log()
@@ -79,7 +80,10 @@ export const SchduleDetails = () => {
         value={scheduleData["phone_no"]}
         placeholder="10 digit"
         label="Phone number"
+        error={!isValidPhone(scheduleData["phone_no"])}
+        helperText={!isValidPhone(scheduleData["phone_no"]) && "Invalid Number"}
         InputLabelProps={{ shrink: true }}
+        required
       />
       <TextField
         onChange={handleScheduleData}
