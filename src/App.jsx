@@ -11,7 +11,7 @@ function App() {
       {/* <BrowserRouter>
         <DoctorRoutes/>
       </BrowserRouter> */}
-      <ScheduleCalendar/>
+      {/* <ScheduleCalendar/> */}
     </div>
   );
 }
