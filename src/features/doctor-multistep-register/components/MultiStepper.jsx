@@ -12,7 +12,7 @@ const MultiStepper = ({steps}) => {
   const handleNext = (e) => {
     e.preventDefault()
     steps[activeForm].onSubmit && steps[activeForm].onSubmit()
-    setActiveForm((prevActiveForm) => prevActiveForm + 1);
+    setActiveForm((prevActiveForm) => prevActiveForm + 1); // if isLoading returned from react query is false
   };
 
   const handleBack = () => {
