@@ -2,7 +2,7 @@ import TextField  from "@mui/material/TextField"
 import { useRegisterContext } from "../context/RegisterContextProvider"
 import PropTypes from "prop-types"
 
-const Input = ({name,type,value,placeholder,label,changeHandler,errorText,errorPattern,...props}) => {
+const Input = ({name,type,value,placeholder,label,changeHandler,errorText,errorPattern,optional,...props}) => {
     const {data,setData} = useRegisterContext();
     const handleChange = (e)=>{
         setData(prevData=>({...prevData,[e.target.name]:e.target.value}))
@@ -18,6 +18,7 @@ const Input = ({name,type,value,placeholder,label,changeHandler,errorText,errorP
         placeholder={placeholder}
         label={label}
         helperText={!validInput && errorText}
+        required = {optional || true} // if optional present or true
         error={errorPattern && !validInput}
         InputLabelProps={{ shrink: true }}
         {...props}
@@ -32,6 +33,7 @@ Input.prototype = {
     placeholder:PropTypes.string.isRequired,
     label:PropTypes.string.isRequired,
     errorText:PropTypes.string,
-    errorPattern:PropTypes.string
+    errorPattern:PropTypes.string,
+    optional:PropTypes.bool
 }
 export default Input

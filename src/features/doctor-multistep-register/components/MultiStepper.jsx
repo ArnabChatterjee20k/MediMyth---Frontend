@@ -12,7 +12,7 @@ const MultiStepper = ({steps}) => {
   const handleNext = (e) => {
     e.preventDefault()
     steps[activeForm].onSubmit && steps[activeForm].onSubmit()
-    setActiveForm((prevActiveForm) => prevActiveForm + 1); // if isLoading returned from react query is false
+    activeForm<maxSteps-1 && setActiveForm((prevActiveForm) => prevActiveForm + 1); // if isLoading returned from react query is false
   };
 
   const handleBack = () => {
@@ -40,10 +40,10 @@ const MultiStepper = ({steps}) => {
         <Typography>{steps[activeForm].label}</Typography>
       </Paper>
       {/* rendering a form for validation */}
-        <Stack component="form" onSubmit={handleNext} padding={2} alignItems="center">
+        <Stack component="form" onSubmit={handleNext} padding={2} gap={4} sx={{width:{xs:"100%",sm:"50%"},marginInline:"auto"}}>
             <Component/>
             <MobileStepper
-             sx={{width:"80%"}}
+             sx={{width:"80%",alignSelf:"center"}}
               variant="text"
               steps={maxSteps}
               position="static"
