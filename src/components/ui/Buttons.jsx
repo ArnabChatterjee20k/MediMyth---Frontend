@@ -14,6 +14,7 @@ export const PrimaryButton = styled(Button)(({theme})=>({
     '&:hover': {
         backgroundColor: grey[800],
       },
+    "&:disabled":{backgroundColor:grey[600]}
 
 }))
 
