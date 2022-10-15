@@ -36,6 +36,7 @@ const RegisterContextProvider = ({ children }) => {
   };
 
   const createAccount = () => {
+    console.log(data);
     doctorRes.mutate(data, {
       onSuccess: async(res) => {
         const data = await res.json()
@@ -43,15 +44,15 @@ const RegisterContextProvider = ({ children }) => {
         
         console.log("🚀 ~ file: RegisterContextProvider.jsx ~ line 46 ~ createAccount ~ data,status", data,status)
         if(status == 200){
-            data.status && notify(data.status,"success");
+            notify("success","success");
+            // receive the token and save it in the localstorage
         }
         else{
             data.status && notify(data.status,"error");
         }
       },
       onError: (err) => {
-        console.log(err);
-        notify(err,"success");
+        notify("Error Plz try again later","error");
       },
     });
   };
