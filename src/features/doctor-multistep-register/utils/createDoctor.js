@@ -10,9 +10,10 @@ export const createDoctor = (phone,receivedOTP,body)=>{
     const url = serverAddress+registerDoctor+phone
     console.log(url);
     const headers = {
-        "Content-Type": "application/json",
+        "Content-Type":"application/json",
         token:receivedOTP
     }
     const jsonBody = JSON.stringify(body)
-    return fetch(url,{headers,jsonBody,method:"POST"}).then(res=>res.json)
+    console.log("🚀 ~ file: createDoctor.js ~ line 20 ~ createDoctor ~ phone,receivedOTP", phone,receivedOTP)
+    return fetch(url,{headers:headers,body:jsonBody,method:"POST"}).then(res=>res.json).catch(err=>console.log(err))
 }

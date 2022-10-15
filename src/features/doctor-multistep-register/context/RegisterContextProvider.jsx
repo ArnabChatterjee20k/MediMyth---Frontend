@@ -20,21 +20,29 @@ const RegisterContextProvider = ({children}) => {
 
     const [otp,setOTP] = useState("")
 
-    const doctorRes = useMutation((body)=>createDoctor(data.phone_no,otp,body))
+    const doctorRes = useMutation((body)=>{
+        console.log("🚀 ~ file: RegisterContextProvider.jsx ~ line 25 ~ doctorRes ~ body", body)
+        return createDoctor(data.phone_no,otp,body)})
 
     const sendOTP = ()=>{
         alert("sending otp to",data.phone_no)
+        console.log(data);
     }
-    const validateOTP = ()=>{
-        doctorRes.mutate((data),console.log("done"))
-        alert("validating otp for ",otp)
-    }
+
     const createAccount = ()=>{
+        doctorRes.mutate(data,{
+            onSuccess : (res)=>{
+                console.log("Response from the server",res);
+            },
+            onError : (err)=>{
+                console.log("Error",err);
+            }
+        })
         console.log(data);
     }
 
   return (
-    <RegisterContext.Provider value={{data,setData,otp,setOTP,sendOTP,validateOTP,createAccount}}>{children}</RegisterContext.Provider>
+    <RegisterContext.Provider value={{data,setData,otp,setOTP,sendOTP,createAccount}}>{children}</RegisterContext.Provider>
   );
 };
 
