@@ -8,14 +8,14 @@ export const useRegisterContext = () => useContext(RegisterContext);
 
 const RegisterContextProvider = ({ children }) => {
   const [data, setData] = useState({
-    name: "Arnab",
-    email: "homeuse.hu.1@gmail.com",
-    phone_no: "9832791417",
-    reg_no: "123",
-    address: "adf",
-    category: "dentist",
-    password: "1234",
-    reff_code: "1212",
+    name: "",
+    email: "",
+    phone_no: "",
+    reg_no: "",
+    address: "",
+    category: "",
+    password: "",
+    reff_code: "",
   });
 
   const [otp, setOTP] = useState("");
@@ -42,7 +42,6 @@ const RegisterContextProvider = ({ children }) => {
         const data = await res.json()
         const status = res.status
         
-        console.log("🚀 ~ file: RegisterContextProvider.jsx ~ line 46 ~ createAccount ~ data,status", data,status)
         if(status == 200){
             notify("success","success");
             // receive the token and save it in the localstorage
