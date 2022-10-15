@@ -1,4 +1,6 @@
+import { useMutation } from "@tanstack/react-query";
 import { createContext , useState , useContext } from "react";
+import { createDoctor } from "../utils/createDoctor";
 
 const RegisterContext = createContext();
 
@@ -15,19 +17,22 @@ const RegisterContextProvider = ({children}) => {
         password:"",
         reff_code:""
     })
+
     const [otp,setOTP] = useState("")
+
+    const doctorRes = useMutation((body)=>createDoctor(data.phone_no,otp,body))
+
     const sendOTP = ()=>{
         alert("sending otp to",data.phone_no)
     }
     const validateOTP = ()=>{
+        doctorRes.mutate((data),console.log("done"))
         alert("validating otp for ",otp)
     }
     const createAccount = ()=>{
         console.log(data);
     }
-    // we will define here all the react query hooks with fetcher function from utils and refetch option and then expose them as value
-    // example {data:OTP,isLoading:otpLoading,error:otpError} = useQuery(fetcher)
-    // or use some separate hooks
+
   return (
     <RegisterContext.Provider value={{data,setData,otp,setOTP,sendOTP,validateOTP,createAccount}}>{children}</RegisterContext.Provider>
   );
