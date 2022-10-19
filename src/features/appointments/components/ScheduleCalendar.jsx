@@ -117,9 +117,21 @@ export default function ScheduleCalendar() {
                     day={date}
                     key={getWeekDay(date)}
                     selected={isSelected}
+                    disabled={!isSelected}
                     sx={{
                       "&.MuiPickersDay-root":{
                         backgroundColor: isSelected && isInBookingRange && "success.main",
+                      },
+                      "&.MuiPickersDay-root:hover":{
+                        backgroundColor:isSelected && isInBookingRange && "success.light"
+                      },
+                      "&.MuiPickersDay-root:active":{
+                        backgroundColor:isSelected && isInBookingRange && "success.light",
+                        border: isSelected && isInBookingRange && "2px solid black"
+                      },
+                      "&.MuiPickersDay-root:focus":{
+                        backgroundColor:isSelected && isInBookingRange && "success.light",
+                        border: isSelected && isInBookingRange && "2px solid black"
                       }
                     }}
                     onClick={() => console.log(getWeekOfMonth(date))}
