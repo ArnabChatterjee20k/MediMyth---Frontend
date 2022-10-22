@@ -7,7 +7,7 @@ import Typography from "@mui/material/Typography";
 import Proptypes from "prop-types"
 const EventCards = ({start,end,address,cardAction,disabled}) => {
   return (
-    <Card sx={{display:"flex",justifyContent:"space-between",flexDirection:{xs:"column",sm:"row"}}}>
+    <Card variant="outlined" sx={{display:"flex",justifyContent:"space-between",flexDirection:{xs:"column",sm:"row"}}}>
       <CardContent>
         <Typography variant="h5" component="div"></Typography>
         <Typography sx={{ mb: 1.5 }} color="text.secondary">

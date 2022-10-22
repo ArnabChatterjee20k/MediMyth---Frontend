@@ -5,7 +5,7 @@ import { MultiStepDoctorRegistration } from "./features/doctor-multistep-registe
 import NotificationContextProvider from "./contexts/ToastContextProvider/NotificationContextProvider";
 import Toast from './components/ui/Toast'
 import ScheduleCalendar from "./features/appointments/components/ScheduleCalendar";
-import EventCards from "./features/appointments/components/EventCards";
+import AppointmentViewer from "./features/appointments";
 function App() {
   return (
     <NotificationContextProvider>
@@ -16,7 +16,7 @@ function App() {
       <Toast/>
       {/* <MultiStepDoctorRegistration /> */}
       {/* <ScheduleCalendar/> */}
-      <EventCards/>
+      <AppointmentViewer/>
     </NotificationContextProvider>
   );
 }

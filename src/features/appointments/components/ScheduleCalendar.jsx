@@ -8,6 +8,9 @@ import { getWeekDay, getDifferenceDates } from "../../../utils/dateTime";
 import { DateFormat } from "../../../data/Constants";
 import { PickersDay } from "@mui/x-date-pickers/";
 import { getWeek, getWeekOfMonth } from "date-fns";
+import { useAppointment } from "../context/AppointmentContextProvider";
+import Typography  from "@mui/material/Typography";
+
 const dummyData = [
   {
     address: "dsdff",
@@ -32,6 +35,23 @@ const dummyData = [
     booking_end: 2,
     booking_start: 1,
     clinic_name: "sdfd",
+    day: 2,
+    fees: null,
+    id: 1,
+    medical_shop: "sdf",
+    patient_limit: null,
+    phone_no: "9812121212",
+    scheduled_data: 1,
+    slot_end: "11:30:12",
+    slot_start: "10:00:00",
+    specific_week: 3,
+  },
+  {
+    address: "dsdff",
+    appointment_data: [1, 2],
+    booking_end: 2,
+    booking_start: 1,
+    clinic_name: "sdfd",
     day: 4,
     fees: null,
     id: 1,
@@ -47,7 +67,7 @@ const dummyData = [
     address: "dsdff",
     appointment_data: [1, 2],
     booking_end: 1,
-    booking_start: 1,
+    booking_start: 30,
     clinic_name: "sdfd",
     day: 6,
     fees: null,
@@ -58,6 +78,23 @@ const dummyData = [
     scheduled_data: 1,
     slot_end: "05:30:12",
     slot_start: "05:00:00",
+    specific_week: null,
+  },
+  {
+    address: "dsdff",
+    appointment_data: [1, 2],
+    booking_end: 1,
+    booking_start: 30,
+    clinic_name: "sdfd",
+    day: 6,
+    fees: null,
+    id: 1,
+    medical_shop: "sdf",
+    patient_limit: null,
+    phone_no: "9812121212",
+    scheduled_data: 1,
+    slot_end: "02:30:12",
+    slot_start: "03:00:00",
     specific_week: null,
   },
   {
@@ -78,7 +115,7 @@ const dummyData = [
     specific_week: 4,
   },
 ];
-// creating this dataStructure to access the schedules easily and accessing data becomes more cleaner using key value pair
+// creating this dataStructure to access the ORDERED_SCHEDULE easily and accessing data becomes more cleaner using key value pair
 const ORDERED_SCHEDULE = {};
 dummyData.map((element) => {
   if (ORDERED_SCHEDULE[element.day]) {
@@ -91,8 +128,8 @@ console.log(ORDERED_SCHEDULE);
 
 export default function ScheduleCalendar() {
   const [value, setValue] = useState("");
-  const [schedules, setSchedules] = useState(ORDERED_SCHEDULE);
-  return (
+  const {setAppointment} = useAppointment()
+  if(dummyData.length!==0) return (
     <Stack justifyContent="center" alignItems="center">
       <LocalizationProvider dateAdapter={AdapterDateFns}>
         <StaticDatePicker
@@ -104,7 +141,7 @@ export default function ScheduleCalendar() {
           disableHighlightToday={true}
           renderDay={(date, selectedDays, pickersDayProps) => {
             // rendering the next dates and today if available
-            const dateExists = schedules[getWeekDay(date)];
+            const dateExists = ORDERED_SCHEDULE[getWeekDay(date)];
             let picker = null;
             dateExists &&
               getDifferenceDates(date, new Date()) >= 0 &&
@@ -134,7 +171,10 @@ export default function ScheduleCalendar() {
                         border: isSelected && isInBookingRange && "2px solid black"
                       }
                     }}
-                    onClick={() => console.log(getWeekOfMonth(date))}
+                    onClick={() => {
+                      console.log(dateExists);
+                      isInBookingRange ? setAppointment(dateExists) : console.log("Out Of Booking range")
+                    }}
                   />
                 );
               }):picker = (
@@ -162,4 +202,5 @@ export default function ScheduleCalendar() {
       </LocalizationProvider>
     </Stack>
   );
+  return <Typography fontSize={40}>No appointments</Typography>
 }
