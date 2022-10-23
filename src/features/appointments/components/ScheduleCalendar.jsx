@@ -4,7 +4,7 @@ import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { StaticDatePicker } from "@mui/x-date-pickers/StaticDatePicker";
 import Stack from "@mui/material/Stack";
-import { getWeekDay, getDifferenceDates } from "../../../utils/dateTime";
+import { getWeekDay, getDifferenceDates,getFormattedDate } from "../../../utils/dateTime";
 import { DateFormat } from "../../../data/Constants";
 import { PickersDay } from "@mui/x-date-pickers/";
 import { getWeek, getWeekOfMonth } from "date-fns";
@@ -205,6 +205,7 @@ export default function ScheduleCalendar() {
           renderInput={(params) => <TextField {...params} />}
         />
       </LocalizationProvider>
+      {selected.current && <Typography sx={{alignSelf:"self-start",marginInline:"2rem"}} fontSize={25} fontWeight="bold">{getFormattedDate(new Date(selected.current),"dd/MM/yyyy")}</Typography>}
     </Stack>
   );
   return <Typography fontSize={40}>No appointments</Typography>
