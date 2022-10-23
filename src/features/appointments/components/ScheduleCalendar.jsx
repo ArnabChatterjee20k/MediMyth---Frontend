@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import TextField from "@mui/material/TextField";
 import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
@@ -129,6 +129,11 @@ console.log(ORDERED_SCHEDULE);
 export default function ScheduleCalendar() {
   const [value, setValue] = useState("");
   const {setAppointment} = useAppointment()
+  // will be storing the primitive value of date object.
+  // Storing primitive value here to cut down the problem of referential equality of objects
+  // valueOf will give primitive values
+  // ref used to avoid useless re renders
+  const selected = useRef(null)
   if(dummyData.length!==0) return (
     <Stack justifyContent="center" alignItems="center">
       <LocalizationProvider dateAdapter={AdapterDateFns}>
@@ -152,28 +157,28 @@ export default function ScheduleCalendar() {
                   <PickersDay
                     {...pickersDayProps}
                     day={date}
-                    key={getWeekDay(date)}
+                    key={date}
                     selected={isSelected}
                     disabled={!isSelected}
                     sx={{
                       "&.MuiPickersDay-root":{
-                        backgroundColor: isSelected && isInBookingRange && "success.main",
+                        backgroundColor:date.valueOf() === selected.current && "success.light",
+                        border:date.valueOf() === selected.current && "2px solid #212121"
                       },
                       "&.MuiPickersDay-root:hover":{
-                        backgroundColor:isSelected && isInBookingRange && "success.light"
+                        backgroundColor:"success.light"
                       },
                       "&.MuiPickersDay-root:active":{
-                        backgroundColor:isSelected && isInBookingRange && "success.light",
-                        border: isSelected && isInBookingRange && "2px solid black"
+                        backgroundColor:"success.light",
+                        border: "2px solid black"
                       },
                       "&.MuiPickersDay-root:focus":{
-                        backgroundColor:isSelected && isInBookingRange && "success.light",
-                        border: isSelected && isInBookingRange && "2px solid black"
+                        backgroundColor:"success.light",
                       }
                     }}
                     onClick={() => {
-                      console.log(dateExists);
-                      isInBookingRange ? setAppointment(dateExists) : console.log("Out Of Booking range")
+                      selected.current = date.valueOf()
+                      setAppointment(dateExists)
                     }}
                   />
                 );
