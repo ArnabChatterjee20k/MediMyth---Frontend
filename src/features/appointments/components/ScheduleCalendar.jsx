@@ -128,12 +128,8 @@ console.log(ORDERED_SCHEDULE);
 
 export default function ScheduleCalendar() {
   const [value, setValue] = useState("");
-  const {setAppointment} = useAppointment()
-  // will be storing the primitive value of date object.
-  // Storing primitive value here to cut down the problem of referential equality of objects
-  // valueOf will give primitive values
-  // ref used to avoid useless re renders
-  const selected = useRef(null)
+  const {setAppointment,appointmentDate,setAppointmentDate} = useAppointment()
+  
   if(dummyData.length!==0) return (
     <Stack justifyContent="center" alignItems="center">
       <LocalizationProvider dateAdapter={AdapterDateFns}>
@@ -152,7 +148,6 @@ export default function ScheduleCalendar() {
               getDifferenceDates(date, new Date()) >= 0 &&
               dateExists?dateExists.map((schedule) => {
                 const isSelected = schedule.specific_week!==null?schedule.specific_week === getWeekOfMonth(date):true;
-                const isInBookingRange = getDifferenceDates(date,new Date())<=schedule.booking_start;
                 picker = (
                   <PickersDay
                     {...pickersDayProps}
@@ -162,8 +157,8 @@ export default function ScheduleCalendar() {
                     disabled={!isSelected}
                     sx={{
                       "&.MuiPickersDay-root":{
-                        backgroundColor:date.valueOf() === selected.current && "success.light",
-                        border:date.valueOf() === selected.current && "2px solid #212121"
+                        backgroundColor:date.valueOf() === appointmentDate.current && "success.light",
+                        border:date.valueOf() === appointmentDate.current && "2px solid #212121"
                       },
                       "&.MuiPickersDay-root:hover":{
                         backgroundColor:"success.light"
@@ -177,7 +172,7 @@ export default function ScheduleCalendar() {
                       }
                     }}
                     onClick={() => {
-                      selected.current = date.valueOf()
+                      setAppointmentDate(date.valueOf())
                       setAppointment(dateExists)
                     }}
                   />
@@ -205,7 +200,7 @@ export default function ScheduleCalendar() {
           renderInput={(params) => <TextField {...params} />}
         />
       </LocalizationProvider>
-      {<Typography sx={{alignSelf:"self-start",marginInline:"2rem"}} fontSize={25} fontWeight="bold">{selected.current ? getFormattedDate(new Date(selected.current),"dd/MM/yyyy"):"No date selected"}</Typography>}
+      {<Typography sx={{alignSelf:"self-start",marginInline:"2rem"}} fontSize={25} fontWeight="bold">{appointmentDate.current ? getFormattedDate(new Date(appointmentDate.current),"dd/MM/yyyy"):"No date selected"}</Typography>}
     </Stack>
   );
   return <Typography fontSize={40}>No appointments</Typography>

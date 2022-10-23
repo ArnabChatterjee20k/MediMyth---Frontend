@@ -5,7 +5,9 @@ import CardContent from "@mui/material/CardContent";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import Proptypes from "prop-types"
+import { getDifferenceDates } from "../../../utils/dateTime";
 const EventCards = ({start,end,address,cardAction,disabled}) => {
+  // const isInBookingRange = getDifferenceDates(date,new Date())<=start;
   return (
     <Card variant="outlined" sx={{display:"flex",justifyContent:"space-between",flexDirection:{xs:"column",sm:"row"}}}>
       <CardContent>
