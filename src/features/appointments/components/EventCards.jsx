@@ -5,14 +5,21 @@ import CardContent from "@mui/material/CardContent";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import Proptypes from "prop-types"
+import Chip from '@mui/material/Chip';
+import CheckIcon from '@mui/icons-material/Check';
+import RunningWithErrorsIcon from '@mui/icons-material/RunningWithErrors';
 import { getDifferenceDates } from "../../../utils/dateTime";
-const EventCards = ({start,end,address,cardAction,disabled}) => {
-  // const isInBookingRange = getDifferenceDates(date,new Date())<=start;
+const EventCards = ({start,end,address,cardAction,date,booking_start}) => {
+  const isInBookingRange = getDifferenceDates(new Date(date),new Date())<=booking_start;
   return (
     <Card variant="outlined" sx={{display:"flex",justifyContent:"space-between",flexDirection:{xs:"column",sm:"row"}}}>
       <CardContent>
-        <Typography variant="h5" component="div"></Typography>
-        <Typography sx={{ mb: 1.5 }} color="text.secondary">
+      <Chip
+        label={isInBookingRange?"Booking available":"booking unavailable"}
+        clickable={false}
+        sx={{backgroundColor:isInBookingRange?"success.light":"error.light",color:"white"}}
+      />
+        <Typography sx={{ marginBlock: 1.5 }} color="text.secondary">
           {start} - {end?end:"Not mentioned"}
         </Typography>
         <Typography variant="body2">
@@ -21,7 +28,7 @@ const EventCards = ({start,end,address,cardAction,disabled}) => {
         </Typography>
       </CardContent>
       <CardActions>
-        <Button disabled={disabled} onClick={cardAction} size="small" variant="contained" >Book</Button>
+        <Button disabled={!isInBookingRange} onClick={cardAction} size="small" variant="contained" >Book</Button>
       </CardActions>
     </Card>
   );
@@ -32,7 +39,8 @@ EventCards.prototype = {
   end:Proptypes.string,
   address:Proptypes.string,
   cardAction:Proptypes.func,
-  disabled:Proptypes.bool
+  date:Proptypes.number.isRequired,// primitive value of a date object
+  booking_start:Proptypes.number.isRequired
 }
 
 EventCards.defaultProps={
@@ -40,7 +48,6 @@ EventCards.defaultProps={
   end:"Ending time",
   address:"Address of the clinic",
   cardAction:()=>alert("Card action"),
-  disabled:false
 }
 
 export default EventCards;
