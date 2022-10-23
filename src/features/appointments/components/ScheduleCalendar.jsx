@@ -205,7 +205,7 @@ export default function ScheduleCalendar() {
           renderInput={(params) => <TextField {...params} />}
         />
       </LocalizationProvider>
-      {selected.current && <Typography sx={{alignSelf:"self-start",marginInline:"2rem"}} fontSize={25} fontWeight="bold">{getFormattedDate(new Date(selected.current),"dd/MM/yyyy")}</Typography>}
+      {<Typography sx={{alignSelf:"self-start",marginInline:"2rem"}} fontSize={25} fontWeight="bold">{selected.current ? getFormattedDate(new Date(selected.current),"dd/MM/yyyy"):"No date selected"}</Typography>}
     </Stack>
   );
   return <Typography fontSize={40}>No appointments</Typography>
