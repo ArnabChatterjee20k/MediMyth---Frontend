@@ -1,4 +1,4 @@
-import { format, parseISO,getDay, differenceInCalendarDays} from "date-fns";
+import { format, parseISO,getDay, differenceInCalendarDays , differenceInHours} from "date-fns";
 export class CustomDateFns{
     /**
      * 
@@ -34,5 +34,15 @@ export class CustomDateFns{
      */
     static calendarDifferenceDates(dateLeft,dateRight){
         return differenceInCalendarDays(dateLeft,dateRight)
+    }
+
+    /**
+     * 
+     * @param {*Date} dateLeft 
+     * @param {*Date} dateRight 
+     * @returns 
+     */
+    static hoursBetweenDates(dateLeft,dateRight){
+        return differenceInHours(dateLeft,dateRight)
     }
 }

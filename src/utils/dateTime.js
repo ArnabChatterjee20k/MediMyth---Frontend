@@ -25,3 +25,7 @@ export function getWeekDay(dateObj){
 export function getDifferenceDates(dateLeft,dateRight){
     return CustomDateFns.calendarDifferenceDates(dateLeft,dateRight)
 }
+
+export function getDifferenceHours(dateLeft,dateRight){
+    return CustomDateFns.hoursBetweenDates(dateLeft,dateRight)
+}
