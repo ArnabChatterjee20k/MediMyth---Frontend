@@ -6,11 +6,27 @@ import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import Proptypes from "prop-types"
 import Chip from '@mui/material/Chip';
-import CheckIcon from '@mui/icons-material/Check';
-import RunningWithErrorsIcon from '@mui/icons-material/RunningWithErrors';
-import { getDifferenceDates } from "../../../utils/dateTime";
-const EventCards = ({start,end,address,cardAction,date,booking_start}) => {
-  const isInBookingRange = getDifferenceDates(new Date(date),new Date())<=booking_start;
+import { getDifferenceDates , getDifferenceHours ,subtractHoursFromDate , isToday,isTimeBeforeNow} from "../../../utils/dateTime";
+import combineTodayWithTime from "../utils/combineTodayWithTime";
+const EventCards = ({start,end,address,cardAction,date,booking_start,booking_end}) => {
+
+  function checkBookingEnd(){
+    if(isToday(date)){
+      const dateObj = new Date(date)
+      // combining date and booking_start
+      const slotStart = combineTodayWithTime(start)
+      // subtracting ending hours from slotStart
+      const dateAfterSubtracting = subtractHoursFromDate(slotStart,booking_end)
+      // comparing the dateAfterSubtracting and currentTime
+      const bookingOver = isTimeBeforeNow(dateAfterSubtracting)
+      return !bookingOver;
+    }
+    return false;
+  }
+
+  const beforeBookingStart = getDifferenceDates(new Date(date),new Date())<=booking_start;
+
+  const isInBookingRange = beforeBookingStart && !checkBookingEnd();
   return (
     <Card variant="outlined" sx={{display:"flex",justifyContent:"space-between",flexDirection:{xs:"column",sm:"row"}}}>
       <CardContent>

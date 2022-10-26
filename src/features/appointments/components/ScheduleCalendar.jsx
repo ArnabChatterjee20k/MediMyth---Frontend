@@ -114,6 +114,23 @@ const dummyData = [
     slot_start: "05:00:00",
     specific_week: 4,
   },
+  {
+    address: "dsdff",
+    appointment_data: [1, 2],
+    booking_end: 0,
+    booking_start: 90,
+    clinic_name: "sdfd",
+    day: 3,
+    fees: null,
+    id: 1,
+    medical_shop: "sdf",
+    patient_limit: null,
+    phone_no: "9812121212",
+    scheduled_data: 1,
+    slot_end: "05:30:12",
+    slot_start: "23:45:00",
+    specific_week: null,
+  },
 ];
 // creating this dataStructure to access the ORDERED_SCHEDULE easily and accessing data becomes more cleaner using key value pair
 const ORDERED_SCHEDULE = {};

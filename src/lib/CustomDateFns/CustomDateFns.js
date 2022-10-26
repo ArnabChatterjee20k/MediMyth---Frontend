@@ -1,4 +1,4 @@
-import { format, parseISO,getDay, differenceInCalendarDays , differenceInHours} from "date-fns";
+import { format, parseISO,getDay, differenceInCalendarDays , differenceInHours, subHours , isToday , isBefore , isAfter} from "date-fns";
 export class CustomDateFns{
     /**
      * 
@@ -44,5 +44,44 @@ export class CustomDateFns{
      */
     static hoursBetweenDates(dateLeft,dateRight){
         return differenceInHours(dateLeft,dateRight)
+    }
+
+    /**
+     * 
+     * @param {*Date} date -the reuqired date
+     * @param {*Number} hours -the hours to be subtracted from the date
+     * @returns 
+     */
+    static subtractHoursFromDate(date,hours){
+        return subHours(date,hours)
+    }
+
+    /**
+     * 
+     * @param {*Date} date -the date to be checked
+     * @returns 
+     */
+    static isToday(date){
+        return isToday(date);
+    }
+
+    /**
+     * 
+     * @param {*Date} dateLeft 
+     * @param {*Date} dateRight
+     * @returns 
+     */
+    static isBefore(dateLeft,dateRight){
+        return isBefore(dateLeft,dateRight)
+    }
+    
+    /**
+     * 
+     * @param {*Date} dateLeft 
+     * @param {*Date} dateRight 
+     * @returns 
+     */
+    static isAfter(dateLeft,dateRight){
+        return isAfter(dateLeft,dateRight)
     }
 }

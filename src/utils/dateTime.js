@@ -29,3 +29,19 @@ export function getDifferenceDates(dateLeft,dateRight){
 export function getDifferenceHours(dateLeft,dateRight){
     return CustomDateFns.hoursBetweenDates(dateLeft,dateRight)
 }
+
+export function subtractHoursFromDate(date,hours){
+    return CustomDateFns.subtractHoursFromDate(date,hours)
+}
+
+export function isToday(date){
+    return CustomDateFns.isToday(date)
+}
+
+export function isTimeBeforeNow(date){
+    return CustomDateFns.isBefore(new Date(),date)
+}
+
+export function isDayAfterToday(date){
+    return CustomDateFns.isAfter(date,new Date())
+}
