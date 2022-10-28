@@ -124,7 +124,7 @@ const dummyData = [
     fees: null,
     id: 1,
     medical_shop: "sdf",
-    patient_limit: null,
+    patient_limit: 12,
     phone_no: "9812121212",
     scheduled_data: 1,
     slot_end: "05:30:12",
@@ -176,9 +176,6 @@ export default function ScheduleCalendar() {
                       "&.MuiPickersDay-root":{
                         backgroundColor:date.valueOf() === appointmentDate.current && "success.light",
                         border:date.valueOf() === appointmentDate.current && "2px solid #212121"
-                      },
-                      "&.MuiPickersDay-root:hover":{
-                        backgroundColor:"success.light"
                       },
                       "&.MuiPickersDay-root:active":{
                         backgroundColor:"success.light",
