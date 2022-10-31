@@ -124,7 +124,7 @@ const dummyData = [
     fees: null,
     id: 1,
     medical_shop: "sdf",
-    patient_limit: 12,
+    patient_limit: 2,
     phone_no: "9812121212",
     scheduled_data: 1,
     slot_end: "05:30:12",

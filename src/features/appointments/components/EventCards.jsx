@@ -8,7 +8,7 @@ import Proptypes from "prop-types"
 import Chip from '@mui/material/Chip';
 import { getDifferenceDates , getDifferenceHours ,subtractHoursFromDate , isToday,isTimeBeforeNow} from "../../../utils/dateTime";
 import combineTodayWithTime from "../utils/combineTodayWithTime";
-const EventCards = ({start,end,address,cardAction,date,booking_start,booking_end}) => {
+const EventCards = ({start,end,address,cardAction,date,booking_start,booking_end,limit,seatsBooked}) => {
 
   function checkBookingEnd(){
     if(isToday(date)){
@@ -26,7 +26,11 @@ const EventCards = ({start,end,address,cardAction,date,booking_start,booking_end
 
   const beforeBookingStart = getDifferenceDates(new Date(date),new Date())<=booking_start;
 
-  const isInBookingRange = beforeBookingStart && !checkBookingEnd();
+  const isSeatsAvailable = limit-seatsBooked!==0
+
+  const isInBookingRange = beforeBookingStart && !checkBookingEnd() && isSeatsAvailable;
+
+
   return (
     <Card variant="outlined" sx={{display:"flex",justifyContent:"space-between",flexDirection:{xs:"column",sm:"row"}}}>
       <CardContent>
