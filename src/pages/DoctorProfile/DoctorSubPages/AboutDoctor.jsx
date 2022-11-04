@@ -8,6 +8,7 @@ import DoctorImage from "../../../components/DoctorProfile/DoctorImage";
 import PropTypes from "prop-types";
 import { useParams } from "react-router-dom";
 import useDoctorProfile from "../../../services/useDoctorProfile";
+import { Outlet } from 'react-router-dom'
 
 const AboutDoctor = ({ edit }) => {
   const {id:active_doctor_id} = useParams();
@@ -68,6 +69,8 @@ const AboutDoctor = ({ edit }) => {
         {/* About the doctor personal info */}
         <DoctorInfo doctorInfo={doctorProfile} />
       </Box>
+      {/* for rendering the child */}
+      <Outlet/> 
     </Box>
   );
 };
