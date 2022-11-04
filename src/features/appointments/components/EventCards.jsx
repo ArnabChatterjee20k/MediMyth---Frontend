@@ -8,8 +8,8 @@ import Proptypes from "prop-types"
 import Chip from '@mui/material/Chip';
 import { getDifferenceDates , getDifferenceHours ,subtractHoursFromDate , isToday,isTimeBeforeNow} from "../../../utils/dateTime";
 import combineTodayWithTime from "../utils/combineTodayWithTime";
-const EventCards = ({start,end,address,cardAction,date,booking_start,booking_end,limit,seatsBooked}) => {
-
+const EventCards = ({start,end,address,cardAction,date,booking_start,booking_end,limit,appointment_data}) => {
+  console.log("Rendering");
   function checkBookingEnd(){
     if(isToday(date)){
       const dateObj = new Date(date)
@@ -26,7 +26,16 @@ const EventCards = ({start,end,address,cardAction,date,booking_start,booking_end
 
   const beforeBookingStart = getDifferenceDates(new Date(date),new Date())<=booking_start;
 
-  const isSeatsAvailable = limit-seatsBooked!==0
+  // filtering the number of the appointments of the selected date and then subtracting it with limit
+  // if 0 then no more seats
+  // if negative value is coming then the limit is null.
+  const seats =  appointment_data.filter((appointment)=>{
+    const selectedDate = new Date(date)
+    const scheduleDate = new Date(appointment?.appointment_date)
+    return selectedDate.getDate() === scheduleDate.getDate() && selectedDate.getMonth() === scheduleDate.getMonth() && selectedDate.getFullYear() === scheduleDate.getFullYear()
+  }).length
+
+  const isSeatsAvailable = limit - seats !==0
 
   const isInBookingRange = beforeBookingStart && !checkBookingEnd() && isSeatsAvailable;
 
