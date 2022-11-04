@@ -1,6 +1,7 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
 import DoctorPage from "../pages/DoctorProfile/DoctorPage";
+import { BookingCalendar } from "../features/appointments";
 import { doctorProfileActions } from "../data/DoctorProfileActions";
 import { OptionTab } from "../components/DoctorProfile/OptionTab";
 const DoctorRoutes = () => {
@@ -9,7 +10,7 @@ const DoctorRoutes = () => {
       {/* for patients */}
       <Route path="/doctor">
         <Route path=":id" element={<DoctorPage edit={false} />}>
-          <Route index element={<h2>Booke</h2>} />
+          <Route index element={<BookingCalendar/>} />
         </Route>
 
         {/* for doctor profile */}

@@ -1,9 +1,3 @@
 import Appointment from "./components/Appointment"
-
-const AppointmentViewer = () => {
-  return (
-    <Appointment/>
-  )
-}
-
-export default AppointmentViewer
+import Booking from "./components/Booking"
+export const BookingCalendar = ()=><Booking/>
