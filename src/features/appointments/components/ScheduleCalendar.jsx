@@ -13,124 +13,107 @@ import Typography  from "@mui/material/Typography";
 
 const dummyData = [
   {
-    address: "dsdff",
-    appointment_data: [1, 2],
-    booking_end: 2,
-    booking_start: 100,
-    clinic_name: "sdfd",
-    day: 2,
-    fees: null,
-    id: 1,
-    medical_shop: "sdf",
-    patient_limit: null,
-    phone_no: "9812121212",
-    scheduled_data: 1,
-    slot_end: "05:30:12",
-    slot_start: "05:00:00",
-    specific_week: 3,
+    "address": "dsdff",
+    "appointment_data": [
+      {
+        "appointment_date": "2022-11-15",
+        "id": 5
+      },
+      {
+        "appointment_date": "2022-11-15",
+        "id": 6
+      },
+      {
+        "appointment_date": "2012-08-02",
+        "id": 7
+      },
+      {
+        "appointment_date": "2012-08-02",
+        "id": 8
+      }
+    ],
+    "booking_end": 2,
+    "booking_start": 7,
+    "clinic_name": "sdfd",
+    "day": 6,
+    "fees": null,
+    "id": 1,
+    "medical_shop": "sdf",
+    "patient_limit": 5,
+    "phone_no": "9812121212",
+    "slot_end": "05:30:12",
+    "slot_start": "05:00:00",
+    "specific_week": 4
   },
   {
-    address: "dsdff",
-    appointment_data: [1, 2],
-    booking_end: 2,
-    booking_start: 100,
-    clinic_name: "sdfd",
-    day: 2,
-    fees: null,
-    id: 1,
-    medical_shop: "sdf",
-    patient_limit: null,
-    phone_no: "9812121212",
-    scheduled_data: 1,
-    slot_end: "11:30:12",
-    slot_start: "10:00:00",
-    specific_week: 3,
+    "address": "lsdfj",
+    "appointment_data": [],
+    "booking_end": 2,
+    "booking_start": 7,
+    "clinic_name": "sdfd",
+    "day": 1,
+    "fees": null,
+    "id": 3,
+    "medical_shop": "sdf",
+    "patient_limit": 3,
+    "phone_no": "9812121212",
+    "slot_end": null,
+    "slot_start": "07:00:00",
+    "specific_week": null
   },
   {
-    address: "dsdff",
-    appointment_data: [1, 2],
-    booking_end: 2,
-    booking_start: 30,
-    clinic_name: "sdfd",
-    day: 4,
-    fees: null,
-    id: 1,
-    medical_shop: "sdf",
-    patient_limit: null,
-    phone_no: "9812121212",
-    scheduled_data: 1,
-    slot_end: "05:30:12",
-    slot_start: "05:00:00",
-    specific_week: 3,
+    "address": "lsdfj",
+    "appointment_data": [
+      {
+        "appointment_date": "2022-11-08",
+        "id": 9
+      },
+      {
+        "appointment_date": "2022-11-08",
+        "id": 10
+      },
+      {
+        "appointment_date": "2022-11-08",
+        "id": 11
+      },
+      {
+        "appointment_date": "2022-11-08",
+        "id": 12
+      },
+      {
+        "appointment_date": "2022-11-15",
+        "id": 13
+      }
+    ],
+    "booking_end": 2,
+    "booking_start": 30,
+    "clinic_name": "sdfd",
+    "day": 2,
+    "fees": null,
+    "id": 4,
+    "medical_shop": "sdf",
+    "patient_limit": 4,
+    "phone_no": "9812121212",
+    "slot_end": null,
+    "slot_start": "07:00:00",
+    "specific_week": null
   },
   {
-    address: "dsdff",
-    appointment_data: [1, 2],
-    booking_end: 1,
-    booking_start: 300,
-    clinic_name: "sdfd",
-    day: 6,
-    fees: null,
-    id: 1,
-    medical_shop: "sdf",
-    patient_limit: null,
-    phone_no: "9812121212",
-    scheduled_data: 1,
-    slot_end: "05:30:12",
-    slot_start: "05:00:00",
-    specific_week: null,
-  },
-  {
-    address: "dsdff",
-    appointment_data: [1, 2],
-    booking_end: 1,
-    booking_start: 121,
-    clinic_name: "sdfd",
-    day: 6,
-    fees: null,
-    id: 1,
-    medical_shop: "sdf",
-    patient_limit: null,
-    phone_no: "9812121212",
-    scheduled_data: 1,
-    slot_end: "02:30:12",
-    slot_start: "03:00:00",
-    specific_week: null,
-  },
-  {
-    address: "dsdff",
-    appointment_data: [1, 2],
-    booking_end: 1,
-    booking_start: 90,
-    clinic_name: "sdfd",
-    day: 3,
-    fees: null,
-    id: 1,
-    medical_shop: "sdf",
-    patient_limit: null,
-    phone_no: "9812121212",
-    scheduled_data: 1,
-    slot_end: "05:30:12",
-    slot_start: "05:00:00",
-    specific_week: 4,
-  },
-  {
-    address: "dsdff",
-    appointment_data: [1, 2],
-    booking_end: 0,
-    booking_start: 90,
-    clinic_name: "sdfd",
-    day: 3,
-    fees: null,
-    id: 1,
-    medical_shop: "sdf",
-    patient_limit: 2,
-    phone_no: "9812121212",
-    scheduled_data: 1,
-    slot_end: "05:30:12",
-    slot_start: "23:45:00",
-    specific_week: null,
-  },
+    "address": "lsdfj",
+    "appointment_data": [],
+    "booking_end": 2,
+    "booking_start": 7,
+    "clinic_name": "sdfd",
+    "day": 2,
+    "fees": null,
+    "id": 5,
+    "medical_shop": "sdf",
+    "patient_limit": null,
+    "phone_no": "9812121212",
+    "slot_end": null,
+    "slot_start": "09:00:00",
+    "specific_week": null
+  }
 ];
 // creating this dataStructure to access the ORDERED_SCHEDULE easily and accessing data becomes more cleaner using key value pair
 const ORDERED_SCHEDULE = {};
@@ -141,7 +124,6 @@ dummyData.map((element) => {
     ORDERED_SCHEDULE[element.day] = [element];
   }
 });
-console.log(ORDERED_SCHEDULE);
 
 export default function ScheduleCalendar() {
   const [value, setValue] = useState("");
@@ -169,13 +151,14 @@ export default function ScheduleCalendar() {
                   <PickersDay
                     {...pickersDayProps}
                     day={date}
+                    disableRipple
                     key={date}
                     selected={isSelected}
                     disabled={!isSelected}
                     sx={{
                       "&.MuiPickersDay-root":{
-                        backgroundColor:date.valueOf() === appointmentDate.current && "success.light",
-                        border:date.valueOf() === appointmentDate.current && "2px solid #212121"
+                        backgroundColor:date.valueOf() === appointmentDate && "success.light",
+                        border:date.valueOf() === appointmentDate && "2px solid #212121"
                       },
                       "&.MuiPickersDay-root:active":{
                         backgroundColor:"success.light",
@@ -204,7 +187,7 @@ export default function ScheduleCalendar() {
                   }}
                   onClick={() => console.log(getWeekOfMonth(date))}
                 />
-              );;
+              );
             return picker;
           }}
           onChange={(newValue) => {
@@ -214,7 +197,7 @@ export default function ScheduleCalendar() {
           renderInput={(params) => <TextField {...params} />}
         />
       </LocalizationProvider>
-      {<Typography sx={{alignSelf:"self-start",marginInline:"2rem"}} fontSize={25} fontWeight="bold">{appointmentDate.current ? getFormattedDate(new Date(appointmentDate.current),"dd/MM/yyyy"):"No date selected"}</Typography>}
+      {<Typography sx={{alignSelf:"self-start",marginInline:"2rem"}} fontSize={25} fontWeight="bold">{appointmentDate ? getFormattedDate(new Date(appointmentDate),"dd/MM/yyyy"):"No date selected"}</Typography>}
     </Stack>
   );
   return <Typography fontSize={40}>No appointments</Typography>
