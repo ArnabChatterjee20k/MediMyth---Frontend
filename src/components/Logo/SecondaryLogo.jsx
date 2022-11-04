@@ -9,7 +9,6 @@ import { PrimaryTextColor , PrimaryFontWeigth } from '../../assets/styles/Defaul
  * @returns 
  */
 export const SecondaryLogo = ({text,...properties})=>{
-    console.log(properties)
     return(
         <Typography fontWeight={PrimaryFontWeigth} color={PrimaryTextColor} variant='h5'>
             {text}

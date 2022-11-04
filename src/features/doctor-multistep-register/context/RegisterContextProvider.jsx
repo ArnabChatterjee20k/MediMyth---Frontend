@@ -32,11 +32,9 @@ const RegisterContextProvider = ({ children }) => {
 
   const sendOTP = () => {
     alert("sending otp to", data.phone_no);
-    console.log(data);
   };
 
   const createAccount = () => {
-    console.log(data);
     doctorRes.mutate(data, {
       onSuccess: async(res) => {
         const data = await res.json()

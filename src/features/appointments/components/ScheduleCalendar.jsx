@@ -25,7 +25,6 @@ export default function ScheduleCalendar() {
 
   // creating this dataStructure to access the ORDERED_SCHEDULE easily and accessing data becomes more cleaner using key value pair
   const ORDERED_SCHEDULE = {};
-  console.log(data);
   !isLoading && data.map((element) => {
     if (ORDERED_SCHEDULE[element.day]) {
       ORDERED_SCHEDULE[element.day].push(element);

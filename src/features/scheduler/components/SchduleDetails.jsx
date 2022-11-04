@@ -4,7 +4,6 @@ import { useScheduleData } from "../context/ScheduleContextProvider";
 import { isValidPhone } from "../data/Validations";
 export const SchduleDetails = () => {
   const { scheduleData, handleScheduleData } = useScheduleData();
-  console.log()
   return (
     <Stack
       gap={2}
