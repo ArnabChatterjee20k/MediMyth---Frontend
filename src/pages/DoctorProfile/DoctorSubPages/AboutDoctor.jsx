@@ -6,17 +6,32 @@ import Stack from "@mui/material/Stack";
 import DoctorInfo from "../../../components/DoctorProfile/DoctorInfo";
 import DoctorImage from "../../../components/DoctorProfile/DoctorImage";
 import PropTypes from "prop-types";
+import { useParams } from "react-router-dom";
+import useDoctorProfile from "../../../services/useDoctorProfile";
 
 const AboutDoctor = ({ edit }) => {
-  const dummyData = {
-    name: "Arnab Chatterjee",
-    reg: 3512,
-    activeDoctorId: "MMD-12",
-    phoneNumber: "906531234",
-    email: "jennie.nichols@example.com",
-    profilePicture: "https://randomuser.me/api/portraits/men/75.jpg",
-    category: "Dentist",
-  };
+  const {id:active_doctor_id} = useParams();
+  const {data,isLoading,isError,error} = useDoctorProfile(active_doctor_id)
+
+  // const dummydoctorProfile = {
+  //   name: "Arnab Chatterjee",
+  //   reg_no: 3512,
+  //   activeId: [{"active_doctor_id": "MMD-1"}],
+  //   phone_no: "906531234",
+  //   email: "jennie.nichols@example.com",
+  //   profile_pic: "https://randomuser.me/api/portraits/men/75.jpg",
+  //   category: "Dentist",
+  //   active:true
+  // };
+  
+  if(isLoading) return "Loading"
+  if(isError) {
+    if(error.status === "redirect"){
+      return <h1>404</h1>
+    }
+    return <h1>Error</h1>
+  }
+  const doctorProfile = data[0]
   return (
     <Box>
       <Box
@@ -31,8 +46,8 @@ const AboutDoctor = ({ edit }) => {
       <Box sx={{ position: "relative", paddingInline: "2em" }}>
         {/* Profile image */}
         <DoctorImage
-          profilePicture={dummyData?.profilePicture}
-          name={dummyData?.name}
+          profilePicture={doctorProfile?.profile_pic}
+          name={doctorProfile?.name}
         />
 
         {/* edit profile button */}
@@ -51,7 +66,7 @@ const AboutDoctor = ({ edit }) => {
         </Stack>
 
         {/* About the doctor personal info */}
-        <DoctorInfo doctorInfo={dummyData} />
+        <DoctorInfo doctorInfo={doctorProfile} />
       </Box>
     </Box>
   );

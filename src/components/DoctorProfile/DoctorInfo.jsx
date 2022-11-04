@@ -19,14 +19,14 @@ const DoctorInfo = ({ doctorInfo }) => {
           </Typography>
         )}
 
-        {doctorInfo?.activeDoctorId && (
-          <Typography>@{doctorInfo.activeDoctorId}</Typography>
+        {doctorInfo?.active_id[0].active_doctor_id && (
+          <Typography>@{doctorInfo.active_id[0].active_doctor_id}</Typography>
         )}
 
-        {doctorInfo?.phoneNumber && (
+        {doctorInfo?.phone_no && (
           <Stack direction="row" gap={1} marginTop={0.5}>
             <StayCurrentPortraitOutlinedIcon />
-            <Typography>{doctorInfo.phoneNumber}</Typography>
+            <Typography>{doctorInfo.phone_no}</Typography>
           </Stack>
         )}
 
@@ -53,10 +53,10 @@ const DoctorInfo = ({ doctorInfo }) => {
               }}
             />
           )}
-          {doctorInfo?.reg && (
+          {doctorInfo?.reg_no && (
             <Chip
               color="info"
-              label={doctorInfo.reg}
+              label={doctorInfo.reg_no}
               avatar={<HowToRegOutlinedIcon sx={{ fill: "white" }} />}
             />
           )}

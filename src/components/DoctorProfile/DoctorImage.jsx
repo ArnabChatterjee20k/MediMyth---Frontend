@@ -1,7 +1,8 @@
 import Box from "@mui/material/Box";
 import { PrimaryTextColor } from "../../assets/styles/DefaultProperties";
 import PropTypes from "prop-types";
-
+import Avatar  from "@mui/material/Avatar";
+import deepOrange  from "@mui/material/colors/deepOrange";
 const DoctorImage = ({ profilePicture, name }) => {
   return (
     <>
@@ -22,7 +23,7 @@ const DoctorImage = ({ profilePicture, name }) => {
             backgroundColor: "white",
           }}
         >
-          <img
+          {profilePicture?(<img
             loading="lazy"
             src={profilePicture}
             alt={name}
@@ -34,7 +35,8 @@ const DoctorImage = ({ profilePicture, name }) => {
               objectFit: "cover",
               objectPosition: "center",
             }}
-          />
+          />):<Avatar sx={{bgcolor:deepOrange[500],height: "154px",
+          width: "154px",fontSize:"4rem"}}>{name.charAt(0)}</Avatar>}
         </Box>
       </Box>
     </>
