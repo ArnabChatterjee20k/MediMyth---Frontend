@@ -9,7 +9,6 @@ import Chip from '@mui/material/Chip';
 import { getDifferenceDates , getDifferenceHours ,subtractHoursFromDate , isToday,isTimeBeforeNow} from "../../../utils/dateTime";
 import combineTodayWithTime from "../utils/combineTodayWithTime";
 const EventCards = ({start,end,address,cardAction,date,booking_start,booking_end,limit,appointment_data}) => {
-  console.log("Rendering");
   function checkBookingEnd(){
     if(isToday(date)){
       const dateObj = new Date(date)
@@ -25,6 +24,7 @@ const EventCards = ({start,end,address,cardAction,date,booking_start,booking_end
   }
 
   const beforeBookingStart = getDifferenceDates(new Date(date),new Date())<=booking_start;
+  console.log("🚀 ~ file: EventCards.jsx ~ line 27 ~ EventCards ~ date", Date(date))
 
   // filtering the number of the appointments of the selected date and then subtracting it with limit
   // if 0 then no more seats
@@ -35,10 +35,11 @@ const EventCards = ({start,end,address,cardAction,date,booking_start,booking_end
     return selectedDate.getDate() === scheduleDate.getDate() && selectedDate.getMonth() === scheduleDate.getMonth() && selectedDate.getFullYear() === scheduleDate.getFullYear()
   }).length
 
-  const isSeatsAvailable = limit - seats !==0
+  const isSeatsAvailable = limit ? limit - seats !==0 : true
+  console.log("🚀 ~ file: EventCards.jsx ~ line 38 ~ EventCards ~ isSeatsAvailable", {limit,seats,isSeatsAvailable})
 
   const isInBookingRange = beforeBookingStart && !checkBookingEnd() && isSeatsAvailable;
-
+  console.log("🚀 ~ file: EventCards.jsx ~ line 40 ~ EventCards ~ isInBookingRange", {isInBookingRange})
 
   return (
     <Card variant="outlined" sx={{display:"flex",justifyContent:"space-between",flexDirection:{xs:"column",sm:"row"}}}>
