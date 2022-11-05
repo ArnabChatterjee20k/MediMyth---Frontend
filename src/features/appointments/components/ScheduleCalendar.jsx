@@ -15,24 +15,30 @@ import { getWeek, getWeekOfMonth } from "date-fns";
 import { useAppointment } from "../context/AppointmentContextProvider";
 import Typography from "@mui/material/Typography";
 import useSchedules from "../services/useSchedules";
+import { useDoctorProfileContext } from "../../../contexts/DoctorProfileContextProvider/DoctorProfileContextProvider";
+import { Navigate } from "react-router-dom";
 
 export default function ScheduleCalendar() {
   const [value, setValue] = useState("");
+  const { profile } = useDoctorProfileContext();
   const { setAppointment, appointmentDate, setAppointmentDate } =
     useAppointment();
+  console.log(profile);
+  if(!profile?.current) return <Navigate to="/error"/>
 
-  const { data, isLoading } = useSchedules(1);
+  const { data, isLoading } = useSchedules(profile.current);
 
   // creating this dataStructure to access the ORDERED_SCHEDULE easily and accessing data becomes more cleaner using key value pair
   const ORDERED_SCHEDULE = {};
-  !isLoading && data.map((element) => {
-    if (ORDERED_SCHEDULE[element.day]) {
-      ORDERED_SCHEDULE[element.day].push(element);
-    } else {
-      ORDERED_SCHEDULE[element.day] = [element];
-    }
-  });
-  if(isLoading) return <h2>Loading</h2>
+  !isLoading &&
+    data.map((element) => {
+      if (ORDERED_SCHEDULE[element.day]) {
+        ORDERED_SCHEDULE[element.day].push(element);
+      } else {
+        ORDERED_SCHEDULE[element.day] = [element];
+      }
+    });
+  if (isLoading) return <h2>Loading</h2>;
   if (data.length !== 0)
     return (
       <Stack justifyContent="center" alignItems="center">

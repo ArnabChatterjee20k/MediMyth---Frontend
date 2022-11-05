@@ -6,14 +6,16 @@ import Stack from "@mui/material/Stack";
 import DoctorInfo from "../../../components/DoctorProfile/DoctorInfo";
 import DoctorImage from "../../../components/DoctorProfile/DoctorImage";
 import PropTypes from "prop-types";
-import { useNavigate, useParams , redirect , Navigate} from "react-router-dom";
+import { useParams ,  Navigate} from "react-router-dom";
 import useDoctorProfile from "../../../services/useDoctorProfile";
 import Loader from "../../../components/ui/Loader";
+import { useDoctorProfileContext } from "../../../contexts/DoctorProfileContextProvider/DoctorProfileContextProvider";
 import { Outlet } from "react-router-dom";
 
 const AboutDoctor = ({ edit }) => {
+  const { setProfile } = useDoctorProfileContext();
   const { id: active_doctor_id } = useParams();
-  const navigate = useNavigate();
+  setProfile(active_doctor_id)
   const { data, isLoading, isError, error } =
     useDoctorProfile(active_doctor_id);
 
