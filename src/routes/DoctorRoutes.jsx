@@ -4,6 +4,9 @@ import DoctorPage from "../pages/DoctorProfile/DoctorPage";
 import { BookingCalendar } from "../features/appointments";
 import { doctorProfileActions } from "../data/DoctorProfileActions";
 import { OptionTab } from "../components/DoctorProfile/OptionTab";
+import NotFound from "../pages/NotFound";
+import Error from "../pages/Error";
+
 const DoctorRoutes = () => {
   return (
     <Routes>
@@ -21,7 +24,10 @@ const DoctorRoutes = () => {
             })}
           </Route>
         </Route>
+
       </Route>
+      <Route index path="/notfound" element={<NotFound/>}/>
+      <Route index path="/error" element={<Error/>}/>
     </Routes>
   );
 };

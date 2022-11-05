@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Background from "../../../assets/img/ProfileBackground.svg";
 import { SecondaryButton } from "../../../components/ui/Buttons";
 import Box from "@mui/material/Box";
@@ -6,14 +6,16 @@ import Stack from "@mui/material/Stack";
 import DoctorInfo from "../../../components/DoctorProfile/DoctorInfo";
 import DoctorImage from "../../../components/DoctorProfile/DoctorImage";
 import PropTypes from "prop-types";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams , redirect , Navigate} from "react-router-dom";
 import useDoctorProfile from "../../../services/useDoctorProfile";
 import Loader from "../../../components/ui/Loader";
-import { Outlet } from 'react-router-dom'
+import { Outlet } from "react-router-dom";
 
 const AboutDoctor = ({ edit }) => {
-  const {id:active_doctor_id} = useParams();
-  const {data,isLoading,isError,error} = useDoctorProfile(active_doctor_id)
+  const { id: active_doctor_id } = useParams();
+  const navigate = useNavigate();
+  const { data, isLoading, isError, error } =
+    useDoctorProfile(active_doctor_id);
 
   // const dummydoctorProfile = {
   //   name: "Arnab Chatterjee",
@@ -25,15 +27,17 @@ const AboutDoctor = ({ edit }) => {
   //   category: "Dentist",
   //   active:true
   // };
-  
-  if(isLoading) return <Loader/>
-  if(isError) {
-    if(error.status === "redirect"){
-      return <img src="https://embed.lottiefiles.com/animation/84885" width="100%" height="100vh"></img>
+
+  if (isLoading) return <Loader />;
+
+  if (isError) {
+    if (error.status === "redirect") {
+      return <Navigate to="/notfound"/>;
     }
-    return <h1>Error</h1>
+    return <Navigate to="/error"/>;
   }
-  const doctorProfile = data[0]
+
+  const doctorProfile = data[0];
   return (
     <Box>
       <Box
@@ -71,7 +75,7 @@ const AboutDoctor = ({ edit }) => {
         <DoctorInfo doctorInfo={doctorProfile} />
       </Box>
       {/* for rendering the child */}
-      <Outlet/> 
+      <Outlet />
     </Box>
   );
 };
