@@ -8,6 +8,7 @@ import DoctorImage from "../../../components/DoctorProfile/DoctorImage";
 import PropTypes from "prop-types";
 import { useParams } from "react-router-dom";
 import useDoctorProfile from "../../../services/useDoctorProfile";
+import Loader from "../../../components/ui/Loader";
 import { Outlet } from 'react-router-dom'
 
 const AboutDoctor = ({ edit }) => {
@@ -25,10 +26,10 @@ const AboutDoctor = ({ edit }) => {
   //   active:true
   // };
   
-  if(isLoading) return "Loading"
+  if(isLoading) return <Loader/>
   if(isError) {
     if(error.status === "redirect"){
-      return <h1>404</h1>
+      return <img src="https://embed.lottiefiles.com/animation/84885" width="100%" height="100vh"></img>
     }
     return <h1>Error</h1>
   }
