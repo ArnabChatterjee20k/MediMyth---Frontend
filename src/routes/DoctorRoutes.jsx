@@ -1,13 +1,14 @@
 import React, { lazy } from "react";
 import { Routes, Route } from "react-router-dom";
-import DoctorPage from "../pages/DoctorProfile/DoctorPage";
 
 import { doctorProfileActions } from "../data/DoctorProfileActions";
-const  OptionTab = lazy(()=>import("../components/DoctorProfile/OptionTab"));
-import NotFound from "../pages/NotFound";
-import Error from "../pages/Error";
-
 import { RequireAuth } from "react-auth-kit";
+
+import DoctorPage from "../pages/DoctorProfile/DoctorPage";
+const  OptionTab = lazy(()=>import("../components/DoctorProfile/OptionTab"));
+const NotFound = lazy (()=>import("../pages/NotFound"));
+const Error = lazy (()=>import("../pages/Error"));
+
 import BookingCalendar from "../components/DoctorProfile/BookingCalendar";
 
 const DoctorRoutes = () => {
