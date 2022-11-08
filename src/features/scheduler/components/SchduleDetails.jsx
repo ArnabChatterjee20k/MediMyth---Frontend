@@ -2,7 +2,7 @@ import Stack from "@mui/material/Stack";
 import TextField from "@mui/material/TextField";
 import { useScheduleData } from "../context/ScheduleContextProvider";
 import { isValidPhone } from "../data/Validations";
-export const SchduleDetails = () => {
+const SchduleDetails = () => {
   const { scheduleData, handleScheduleData } = useScheduleData();
   return (
     <Stack
@@ -114,3 +114,5 @@ export const SchduleDetails = () => {
     </Stack>
   );
 };
+
+export default SchduleDetails;

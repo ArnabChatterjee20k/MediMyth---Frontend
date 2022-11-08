@@ -5,7 +5,7 @@ import Select from "@mui/material/Select";
 import Stack from "@mui/material/Stack";
 import { weeks } from "../data/weeks";
 import { useScheduleData } from "../context/ScheduleContextProvider";
-export const WeekSelector = () => {
+const WeekSelector = () => {
   const { scheduleData, handleScheduleData } = useScheduleData();
 
   return (
@@ -29,3 +29,5 @@ export const WeekSelector = () => {
     </Stack>
   );
 };
+
+export default WeekSelector;

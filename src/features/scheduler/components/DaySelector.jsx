@@ -6,7 +6,7 @@ import FormLabel from "@mui/material/FormLabel";
 import { days } from "../data/days";
 import { useScheduleData } from "../context/ScheduleContextProvider";
 import Stack from "@mui/material/Stack";
-export const DaySelector = () => {
+const DaySelector = () => {
   const { scheduleData, handleScheduleData } = useScheduleData();
   return (
     <Stack width={{ xs: "80%", sm: "60%" }}>
@@ -35,3 +35,5 @@ export const DaySelector = () => {
     </Stack>
   );
 };
+
+export default DaySelector;

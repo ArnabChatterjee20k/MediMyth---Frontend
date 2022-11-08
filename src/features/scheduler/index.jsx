@@ -1,4 +1,4 @@
-import { ScheduleForm } from "./components/ScheduleForm";
+import  ScheduleForm from "./components/ScheduleForm";
 
 function Scheduler(){
     return <ScheduleForm/>

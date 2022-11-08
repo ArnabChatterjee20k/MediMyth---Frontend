@@ -1,10 +1,10 @@
 import Stack from "@mui/material/Stack";
-import { WeekSelector } from "./WeekSelector";
-import { DaySelector } from "./DaySelector";
+import { lazy } from "react";
+const WeekSelector = lazy(()=>import("./WeekSelector"));
+const DaySelector = lazy(()=>import("./DaySelector"));
+const SchduleDetails = lazy(()=>import("./SchduleDetails"));
 import { ScheduleContextProvider } from "../context/ScheduleContextProvider";
-import { SchduleDetails } from "./SchduleDetails";
-export const ScheduleForm = () => {
-    console.log("rendering");
+const ScheduleForm = () => {
   return (
     <ScheduleContextProvider>
       <Stack alignItems="center" width="100%" gap={3}>
@@ -15,3 +15,5 @@ export const ScheduleForm = () => {
     </ScheduleContextProvider>
   );
 };
+
+export default ScheduleForm;
