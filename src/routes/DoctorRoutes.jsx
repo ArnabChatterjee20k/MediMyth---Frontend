@@ -7,6 +7,8 @@ import { OptionTab } from "../components/DoctorProfile/OptionTab";
 import NotFound from "../pages/NotFound";
 import Error from "../pages/Error";
 
+import { RequireAuth } from "react-auth-kit";
+
 const DoctorRoutes = () => {
   return (
     <Routes>
@@ -17,14 +19,17 @@ const DoctorRoutes = () => {
         </Route>
 
         {/* for doctor profile */}
-        <Route path="profile" element={<DoctorPage edit={true} />}>
+        <Route path="profile" element={
+        <RequireAuth loginPath="/login/doctor">
+          <DoctorPage edit={true} />
+        </RequireAuth>
+        }>
           <Route element={<OptionTab />}>
             {doctorProfileActions.map(({ link, Componenent }) => {
               return <Route key={link} path={link} element={<Componenent />} />;
             })}
           </Route>
         </Route>
-
       </Route>
       <Route index path="/notfound" element={<NotFound/>}/>
       <Route index path="/error" element={<Error/>}/>
