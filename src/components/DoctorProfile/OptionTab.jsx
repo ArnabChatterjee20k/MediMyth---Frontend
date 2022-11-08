@@ -4,7 +4,7 @@ import Tabs from "@mui/material/Tabs";
 import { LinkTab } from "./LinkTab";
 import { Outlet } from "react-router-dom";
 import { doctorProfileActions } from "../../data/DoctorProfileActions";
-export const OptionTab = () => {
+const OptionTab = () => {
   const [value, setValue] = useState(0);
 
   const handleChange = (event, newValue) => {
@@ -29,3 +29,5 @@ export const OptionTab = () => {
     </>
   );
 };
+
+export default OptionTab;

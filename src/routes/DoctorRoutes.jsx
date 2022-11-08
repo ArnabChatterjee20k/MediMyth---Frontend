@@ -1,9 +1,9 @@
-import React from "react";
+import React, { lazy } from "react";
 import { Routes, Route } from "react-router-dom";
 import DoctorPage from "../pages/DoctorProfile/DoctorPage";
 
 import { doctorProfileActions } from "../data/DoctorProfileActions";
-import { OptionTab } from "../components/DoctorProfile/OptionTab";
+const  OptionTab = lazy(()=>import("../components/DoctorProfile/OptionTab"));
 import NotFound from "../pages/NotFound";
 import Error from "../pages/Error";
 
