@@ -1,17 +1,18 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
 import DoctorPage from "../pages/DoctorProfile/DoctorPage";
-import { BookingCalendar } from "../features/appointments";
+
 import { doctorProfileActions } from "../data/DoctorProfileActions";
 import { OptionTab } from "../components/DoctorProfile/OptionTab";
 import NotFound from "../pages/NotFound";
 import Error from "../pages/Error";
 
 import { RequireAuth } from "react-auth-kit";
+import BookingCalendar from "../components/DoctorProfile/BookingCalendar";
 
 const DoctorRoutes = () => {
   return (
-    <Routes>
+    <Routes> 
       {/* for patients */}
       <Route path="/doctor">
         <Route path=":id" element={<DoctorPage edit={false} />}>

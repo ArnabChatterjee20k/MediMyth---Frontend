@@ -1,5 +1,6 @@
-import ScheduleCalendar from "./ScheduleCalendar"
-import Events from "./Events"
+import { lazy } from "react"
+const ScheduleCalendar = lazy(()=>import("./ScheduleCalendar")) 
+const Events = lazy(()=>import("./Events")) 
 import AppointmentContextProvider from "../context/AppointmentContextProvider"
 const Appointment = () => {
   return (
