@@ -1,10 +1,12 @@
-import ContactInfoForm from "./ContactInfoForm";
-import OTPForm from "./OTPForm";
-import DegreeInfoForm from "./DegreeInfoForm";
+import { lazy } from "react";
+const ContactInfoForm =  lazy(()=>import("./ContactInfoForm"));
+const OTPForm =  lazy(()=>import("./OTPForm"));
+const DegreeInfoForm =  lazy(()=>import("./DegreeInfoForm"));
+
 import { useRegisterContext } from "../context/RegisterContextProvider";
 import MultiStepper from "./MultiStepper";
 
-export const FormCollection = () => {
+const FormCollection = () => {
   const { sendOTP,  createAccount } = useRegisterContext();
   const label = "Doctor Registration"
   // otp is at last so that all details and otp are validated togetherly
@@ -15,3 +17,5 @@ export const FormCollection = () => {
   ]
   return <MultiStepper steps={elements}/>;
 };
+
+export default FormCollection;

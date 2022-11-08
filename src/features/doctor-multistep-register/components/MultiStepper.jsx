@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState , lazy , Suspense } from "react";
 import MobileStepper from "@mui/material/MobileStepper";
 import Paper from "@mui/material/Paper";
 import Typography from "@mui/material/Typography";
@@ -41,7 +41,9 @@ const MultiStepper = ({steps}) => {
       </Paper>
       {/* rendering a form for validation */}
         <Stack component="form" onSubmit={handleNext} padding={2} gap={4} sx={{width:{xs:"100%",sm:"50%"},marginInline:"auto"}}>
-            <Component/>
+            <Suspense>
+              <Component/>
+            </Suspense>
             <MobileStepper
              sx={{width:"80%",alignSelf:"center"}}
               variant="text"
