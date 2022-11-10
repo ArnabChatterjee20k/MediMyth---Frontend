@@ -22,9 +22,9 @@ const DoctorRoutes = () => {
 
         {/* for doctor profile */}
         <Route path="profile" element={
-        <RequireAuth loginPath="/login/doctor">
+        // <RequireAuth loginPath="/login/doctor">
           <DoctorPage edit={true} />
-        </RequireAuth>
+        // </RequireAuth>
         }>
           <Route element={<OptionTab />}>
             {doctorProfileActions.map(({ link, Componenent }) => {

@@ -7,17 +7,20 @@ import DoctorInfo from "../../../components/DoctorProfile/DoctorInfo";
 import DoctorImage from "../../../components/DoctorProfile/DoctorImage";
 import PropTypes from "prop-types";
 import { useParams ,  Navigate} from "react-router-dom";
-import useDoctorProfile from "../../../services/useDoctorProfile";
+import { useDoctorProfileById,useDoctorProfileByEmail } from "../../../services/useDoctorProfile";
 import Loader from "../../../components/ui/Loader";
 import { useDoctorProfileContext } from "../../../contexts/DoctorProfileContextProvider/DoctorProfileContextProvider";
 import { Outlet } from "react-router-dom";
+import { useAuthUser } from "react-auth-kit";
 
 const AboutDoctor = ({ edit }) => {
   const { setProfile } = useDoctorProfileContext();
   const { id: active_doctor_id } = useParams();
+  console.log(active_doctor_id);
+  const dataObj = edit?useDoctorProfileByEmail({headers:{"access-token":"eyJlbWFpbCI6ImhvbWV1c2UuaHUuMUBnbWFpbC5jb20ifQ.TvXA7kZClZMkeV7B_2BkfXLLNJY"}}):useDoctorProfileById(active_doctor_id)
   setProfile(active_doctor_id)
-  const { data, isLoading, isError, error } =
-    useDoctorProfile(active_doctor_id);
+  const { data, isLoading, isError, error , isPaused } =
+    dataObj
 
   // const dummydoctorProfile = {
   //   name: "Arnab Chatterjee",
@@ -30,7 +33,7 @@ const AboutDoctor = ({ edit }) => {
   //   active:true
   // };
 
-  if (isLoading) return <Loader />;
+  if (isLoading || isPaused) return <Loader />;
 
   if (isError) {
     if (error.status === "redirect") {
