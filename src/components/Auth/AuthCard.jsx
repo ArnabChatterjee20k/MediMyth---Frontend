@@ -4,7 +4,6 @@ import { styled } from "@mui/material/styles";
 import { SecondaryLogo } from "../Logo/SecondaryLogo";
 import { grey } from "@mui/material/colors";
 import { Link, useLocation } from "react-router-dom";
-import PropTypes from 'prop-types'
 
 const LinkBox = styled(Paper)(({ theme }) => ({
   display: "flex",
