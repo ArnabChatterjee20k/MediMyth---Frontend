@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import Background from "../../../assets/img/ProfileBackground.svg";
 import { SecondaryButton } from "../../../components/ui/Buttons";
 import Box from "@mui/material/Box";
@@ -11,17 +11,18 @@ import { useDoctorProfileById,useDoctorProfileByEmail } from "../../../services/
 import Loader from "../../../components/ui/Loader";
 import { useDoctorProfileContext } from "../../../contexts/DoctorProfileContextProvider/DoctorProfileContextProvider";
 import { Outlet } from "react-router-dom";
-import { useAuthUser } from "react-auth-kit";
+import { useAuthUser} from "react-auth-kit";
 
 const AboutDoctor = ({ edit }) => {
   const { setProfile } = useDoctorProfileContext();
   const { id: active_doctor_id } = useParams();
-  console.log(active_doctor_id);
-  const dataObj = edit?useDoctorProfileByEmail({headers:{"access-token":"eyJlbWFpbCI6ImhvbWV1c2UuaHUuMUBnbWFpbC5jb20ifQ.TvXA7kZClZMkeV7B_2BkfXLLNJY"}}):useDoctorProfileById(active_doctor_id)
+  const auth = useAuthUser()
+  const token = auth().token
+  const dataObj = edit?useDoctorProfileByEmail({headers:{"access-token":token}},token!==null):useDoctorProfileById(active_doctor_id)
   setProfile(active_doctor_id)
   const { data, isLoading, isError, error , isPaused } =
-    dataObj
-
+  dataObj
+  
   // const dummydoctorProfile = {
   //   name: "Arnab Chatterjee",
   //   reg_no: 3512,

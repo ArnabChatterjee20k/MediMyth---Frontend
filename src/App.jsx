@@ -8,31 +8,37 @@ import Stack from "@mui/material/Stack";
 import SuspenseLoader from "./components/ui/SuspenseLoader";
 import { AuthProvider } from "react-auth-kit";
 import LoginRoutes from "./routes/LoginRoutes";
+import { authTokenKey } from "./data/Constants";
 const Navbar = lazy(() => import("./layouts/Navbar"));
 const Toast = lazy(() => import("./components/ui/Toast"));
 
+
 function App() {
   return (
-    <NotificationContextProvider>
-      <DoctorProfileContextProvider>
-        <CssBaseline />
-        <Navbar />
+    <AuthProvider
+      authType="localstorage"
+      authName={authTokenKey}
+      cookieDomain={window.location.hostname}
+    >
+      <NotificationContextProvider>
+        <DoctorProfileContextProvider>
+          <CssBaseline />
+          <Navbar />
           <Stack paddingTop={10}>
-        <Suspense fallback={<SuspenseLoader />}>
-            <AuthProvider authType="localstorage" authName="_medimythauth">
+            <Suspense fallback={<SuspenseLoader />}>
               <BrowserRouter>
                 <DoctorRoutes />
                 <LoginRoutes />
               </BrowserRouter>
-            </AuthProvider>
-            <Toast />
-        </Suspense>
+              <Toast />
+            </Suspense>
           </Stack>
-        {/* <MultiStepDoctorRegistration /> */}
-        {/* <ScheduleCalendar/> */}
-        {/* <AppointmentViewer/> */}
-      </DoctorProfileContextProvider>
-    </NotificationContextProvider>
+          {/* <MultiStepDoctorRegistration /> */}
+          {/* <ScheduleCalendar/> */}
+          {/* <AppointmentViewer/> */}
+        </DoctorProfileContextProvider>
+      </NotificationContextProvider>
+    </AuthProvider>
   );
 }
 
