@@ -2,14 +2,14 @@ import { useMutation } from "@tanstack/react-query";
 import { createContext, useState, useContext } from "react";
 import { createDoctor } from "../utils/createDoctor";
 import { useNotificationContext } from "../../../contexts/ToastContextProvider/NotificationContextProvider";
-import { useSignIn } from "react-auth-kit";
+import { useSaveTokenQuery } from "../../../services/useSaveTokenQuery";
+import { useNavigate } from "react-router-dom";
 
 const RegisterContext = createContext();
 
 export const useRegisterContext = () => useContext(RegisterContext);
 
 const RegisterContextProvider = ({ children }) => {
-  const signIn = useSignIn();
   const [data, setData] = useState({
     name: "",
     email: "",
@@ -26,6 +26,10 @@ const RegisterContextProvider = ({ children }) => {
   // accessing notification
   const { notify } = useNotificationContext();
 
+  const saveToStorage = useSaveTokenQuery();
+
+  const navigate = useNavigate();
+
   // function for sending post request for creating doctor account
   const doctorRes = useMutation((body) =>
     createDoctor(data.phone_no, otp, body).then((res) => res)
@@ -39,18 +43,16 @@ const RegisterContextProvider = ({ children }) => {
     doctorRes.mutate(data, {
       onSuccess: async (res) => {
         const data = await res.json();
+        const authToken = data.token
         const status = res.status;
 
         if (status == 200) {
           // receive the token and save it in the localstorage
-          if (
-            signIn({
-              token: data.token,
-              expiresIn: 120,
-              tokenType:"Bearer"
-            })
-          ) {
+          if (saveToStorage({authToken})) {
             notify("success", "success");
+            navigate("/doctor/profile");
+          } else {
+            notify("some problems occurred", "error");
           }
         } else {
           data.status && notify(data.status, "error");

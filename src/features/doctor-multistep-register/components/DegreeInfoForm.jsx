@@ -1,5 +1,5 @@
 import Input from "./Input"
-import { Email , UserName } from "../data/validErrorPatterns"
+import { Email , UserName } from "../../../data/validErrorPatterns"
 const DegreeInfoForm = () => {
   return (
     <>

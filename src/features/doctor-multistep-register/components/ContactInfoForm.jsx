@@ -1,5 +1,5 @@
 import Input from "./Input"
-import { PhoneNumber , UserName , Email} from "../data/validErrorPatterns"
+import { PhoneNumber , UserName , Email } from "../../../data/validErrorPatterns"
 const ContactInfoForm = () => {
   return (
     <>
