@@ -4,7 +4,8 @@ import { PrimaryButton } from "../../../components/ui/Buttons";
 import { Email } from "../../../data/validErrorPatterns";
 import { useLoginContext } from "../context/LoginContextProvider";
 export default function LogInForm() {
-  const {login} = useLoginContext()
+  const {login,isFetching} = useLoginContext()
+
   return (
     <Stack
       mt={8}
@@ -30,7 +31,7 @@ export default function LogInForm() {
         placeholder="Enter your password"
         label="Password"
       />
-      <PrimaryButton type="submit">Submit</PrimaryButton>
+      <PrimaryButton type="submit" disabled={isFetching}>Submit</PrimaryButton>
     </Stack>
   );
 }

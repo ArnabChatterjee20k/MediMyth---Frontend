@@ -14,7 +14,7 @@ export const LoginContextProvider = ({ children }) => {
     email: "",
     password: "",
   });
-  const { data: token, isLoading, refetch } = useDoctorLoginQuery(data);
+  const { data: token, isFetching, refetch } = useDoctorLoginQuery(data);
 
   const { notify } = useNotificationContext();
 
@@ -23,7 +23,7 @@ export const LoginContextProvider = ({ children }) => {
   const saveToStorage = useSaveTokenQuery();
 
   const login = () => {
-    refetch().then(async () => {
+      !isFetching && refetch().then(async () => {
       const tokenData = await token.json();
       const status = token.status;
       const authToken = tokenData.token;
@@ -42,7 +42,7 @@ export const LoginContextProvider = ({ children }) => {
   };
 
   return (
-    <LoginContext.Provider value={{ data, setData, login }}>
+    <LoginContext.Provider value={{ data, setData, login ,isFetching}}>
       {children}
     </LoginContext.Provider>
   );
