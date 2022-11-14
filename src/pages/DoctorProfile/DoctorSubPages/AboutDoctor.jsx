@@ -15,9 +15,15 @@ import { useAuthUser} from "react-auth-kit";
 
 const AboutDoctor = ({ edit }) => {
   const { setProfile } = useDoctorProfileContext();
+  
+  // getting id which is required incase of a patient viewing the profile
   const { id: active_doctor_id } = useParams();
+
+  // collecting data from the localstorage which required in case of a doctor viewing his profile
   const auth = useAuthUser()
-  const token = auth().token
+  const token = auth()?.token
+
+  // conditionally fetching the hooks
   const dataObj = edit?useDoctorProfileByEmail({headers:{"access-token":token}},token!==null):useDoctorProfileById(active_doctor_id)
   setProfile(active_doctor_id)
   const { data, isLoading, isError, error , isPaused } =
