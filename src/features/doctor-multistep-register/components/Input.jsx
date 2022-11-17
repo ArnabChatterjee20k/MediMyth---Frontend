@@ -8,7 +8,7 @@ const Input = ({name,type,value,placeholder,label,changeHandler,errorText,errorP
         setData(prevData=>({...prevData,[e.target.name]:e.target.value}))
     }
     const inputValue = value || data[name];
-    const validInput = new RegExp(errorPattern).test(inputValue);
+    const validInput = new RegExp(errorPattern).test(inputValue); // for rendering error messages
     
     return (
     <TextField
@@ -20,6 +20,7 @@ const Input = ({name,type,value,placeholder,label,changeHandler,errorText,errorP
         helperText={!validInput && errorText}
         required = {optional || true} // if optional present or true
         error={errorPattern && !validInput}
+        inputProps={{pattern:errorPattern}}
         InputLabelProps={{ shrink: true }}
         {...props}
       />

@@ -11,11 +11,11 @@ import { Navigate } from "react-router-dom";
 const LoginRoutes = () => {
   // it will work for either doctor or patient.
   // so while building it for patients just see the patient or doctor in the url and redirects them accordingly
-  const isLogged = useIsAuthenticated()
-  const redirect = isLogged()
-  if(redirect){
-    return <Navigate to="/doctor/profile"/>
-  }
+  // const isLogged = useIsAuthenticated()
+  // const redirect = isLogged()
+  // if(redirect){
+  //   return <Navigate to="/doctor/profile"/>
+  // }
   return (
     <Routes>
       <Route path="/account">
