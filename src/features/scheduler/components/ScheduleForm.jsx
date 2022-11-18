@@ -7,7 +7,7 @@ import { ScheduleContextProvider } from "../context/ScheduleContextProvider";
 const ScheduleForm = () => {
   return (
     <ScheduleContextProvider>
-      <Stack alignItems="center" width="100%" gap={3}>
+      <Stack alignItems="center" width="100%" gap={3} component="form">
         <SchduleDetails />
         <WeekSelector />
         <DaySelector />
