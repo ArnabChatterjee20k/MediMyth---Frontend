@@ -1,11 +1,13 @@
 import { createContext, useState, useContext } from "react";
 import { weeks } from "../data/weeks";
 import { days } from "../data/days";
+import { useNotificationContext } from "../../../contexts/ToastContextProvider/NotificationContextProvider";
+
 const ScheduleContext = createContext();
 
 export const useScheduleData = () => useContext(ScheduleContext);
 export const ScheduleContextProvider = ({ children }) => {
-  const [scheduleData, setSchduleData] = useState({
+  const defaultScheduleStructure = {
     phone_no: "",
     day: `${days["Monday"]}`, // it will be string as html value is always string while setting state but we need to convert it into int while sending the data to server
     specific_week: weeks.EveryWeek,
@@ -18,15 +20,24 @@ export const ScheduleContextProvider = ({ children }) => {
     clinic_name: "",
     medical_shop: "",
     address: "",
-  });
+  }
+
+  const {notify} = useNotificationContext()
+
+  const [scheduleData, setSchduleData] = useState(defaultScheduleStructure);
 
   const handleScheduleData = (event) => {
     setSchduleData((prevScheduleData) => {
       return { ...prevScheduleData, [event.target.name]: event.target.value };
     });
   };
+
+  const reset = ()=>{
+    setSchduleData(defaultScheduleStructure)
+    notify("Fields Reset!","warning")
+  }
   return (
-    <ScheduleContext.Provider value={{ scheduleData, handleScheduleData }}>
+    <ScheduleContext.Provider value={{ scheduleData, handleScheduleData , reset }}>
       {children}
     </ScheduleContext.Provider>
   );

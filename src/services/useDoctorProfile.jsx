@@ -1,7 +1,23 @@
 import { useQuery } from "@tanstack/react-query";
-import { serverAddress } from "../data/Constants";
-import { getFetcher } from "../utils/fetcher";
+import Fetcher from "../utils/fetcher.js";
 
-const endpoint = `${serverAddress}/profiles/doctors`
-export const useDoctorProfileById = (active_doctor_id) => useQuery(["doctor_profile",active_doctor_id],()=>getFetcher(`${endpoint}/${active_doctor_id}`))
-export const useDoctorProfileByEmail = (options=null,condition=true)=>useQuery(["doctor_profile","myaccount"],()=>getFetcher(`${endpoint}/myaccount`,options),{enabled:condition})
+
+const route = `profiles/doctors`;
+export const useDoctorProfileById = (active_doctor_id) => {
+  const endpoint = `/${route}/${active_doctor_id}`;
+  const fetcherService = new Fetcher(endpoint);
+
+  return useQuery(["doctor_profile", active_doctor_id], () =>
+    fetcherService.getFetcherUsers()
+  );
+};
+export const useDoctorProfileByEmail = (token, condition = true) => {
+  const endpoint = `${route}/myaccount`;
+  const fetcherService = new Fetcher(endpoint);
+  console.log({token});
+  return useQuery(
+    ["doctor_profile", "myaccount"],
+    () => fetcherService.getFetcherProfiles(token),
+    { enabled: condition }
+  );
+};

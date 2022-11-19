@@ -24,7 +24,7 @@ const AboutDoctor = ({ edit }) => {
   const token = auth()?.token
 
   // conditionally fetching the hooks
-  const dataObj = edit?useDoctorProfileByEmail({headers:{"access-token":token}},token!==null):useDoctorProfileById(active_doctor_id)
+  const dataObj = edit?useDoctorProfileByEmail(token,token!==null):useDoctorProfileById(active_doctor_id)
   setProfile(active_doctor_id)
   const { data, isLoading, isError, error , isPaused } =
   dataObj

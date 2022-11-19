@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query'
-import { fetchSchedules } from '../utils/fetcher'
+import { fetchSchedules } from '../utils/fetchSchedules'
 
 const useSchedules = (doctor_id) => {
   return (
