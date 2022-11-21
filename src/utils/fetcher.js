@@ -10,12 +10,15 @@ export class Fetcher {
    * @param {Object} options 
    * @returns {Promise}
    */
-  #fetcher(options = null) {
-    return fetch(this.url, options).then((data) => {
-      if (data.status === 200) return data.json();
-      if (data.status === 404) throw { status: "redirect" };
-      throw { status: "error" };
-    });
+  async #fetcher(options = null) {
+    const data = await fetch(this.url, options);
+    const res =  await data.json();
+    if (data.status === 200){
+      return res
+    }
+    if (data.status === 404)
+      throw { status: "redirect" , res:res?.status };
+    throw { status: "error" , res:res?.status};
   }
 
   /**
@@ -75,7 +78,7 @@ export class Fetcher {
    * @returns {Promise} made the post request and then view the data but with access-token fro auth
    */
   postFetchProfiles(body, accessToken) {
-    return this.#postFetcher(body, { "access-token": accessToken });
+    return this.#postFetcher(body, { "Content-Type":"application/json","access-token": accessToken });
   }
 }
 

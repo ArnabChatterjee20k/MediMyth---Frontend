@@ -2,6 +2,7 @@ import Stack from "@mui/material/Stack";
 import TextField from "@mui/material/TextField";
 import { useScheduleData } from "../context/ScheduleContextProvider";
 import { isValidPhone } from "../data/Validations";
+import { PhoneNumber } from "../../../data/validErrorPatterns";
 const SchduleDetails = () => {
   const { scheduleData, handleScheduleData } = useScheduleData();
   return (
@@ -76,6 +77,7 @@ const SchduleDetails = () => {
       <TextField
         onChange={handleScheduleData}
         name="phone_no"
+        inputProps={{pattern:PhoneNumber}}
         value={scheduleData["phone_no"]}
         placeholder="10 digit"
         label="Phone number"

@@ -14,7 +14,6 @@ export const useDoctorProfileById = (active_doctor_id) => {
 export const useDoctorProfileByEmail = (token, condition = true) => {
   const endpoint = `${route}/myaccount`;
   const fetcherService = new Fetcher(endpoint);
-  console.log({token});
   return useQuery(
     ["doctor_profile", "myaccount"],
     () => fetcherService.getFetcherProfiles(token),

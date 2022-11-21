@@ -20,9 +20,9 @@ export const ScheduleContextProvider = ({ children }) => {
     clinic_name: "",
     medical_shop: "",
     address: "",
-  }
+  };
 
-  const {notify} = useNotificationContext()
+  const { notify } = useNotificationContext();
 
   const [scheduleData, setSchduleData] = useState(defaultScheduleStructure);
 
@@ -32,12 +32,27 @@ export const ScheduleContextProvider = ({ children }) => {
     });
   };
 
-  const reset = ()=>{
-    setSchduleData(defaultScheduleStructure)
-    notify("Fields Reset!","warning")
-  }
+  const reset = () => {
+    setSchduleData(defaultScheduleStructure);
+    notify("Fields Reset!", "warning");
+  };
+
+  const getScheduleData = () => {
+    // this is a abstraction of the schedule data so that empty fields get converted to null while submiting data
+    const submissionData = {}
+    Object.keys(scheduleData)
+      .filter((e) => scheduleData[e] !== "" && scheduleData[e] !== null)
+      .map((e)=>submissionData[e]=scheduleData[e])
+
+    if(! Number.parseInt(submissionData["specific_week"])){
+      delete submissionData["specific_week"];
+    }
+    return submissionData
+  };
   return (
-    <ScheduleContext.Provider value={{ scheduleData, handleScheduleData , reset }}>
+    <ScheduleContext.Provider
+      value={{ scheduleData, handleScheduleData, reset , getScheduleData }}
+    >
       {children}
     </ScheduleContext.Provider>
   );
