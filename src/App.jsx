@@ -9,12 +9,13 @@ import SuspenseLoader from "./components/ui/SuspenseLoader";
 import { AuthProvider } from "react-auth-kit";
 import LoginRoutes from "./routes/LoginRoutes";
 import { authTokenKey } from "./data/Constants";
-import EventMenuCard from "./components/ui/EventMenuCard";
+import TimeLine from "./components/ui/TimeLine";
 const Navbar = lazy(() => import("./layouts/Navbar"));
 const Toast = lazy(() => import("./components/ui/Toast"));
 
-
+const test = true;
 function App() {
+  if(test) return <TimeLine/>
   return (
     <AuthProvider
       authType="localstorage"
