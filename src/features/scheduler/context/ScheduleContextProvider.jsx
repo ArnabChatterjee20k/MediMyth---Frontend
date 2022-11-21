@@ -40,10 +40,10 @@ export const ScheduleContextProvider = ({ children }) => {
   const getScheduleData = () => {
     // this is a abstraction of the schedule data so that empty fields get converted to null while submiting data
     const submissionData = {}
+    // to send only the data entered. But we can send null value even to the server. But some fields are having "" instead of null. So not sending them.
     Object.keys(scheduleData)
       .filter((e) => scheduleData[e] !== "" && scheduleData[e] !== null)
       .map((e)=>submissionData[e]=scheduleData[e])
-
     if(! Number.parseInt(submissionData["specific_week"])){
       delete submissionData["specific_week"];
     }
