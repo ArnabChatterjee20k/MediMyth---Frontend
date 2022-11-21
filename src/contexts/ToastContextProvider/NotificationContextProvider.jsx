@@ -10,12 +10,12 @@ const NotificationContextProvider = ({children}) => {
     const [status,setStatus] = useState("")
 
     function notify(message,status) {
-      setOpen(prevState => !prevState)
+      setOpen(true)
       setContent(message)
       setStatus(status)
     }
-    function handleClose(){
-      setOpen(prevState => !prevState)
+    function handleClose(event,reason){
+      setOpen(false);
     }
   return (
     <NotificationContext.Provider value={{open,content,status,notify,handleClose}}>
