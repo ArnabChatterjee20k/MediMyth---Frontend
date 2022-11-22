@@ -10,7 +10,7 @@ import PropTypes from 'prop-types'
 
 export default function EventMenuCard({ header, subHeader, content }) {
   return (
-    <Card sx={{ maxWidth: 275 , background:eventCardColors[Math.floor(Math.random()*eventCardColors.length)]}}>
+    <Card sx={{ maxWidth: {xs:"100%",md:"50%"} , background:eventCardColors[Math.floor(Math.random()*eventCardColors.length)]}}>
       <CardHeader
         title={<SecondaryLogo text={header}/>}
         subheader={subHeader}
