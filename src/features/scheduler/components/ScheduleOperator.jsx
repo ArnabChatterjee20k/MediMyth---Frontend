@@ -10,22 +10,22 @@ import Loader from "../../../components/ui/Loader";
 const ScheduleTimeline = lazy(() => import("./ScheduleTimeline"));
 
 export default function ScheduleOperator() {
-  const { isLoading, isFetching, isError } = useSchedule();
+  const { data, isLoading, isFetching, isError } = useSchedule();
   const { notify } = useNotificationContext();
   if (isLoading) return <Loader />;
   if (isError) {
     notify("Some error Ocuured!", "error");
     return <SecondaryLogo text="Some Error Occured" />;
   }
-  const data=[]
-  if(data.length==0){
-    return <Stack flexDirection="row" justifyContent="center" alignItems="center">
-        <SecondaryLogo text="No Schedules! Click + to add"/>
-    </Stack>
-  }
   return (
-    <Stack>
-      <ScheduleTimeline scheduleData={data} />
+    <Stack sx={{paddingBlock:2}}>
+      {data.length !== 0 ? (
+        <ScheduleTimeline scheduleData={data} />
+      ) : (
+        <Stack flexDirection="row" justifyContent="center" alignItems="center">
+          <SecondaryLogo text="No Schedules. Click + to add" />
+        </Stack>
+      )}
       <IconButton
         aria-label="fingerprint"
         sx={{
