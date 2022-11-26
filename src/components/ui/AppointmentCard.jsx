@@ -45,6 +45,7 @@ export default function AppointmentCard({active,time,patientLimit,totalPatient})
       sx={{
         position: "relative",
         maxWidth: "100%",
+        marginLeft:"1.5rem"
       }}
     >
       <SideHeader active={active} />
