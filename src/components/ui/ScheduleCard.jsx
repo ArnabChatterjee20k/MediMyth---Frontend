@@ -8,7 +8,7 @@ import { SecondaryLogo } from "../Logo/SecondaryLogo";
 
 import PropTypes from 'prop-types'
 
-export default function EventMenuCard({ header, subHeader, content }) {
+export default function ScheduleCard({ header, subHeader, content }) {
   return (
     <Card sx={{ maxWidth: {xs:"100%",md:"50%"} , background:eventCardColors[Math.floor(Math.random()*eventCardColors.length)]}}>
       <CardHeader
@@ -26,7 +26,7 @@ export default function EventMenuCard({ header, subHeader, content }) {
   );
 }
 
-EventMenuCard.prototype = {
+ScheduleCard.prototype = {
     header : PropTypes.string.isRequired,
     subHeader: PropTypes.string.isRequired,
     content : PropTypes.string.isRequired

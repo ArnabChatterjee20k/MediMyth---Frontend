@@ -5,7 +5,7 @@ import TimelineConnector from "@mui/lab/TimelineConnector";
 import TimelineContent from "@mui/lab/TimelineContent";
 import TimelineDot from "@mui/lab/TimelineDot";
 import AccessTimeFilledRoundedIcon from "@mui/icons-material/AccessTimeFilledRounded";
-import EventMenuCard from "../../../components/ui/EventMenuCard";
+import ScheduleCard from "../../../components/ui/ScheduleCard";
 import { days } from "../data/days";
 import { weeks } from "../data/weeks";
 export default function ScheduleTimeline({ scheduleData }) {
@@ -32,7 +32,7 @@ export default function ScheduleTimeline({ scheduleData }) {
           </TimelineSeparator>
 
           <TimelineContent>
-            <EventMenuCard
+            <ScheduleCard
               header={Object.keys(days)[day]}
               subHeader={
                 specific_week
