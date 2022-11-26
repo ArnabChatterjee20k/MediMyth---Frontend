@@ -11,17 +11,23 @@ import { AuthProvider } from "react-auth-kit";
 import LoginRoutes from "./routes/LoginRoutes";
 import { authTokenKey } from "./data/Constants";
 import ComponentModal from "./components/ui/ComponentModal";
+import AppointmentCard from "./components/ui/AppointmentCard";
 const Navbar = lazy(() => import("./layouts/Navbar"));
 const Toast = lazy(() => import("./components/ui/Toast"));
 
 function App() {
+  const test = true;
   return (
     <AuthProvider
       authType="localstorage"
       authName={authTokenKey}
       cookieDomain={window.location.hostname}
     >
-      <DoctorProfileContextProvider>
+      {
+        test && <AppointmentCard/>
+      }
+
+      {!test && <DoctorProfileContextProvider>
         <NotificationContextProvider>
           <ModalContextProvider>
             <CssBaseline />
@@ -41,7 +47,7 @@ function App() {
             {/* <AppointmentViewer/> */}
           </ModalContextProvider>
         </NotificationContextProvider>
-      </DoctorProfileContextProvider>
+      </DoctorProfileContextProvider>}
     </AuthProvider>
   );
 }

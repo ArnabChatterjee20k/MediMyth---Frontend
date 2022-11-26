@@ -3,7 +3,7 @@ import CardHeader from "@mui/material/CardHeader";
 import IconButton from "@mui/material/IconButton";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import { eventCardColors } from "../../assets/styles/DefaultProperties";
-import { CardContent } from "@mui/material";
+import CardContent  from "@mui/material/CardContent";
 import { SecondaryLogo } from "../Logo/SecondaryLogo";
 
 import PropTypes from 'prop-types'
