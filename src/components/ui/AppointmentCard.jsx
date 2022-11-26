@@ -12,7 +12,7 @@ function Header({ active }) {
   // a helper component
   return (
     <Stack flexDirection="row" justifyContent="space-between" width="100%">
-      <SecondaryLogo text="26/11/11" />
+      <SecondaryLogo text="MediMyth" />
       <Box
         component="span"
         sx={{
@@ -37,20 +37,17 @@ function SideHeader({ active }) {
   );
 }
 
-export default function AppointmentCard() {
+export default function AppointmentCard({active,time,patientLimit,totalPatient}) {
   // main card component
   return (
     <Stack
       flexDirection="row"
       sx={{
         position: "relative",
-        maxWidth: {
-          xs: "100%",
-          md: "50%",
-        },
+        maxWidth: "100%",
       }}
     >
-      <SideHeader active={true} />
+      <SideHeader active={active} />
       <Card
         sx={{
           backgroundColor: "#FFF4F7",
@@ -59,12 +56,12 @@ export default function AppointmentCard() {
           minWidth: "80%",
         }}
       >
-        <CardHeader title={<Header active={true} />} />
+        <CardHeader title={<Header active={active} />} />
         <CardContent>
           <Stack alignItems="flex-start" gap={1}>
-            <Typography variant="body1">9:30am - 11:00am</Typography>
-            <Typography variant="body1">Patients - 16/50</Typography>
-            <SecondaryButton>Book</SecondaryButton>
+            <Typography variant="body1">{time}</Typography>
+            <Typography variant="body1">Patients - {totalPatient}/{patientLimit===null?"Not Mentioned":patientLimit}</Typography>
+            <SecondaryButton disabled={!active}>Book</SecondaryButton>
           </Stack>
         </CardContent>
       </Card>

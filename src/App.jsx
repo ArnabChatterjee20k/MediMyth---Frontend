@@ -16,7 +16,7 @@ const Navbar = lazy(() => import("./layouts/Navbar"));
 const Toast = lazy(() => import("./components/ui/Toast"));
 
 function App() {
-  const test = true;
+  const test = false;
   return (
     <AuthProvider
       authType="localstorage"
