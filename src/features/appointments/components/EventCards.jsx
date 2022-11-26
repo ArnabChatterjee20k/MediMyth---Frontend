@@ -10,6 +10,7 @@ import {
 } from "../../../utils/dateTime";
 import combineTodayWithTime from "../utils/combineTodayWithTime";
 const EventCards = ({
+  id,
   start,
   end,
   address,
@@ -65,6 +66,7 @@ const EventCards = ({
       patientLimit={limit}
       totalPatient={appointment_data.length}
       time={`${start} - ${end ? end : "Not mentioned"}`}
+      cardAction={cardAction}
     />
   );
 };
