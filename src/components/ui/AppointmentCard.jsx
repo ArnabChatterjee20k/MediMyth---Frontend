@@ -8,7 +8,7 @@ import { SecondaryButton } from "./Buttons";
 import { SecondaryLogo } from "../Logo/SecondaryLogo";
 import "../../assets/styles/AppointmentCardStyles.css";
 
-function Header() {
+function Header({ active }) {
   // a helper component
   return (
     <Stack flexDirection="row" justifyContent="space-between" width="100%">
@@ -16,13 +16,24 @@ function Header() {
       <Box
         component="span"
         sx={{
-          bgcolor: "error.main",
+          bgcolor: active ? "success.light" : "error.main",
           width: 10,
           height: 10,
           borderRadius: "50%",
         }}
       />
     </Stack>
+  );
+}
+
+function SideHeader({ active }) {
+  // helper component for sideheader
+  return (
+    <Box className={`card ${active ? "availableCard" : "unavailableCard"}`}>
+      <Typography sx={{ rotate: "270deg", fontSize: "1.35rem" }}>
+        {active ? "Available" : "Unavailable"}
+      </Typography>
+    </Box>
   );
 }
 
@@ -39,11 +50,7 @@ export default function AppointmentCard() {
         },
       }}
     >
-      <Box className="card">
-        <Typography sx={{ rotate: "270deg", fontSize: "1.35rem" }}>
-          Unavailable
-        </Typography>
-      </Box>
+      <SideHeader active={true} />
       <Card
         sx={{
           backgroundColor: "#FFF4F7",
@@ -52,7 +59,7 @@ export default function AppointmentCard() {
           minWidth: "80%",
         }}
       >
-        <CardHeader title={<Header />} />
+        <CardHeader title={<Header active={true} />} />
         <CardContent>
           <Stack alignItems="flex-start" gap={1}>
             <Typography variant="body1">9:30am - 11:00am</Typography>
