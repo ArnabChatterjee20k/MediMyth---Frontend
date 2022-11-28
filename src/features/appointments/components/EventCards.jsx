@@ -62,9 +62,9 @@ const EventCards = ({
 
   return (
     <AppointmentCard
-      active={isInBookingRange}
+      active={isInBookingRange && isSeatsAvailable}
       patientLimit={limit}
-      totalPatient={appointment_data.length}
+      totalPatient={seats}
       time={`${start} - ${end ? end : "Not mentioned"}`}
       cardAction={cardAction}
     />
