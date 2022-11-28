@@ -1,10 +1,10 @@
 import { lazy } from "react";
+import MultiStepperFormWrapper from "../../../components/Form/MultiStepperFormWrapper";
 const ContactInfoForm =  lazy(()=>import("./ContactInfoForm"));
 const OTPForm =  lazy(()=>import("./OTPForm"));
 const DegreeInfoForm =  lazy(()=>import("./DegreeInfoForm"));
 
 import { useRegisterContext } from "../context/RegisterContextProvider";
-import MultiStepper from "./MultiStepper";
 
 const FormCollection = () => {
   const { sendOTP,  createAccount } = useRegisterContext();
@@ -15,7 +15,7 @@ const FormCollection = () => {
     { Component: DegreeInfoForm ,label:label },
     { Component: OTPForm, onSubmit: createAccount,label:label },
   ]
-  return <MultiStepper steps={elements}/>;
+  return <MultiStepperFormWrapper steps={elements}/>;
 };
 
 export default FormCollection;

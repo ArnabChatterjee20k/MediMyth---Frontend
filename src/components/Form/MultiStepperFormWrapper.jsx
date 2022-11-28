@@ -4,8 +4,8 @@ import Paper from "@mui/material/Paper";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import Stack from "@mui/material/Stack";
-import { PrimaryButton } from "../../../components/ui/Buttons";
-const MultiStepper = ({steps}) => {
+import { PrimaryButton } from "../ui/Buttons";
+const MultiStepperFormWrapper = ({steps}) => {
   const [activeForm, setActiveForm] = useState(0);
   const maxSteps = steps.length;
   const {Component} = steps[activeForm];
@@ -74,4 +74,4 @@ const MultiStepper = ({steps}) => {
   );
 };
 
-export default MultiStepper;
+export default MultiStepperFormWrapper;
