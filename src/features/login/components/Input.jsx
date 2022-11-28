@@ -1,4 +1,4 @@
-import TextField  from "@mui/material/TextField"
+import Field from "../../../components/Form/Field";
 import PropTypes from "prop-types"
 import { useLoginContext } from "../context/LoginContextProvider"
 
@@ -11,18 +11,19 @@ const Input = ({name,value,placeholder,label,changeHandler,errorText,errorPatter
     const validInput = new RegExp(errorPattern).test(inputValue);
 
     return (
-    <TextField
-        onChange={changeHandler || handleChange}
+    <Field
+        onChange={handleChange}
         name={name}
-        value={inputValue}
+        value={value || inputValue}
         placeholder={placeholder}
         label={label}
         helperText={!validInput && errorText}
         required = {optional || true} // if optional present or true
-        error={errorPattern && !validInput}
+        showError={errorPattern && !validInput}
         InputLabelProps={{ shrink: true }}
         {...props}
       />
+    
   )
 }
 
