@@ -14,7 +14,7 @@ const Input = ({name,value,placeholder,label,changeHandler,errorText,errorPatter
     <Field
         onChange={handleChange}
         name={name}
-        value={value || inputValue}
+        value={inputValue}
         placeholder={placeholder}
         label={label}
         helperText={!validInput && errorText}

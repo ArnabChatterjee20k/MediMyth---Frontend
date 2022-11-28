@@ -20,6 +20,7 @@ const Field = ({name,value,placeholder,label,changeHandler,errorText
 }
 
 Field.prototype = {
+    changeHandler : PropTypes.func.isRequired,
     name:PropTypes.string.isRequired,
     value:PropTypes.string,
     type:PropTypes.string.isRequired,
