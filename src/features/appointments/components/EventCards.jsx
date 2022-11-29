@@ -21,7 +21,6 @@ const EventCards = ({
   limit,
   appointment_data,
 }) => {
-  console.log(appointment_data);
   function checkBookingEnd() {
     if (isToday(date)) {
       const dateObj = new Date(date);
