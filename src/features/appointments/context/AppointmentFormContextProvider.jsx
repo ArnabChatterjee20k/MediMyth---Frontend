@@ -8,9 +8,9 @@ export const useAppointmentFormContext = () =>
 
 export default function AppointmentFormContextProvider({ children }) {
   const [patientDetails, setPatientDetails] = useState({
-    name: "",
-    age: "",
-    contact_number: "",
+    name: "Arnab CHatterjee",
+    age: "18",
+    contact_number: "9064846599",
   });
 
   const [otp, setOTP] = useState("");
@@ -18,6 +18,13 @@ export default function AppointmentFormContextProvider({ children }) {
   const setAppointmentDate = (date) => {
     appointment.current = getFormattedDate(new Date(date), "yyyy/MM/dd");
   };
+  const sendOTP = ()=>{
+    console.log(appointment.current);
+    alert("sending otp to "+appointment.current);
+  }
+  const registerPatient = ()=>{
+    console.log(patientDetails);
+  }
   return (
     <AppointmentFormContext.Provider
       value={{
@@ -27,6 +34,8 @@ export default function AppointmentFormContextProvider({ children }) {
         setOTP,
         setAppointmentDate,
         appointment_date: appointment.current,
+        sendOTP,
+        registerPatient
       }}
     >
       {children}
