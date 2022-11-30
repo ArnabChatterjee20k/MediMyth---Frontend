@@ -66,10 +66,11 @@ export class Fetcher {
   /**
    * 
    * @param {Object} body 
+   * @param {Object} headerOptions if any header to be sent 
    * @returns {Promise} made the post request and then view the data
    */
-  postFetchUsers(body) {
-    return this.#postFetcher(body);
+  postFetchUsers(body,headerOptions={}) {
+    return this.#postFetcher(body,headerOptions);
   }
 
   /**
