@@ -32,6 +32,7 @@ export class Fetcher {
 
   /**
    * 
+   * @param {Object} body just pass the body it will be jsonified automatically
    * @param {Object} headerOptions 
    * @returns {Promise}
    */
@@ -70,7 +71,7 @@ export class Fetcher {
    * @returns {Promise} made the post request and then view the data
    */
   postFetchUsers(body,headerOptions={}) {
-    return this.#postFetcher(body,headerOptions);
+    return this.#postFetcher(body,{ "Content-Type":"application/json",...headerOptions });
   }
 
   /**
