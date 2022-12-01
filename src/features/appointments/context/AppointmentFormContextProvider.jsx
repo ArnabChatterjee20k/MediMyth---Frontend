@@ -1,5 +1,6 @@
 import { createContext, useContext, useState, useRef } from "react";
 import { getFormattedDate } from "../../../utils/dateTime";
+import useAppointmentMaker from "../services/useAppointmentMaker";
 
 const AppointmentFormContext = createContext();
 
@@ -12,19 +13,23 @@ export default function AppointmentFormContextProvider({ children }) {
     age: "18",
     contact_number: "9064846599",
   });
-
+  
   const [otp, setOTP] = useState("");
   const appointment = useRef();
   const setAppointmentDate = (date) => {
-    appointment.current = getFormattedDate(new Date(date), "yyyy/MM/dd");
+    const format = "yyyy-MM-dd";// format accepting by server
+    appointment.current = getFormattedDate(new Date(date), format);
   };
+  
+  const {book} = useAppointmentMaker()
+
   const sendOTP = ()=>{
-    console.log(appointment.current);
     alert("sending otp to "+appointment.current);
   }
-  const registerPatient = ()=>{
-    console.log(patientDetails);
+  const registerPatient = (schedule_id)=>{
+    book(schedule_id,patientDetails.contact_number,otp,{...patientDetails,appointment_date:appointment.current,age:Number.parseInt(patientDetails.age)})
   }
+
   return (
     <AppointmentFormContext.Provider
       value={{

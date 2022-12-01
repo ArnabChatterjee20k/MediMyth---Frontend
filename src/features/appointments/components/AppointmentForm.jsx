@@ -5,16 +5,16 @@ import { useAppointmentFormContext } from "../context/AppointmentFormContextProv
 const OTPForm = lazy(() => import("./OTPForm"));
 const PatientDetailsForm = lazy(() => import("./PatientDetailsForm"));
 
-export default function AppointmentForm() {
+export default function AppointmentForm({schedule_id}) {
   const label = "Patient";
   const {sendOTP,registerPatient} = useAppointmentFormContext();
   const elements = [
     { Component: PatientDetailsForm, label: label,onSubmit:sendOTP },
     {
       Component: OTPForm,
-      onSubmit: () => console.log("sending otp"),
+      onSubmit: () => sendOTP(),
       label: label,
-      onSubmit:registerPatient
+      onSubmit:()=>registerPatient(schedule_id)
     },
   ];
   return (

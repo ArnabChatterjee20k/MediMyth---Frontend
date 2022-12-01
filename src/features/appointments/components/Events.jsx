@@ -12,10 +12,10 @@ const Events = () => {
   const {setAppointmentDate,appointment_date} = useAppointmentFormContext(
 
   )
-  const openModal = () => {
+  const openModal = (id) => {
     setAppointmentDate(appointmentDate);
     console.log(appointment_date);
-    handleOpen(<AppointmentForm />);
+    handleOpen(<AppointmentForm schedule_id={id}/>);
   };
   return (
     <>
@@ -47,7 +47,7 @@ const Events = () => {
                 booking_end={booking_end}
                 limit={patient_limit}
                 appointment_data={appointment_data}
-                cardAction={openModal}
+                cardAction={()=>openModal(id)}
               />
             );
           }
