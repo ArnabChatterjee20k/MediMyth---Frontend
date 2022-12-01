@@ -14,7 +14,7 @@ import ComponentModal from "./components/ui/ComponentModal";
 import AppointmentCard from "./components/ui/AppointmentCard";
 const Navbar = lazy(() => import("./layouts/Navbar"));
 const Toast = lazy(() => import("./components/ui/Toast"));
-
+import CommonRoutes from "./routes/CommonRoutes";
 function App() {
   const test = false;
   return (
@@ -38,6 +38,7 @@ function App() {
                 <BrowserRouter>
                   <DoctorRoutes />
                   <LoginRoutes />
+                  <CommonRoutes />
                 </BrowserRouter>
                 <Toast />
               </Suspense>
