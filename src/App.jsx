@@ -13,6 +13,7 @@ import { authTokenKey } from "./data/Constants";
 const Navbar = lazy(() => import("./layouts/Navbar"));
 const Toast = lazy(() => import("./components/ui/Toast"));
 import CommonRoutes from "./routes/CommonRoutes";
+
 function App() {
   return (
     <AuthProvider
