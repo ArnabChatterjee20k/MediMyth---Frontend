@@ -12,6 +12,7 @@ import LoginRoutes from "./routes/LoginRoutes";
 import { authTokenKey } from "./data/Constants";
 const Navbar = lazy(() => import("./layouts/Navbar"));
 const Toast = lazy(() => import("./components/ui/Toast"));
+import Footer from "./layouts/Footer";
 import CommonRoutes from "./routes/CommonRoutes";
 
 function App() {
@@ -36,6 +37,7 @@ function App() {
                 <Toast />
               </Suspense>
             </Stack>
+            <Footer/>
           </ModalContextProvider>
         </NotificationContextProvider>
       </DoctorProfileContextProvider>
