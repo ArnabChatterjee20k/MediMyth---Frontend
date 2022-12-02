@@ -10,8 +10,6 @@ import SuspenseLoader from "./components/ui/SuspenseLoader";
 import { AuthProvider } from "react-auth-kit";
 import LoginRoutes from "./routes/LoginRoutes";
 import { authTokenKey } from "./data/Constants";
-import ComponentModal from "./components/ui/ComponentModal";
-import AppointmentCard from "./components/ui/AppointmentCard";
 const Navbar = lazy(() => import("./layouts/Navbar"));
 const Toast = lazy(() => import("./components/ui/Toast"));
 import CommonRoutes from "./routes/CommonRoutes";
@@ -29,7 +27,6 @@ function App() {
             <Navbar />
             <Stack paddingTop={10}>
               <Suspense fallback={<SuspenseLoader />}>
-                {/* <ComponentModal/> */}
                 <BrowserRouter>
                   <DoctorRoutes />
                   <LoginRoutes />
@@ -38,9 +35,6 @@ function App() {
                 <Toast />
               </Suspense>
             </Stack>
-            {/* <MultiStepDoctorRegistration /> */}
-            {/* <ScheduleCalendar/> */}
-            {/* <AppointmentViewer/> */}
           </ModalContextProvider>
         </NotificationContextProvider>
       </DoctorProfileContextProvider>
