@@ -1,6 +1,6 @@
 import { serverAddress } from "../data/Constants";
 
-export class Fetcher {
+class Fetcher {
 
   constructor(endpoint) {
     this.url = `${serverAddress}${endpoint}`
@@ -47,6 +47,18 @@ export class Fetcher {
 
   /**
    * 
+   * @param {Object} headerOptions the headers required
+   * @returns the response after delteing from the server
+   */
+  #deleteFetcher(headerOptions={}){
+    return this.#fetcher({
+      method:"DELTETE",
+      headers:headerOptions
+    })
+  }
+
+  /**
+   * 
    * @returns {Promise} the fetched data from the url
    */
   getFetcherUsers() {
@@ -81,6 +93,10 @@ export class Fetcher {
    */
   postFetchProfiles(body, accessToken) {
     return this.#postFetcher(body, { "Content-Type":"application/json","access-token": accessToken });
+  }
+
+  deleteFetchProfiles(accessToken){
+    return this.#deleteFetcher({"Content-Type":"application/json","access-token": accessToken})
   }
 }
 
