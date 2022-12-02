@@ -2,13 +2,7 @@
 
 ## Routes
 
-- Doctor Routes
-
-    - Register a doctor
-
-        ```
-            /registration/doctor
-        ```
+- Doctor Related Routes
     
     - Doctor Profile for Patients
 
@@ -33,3 +27,23 @@
         ```
             /doctor/profile/appointemnt
         ```
+
+- Login Routes
+
+
+    - Doctor Auth
+        ```
+            /account/doctor
+        ```
+
+        - registration
+
+            ```
+                /account/doctor/register
+            ```
+
+        - login
+
+            ```
+                /account/doctor/login
+            ```
