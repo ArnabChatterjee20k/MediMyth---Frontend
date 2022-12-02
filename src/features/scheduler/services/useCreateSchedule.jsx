@@ -1,6 +1,7 @@
 import { useMutation } from "@tanstack/react-query";
 import { useNotificationContext } from "../../../contexts/ToastContextProvider/NotificationContextProvider";
 import { createSchedule } from "../utils/createSchedule";
+import {queryClient} from "../../../queryClient/queryClient"
 const useCreateSchedule = () =>{
     const response = useMutation(({token,body})=> createSchedule(token,body))
     const {notify}  = useNotificationContext()
@@ -10,6 +11,7 @@ const useCreateSchedule = () =>{
                 const res = await data
                 const status = data?.status || "successful"
                 notify(`${status}`,"success")
+                queryClient.invalidateQueries(["Doctor-Schedule",token])
             },
             onError: async(err)=>{
                 const errRes = err?.res
