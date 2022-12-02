@@ -16,18 +16,13 @@ const Navbar = lazy(() => import("./layouts/Navbar"));
 const Toast = lazy(() => import("./components/ui/Toast"));
 import CommonRoutes from "./routes/CommonRoutes";
 function App() {
-  const test = false;
   return (
     <AuthProvider
       authType="localstorage"
       authName={authTokenKey}
       cookieDomain={window.location.hostname}
     >
-      {
-        test && <AppointmentCard/>
-      }
-
-      {!test && <DoctorProfileContextProvider>
+      <DoctorProfileContextProvider>
         <NotificationContextProvider>
           <ModalContextProvider>
             <CssBaseline />
@@ -48,7 +43,7 @@ function App() {
             {/* <AppointmentViewer/> */}
           </ModalContextProvider>
         </NotificationContextProvider>
-      </DoctorProfileContextProvider>}
+      </DoctorProfileContextProvider>
     </AuthProvider>
   );
 }
