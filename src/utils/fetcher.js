@@ -52,7 +52,7 @@ class Fetcher {
    */
   #deleteFetcher(headerOptions={}){
     return this.#fetcher({
-      method:"DELTETE",
+      method:"DELETE",
       headers:headerOptions
     })
   }
