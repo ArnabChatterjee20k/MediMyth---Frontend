@@ -5,11 +5,11 @@ import TimelineConnector from "@mui/lab/TimelineConnector";
 import TimelineContent from "@mui/lab/TimelineContent";
 import TimelineDot from "@mui/lab/TimelineDot";
 import AccessTimeFilledRoundedIcon from "@mui/icons-material/AccessTimeFilledRounded";
-import ScheduleCard from "../../../components/ui/ScheduleCard";
 import { days } from "../data/days";
 import { weeks } from "../data/weeks";
+import ScheduleCard from "./ScheduleCard";
+
 export default function ScheduleTimeline({ scheduleData }) {
-    console.log(scheduleData);
   return (
     <Timeline  sx={{
         [`& .${timelineItemClasses.root}:before`]: {
@@ -20,7 +20,7 @@ export default function ScheduleTimeline({ scheduleData }) {
           padding: 0,
         },
       }}>
-      {scheduleData?.map(({specific_week,day,slot_start,slot_end},index) => (
+      {scheduleData?.map(({id,specific_week,day,slot_start,slot_end},index) => (
         <TimelineItem key={index}>
 
           <TimelineSeparator>
@@ -33,6 +33,7 @@ export default function ScheduleTimeline({ scheduleData }) {
 
           <TimelineContent>
             <ScheduleCard
+              id={id}
               header={Object.keys(days)[day]}
               subHeader={
                 specific_week
