@@ -3,7 +3,7 @@ import { PrimaryTextColor } from "../../assets/styles/DefaultProperties";
 import PropTypes from "prop-types";
 import Avatar  from "@mui/material/Avatar";
 import deepOrange  from "@mui/material/colors/deepOrange";
-const DoctorImage = ({ profilePicture, name }) => {
+const DoctorImage = ({ profilePicture, name ,displayInBlock}) => {
   return (
     <>
       <Box
@@ -16,9 +16,9 @@ const DoctorImage = ({ profilePicture, name }) => {
       >
         <Box
           sx={{
-            position: "absolute",
-            top: "-6rem",
-            borderRadius: "800px",
+            position: displayInBlock && "absolute",
+            top: displayInBlock && "-6rem",
+            borderRadius: displayInBlock && "800px",
             border: `6px solid ${PrimaryTextColor}`,
             backgroundColor: "white",
           }}
@@ -44,13 +44,15 @@ const DoctorImage = ({ profilePicture, name }) => {
 };
 
 DoctorImage.propTypes = {
-  profilePicture: PropTypes.string.isRequired,
-  name:PropTypes.string.isRequired
+  profilePicture: PropTypes.string,
+  name:PropTypes.string.isRequired,
+  displayInBlock:PropTypes.bool.isRequired
 };
 
 DoctorImage.defaultProps = {
   profilePicture: "Tile",
-  name:"Doctorname"
+  name:"Doctorname",
+  displayInBlock:true
 };
 
 export default DoctorImage;
