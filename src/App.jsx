@@ -14,35 +14,37 @@ const Navbar = lazy(() => import("./layouts/Navbar"));
 const Toast = lazy(() => import("./components/ui/Toast"));
 import Footer from "./layouts/Footer";
 import CommonRoutes from "./routes/CommonRoutes";
+import DoctorSearch from "./features/searchengine/components/DoctorSearch";
 
 function App() {
-  return (
-    <AuthProvider
-      authType="localstorage"
-      authName={authTokenKey}
-      cookieDomain={window.location.hostname}
-    >
-      <DoctorProfileContextProvider>
-        <NotificationContextProvider>
-          <ModalContextProvider>
-            <CssBaseline />
-            <Navbar />
-            <Stack paddingTop={10}>
-              <Suspense fallback={<SuspenseLoader />}>
-                <BrowserRouter>
-                  <DoctorRoutes />
-                  <LoginRoutes />
-                  <CommonRoutes />
-                </BrowserRouter>
-                <Toast />
-              </Suspense>
-            </Stack>
-            <Footer/>
-          </ModalContextProvider>
-        </NotificationContextProvider>
-      </DoctorProfileContextProvider>
-    </AuthProvider>
-  );
+  return <DoctorSearch/>
+  // return (
+  //   <AuthProvider
+  //     authType="localstorage"
+  //     authName={authTokenKey}
+  //     cookieDomain={window.location.hostname}
+  //   >
+  //     <DoctorProfileContextProvider>
+  //       <NotificationContextProvider>
+  //         <ModalContextProvider>
+  //           <CssBaseline />
+  //           <Navbar />
+  //           <Stack paddingTop={10}>
+  //             <Suspense fallback={<SuspenseLoader />}>
+  //               <BrowserRouter>
+  //                 <DoctorRoutes />
+  //                 <LoginRoutes />
+  //                 <CommonRoutes />
+  //               </BrowserRouter>
+  //               <Toast />
+  //             </Suspense>
+  //           </Stack>
+  //           <Footer/>
+  //         </ModalContextProvider>
+  //       </NotificationContextProvider>
+  //     </DoctorProfileContextProvider>
+  //   </AuthProvider>
+  // );
 }
 
 export default App;
