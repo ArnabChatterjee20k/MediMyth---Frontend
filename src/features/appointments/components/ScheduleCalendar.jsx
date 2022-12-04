@@ -14,19 +14,23 @@ import { PickersDay } from "@mui/x-date-pickers/";
 import { getWeek, getWeekOfMonth } from "date-fns";
 import { useAppointment } from "../context/AppointmentContextProvider";
 import Typography from "@mui/material/Typography";
-import useSchedules from "../services/useSchedules";
+import {useSchedulesPatient,useSchedulesDoctor} from "../services/useSchedules";
 import { useDoctorProfileContext } from "../../../contexts/DoctorProfileContextProvider/DoctorProfileContextProvider";
 import { Navigate } from "react-router-dom";
+import { useAuthUser } from "react-auth-kit";
 
-export default function ScheduleCalendar() {
+export default function ScheduleCalendar({edit}) {
   const [value, setValue] = useState("");
   const { profile } = useDoctorProfileContext();
   const { setAppointment, appointmentDate, setAppointmentDate } =
     useAppointment();
-  console.log(profile);
+  
+  const auth = useAuthUser()
+  const token = auth()?.token
+
   if(!profile?.current) return <Navigate to="/error"/>
 
-  const { data, isLoading } = useSchedules(profile.current);
+  const { data, isLoading } = edit?useSchedulesDoctor(token):useSchedulesPatient(profile.current);
 
   // creating this dataStructure to access the ORDERED_SCHEDULE easily and accessing data becomes more cleaner using key value pair
   const ORDERED_SCHEDULE = {};
