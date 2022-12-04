@@ -8,6 +8,7 @@ import AccessTimeFilledRoundedIcon from "@mui/icons-material/AccessTimeFilledRou
 import { days } from "../data/days";
 import { weeks } from "../data/weeks";
 import ScheduleCard from "./ScheduleCard";
+import { format12hour } from "../../../utils/dateTime";
 
 export default function ScheduleTimeline({ scheduleData }) {
   return (
@@ -40,8 +41,8 @@ export default function ScheduleTimeline({ scheduleData }) {
                   ? Object.keys(weeks)[specific_week]
                   : "EveryWeek"
               }
-              content={`${slot_start} - ${
-                slot_end ? slot_end : "Not given"
+              content={`${format12hour(slot_start)} - ${
+                slot_end ? format12hour(slot_end) : "Not given"
               }`}
             />
           </TimelineContent>

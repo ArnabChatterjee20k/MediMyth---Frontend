@@ -4,9 +4,11 @@ import Proptypes from "prop-types";
 import AppointmentCard from "../../../components/ui/AppointmentCard";
 import {
   getDifferenceDates,
+  getFormattedDate,
   subtractHoursFromDate,
   isToday,
   isTimeBeforeNow,
+  format12hour
 } from "../../../utils/dateTime";
 import combineTodayWithTime from "../utils/combineTodayWithTime";
 const EventCards = ({
@@ -64,7 +66,7 @@ const EventCards = ({
       active={isInBookingRange && isSeatsAvailable}
       patientLimit={limit}
       totalPatient={seats}
-      time={`${start} - ${end ? end : "Not mentioned"}`}
+      time={`${format12hour(start)} - ${end ? format12hour(end) : "Not mentioned"}`}
       cardAction={cardAction}
     />
   );
