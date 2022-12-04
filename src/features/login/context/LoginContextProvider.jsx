@@ -14,7 +14,7 @@ export const LoginContextProvider = ({ children }) => {
     email: "",
     password: "",
   });
-  const { data: token, isFetching, refetch } = useDoctorLoginQuery(data);
+  const { isFetching, refetch, error } = useDoctorLoginQuery(data);
 
   const { notify } = useNotificationContext();
 
@@ -22,27 +22,25 @@ export const LoginContextProvider = ({ children }) => {
 
   const saveToStorage = useSaveTokenQuery();
 
-  const login = () => {
-      !isFetching && refetch().then(async () => {
-      const tokenData = await token.json();
-      const status = token.status;
-      const authToken = tokenData.token;
-      if (status === 200) {
-        if (saveToStorage({ authToken })) {
-          notify("success", "success");
-          navigate("/doctor/profile");
-        } else {
-          notify("some problems occurred", "error");
-        }
+  const login = async () => {
+    const { error, status, data: tokenData } = await refetch();
+    if (status === "success") {
+      const { token: authToken } = tokenData;
+      if (saveToStorage({ authToken })) {
+        notify("success", "success");
+        navigate("/doctor/profile");
       } else {
-        const error = tokenData.status;
-        error && notify(error, "error");
+        notify("some problems occurred", "error");
       }
-    });
+    }
+
+    if (status === "error") {
+      notify(error.res, "error");
+    }
   };
 
   return (
-    <LoginContext.Provider value={{ data, setData, login ,isFetching}}>
+    <LoginContext.Provider value={{ data, setData, login, isFetching }}>
       {children}
     </LoginContext.Provider>
   );
