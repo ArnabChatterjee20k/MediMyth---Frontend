@@ -45,3 +45,10 @@ export function isTimeBeforeNow(date){
 export function isDayAfterToday(date){
     return CustomDateFns.isAfter(date,new Date())
 }
+
+ /*** 
+* @param {String} timeString it is the time string
+*/
+export function format12hour(timeString){
+   return new Date(new Date().toDateString()+" "+timeString).toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true })
+}
