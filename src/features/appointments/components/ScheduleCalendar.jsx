@@ -19,6 +19,8 @@ import { useDoctorProfileContext } from "../../../contexts/DoctorProfileContextP
 import { Navigate } from "react-router-dom";
 import { useAuthUser } from "react-auth-kit";
 
+import Proptypes from "prop-types"
+
 export default function ScheduleCalendar({edit}) {
   const [value, setValue] = useState("");
   const { profile } = useDoctorProfileContext();
@@ -28,7 +30,7 @@ export default function ScheduleCalendar({edit}) {
   const auth = useAuthUser()
   const token = auth()?.token
 
-  if(!profile?.current) return <Navigate to="/error"/>
+  if(!edit && !profile?.current) return <Navigate to="/error"/>
 
   const { data, isLoading } = edit?useSchedulesDoctor(token):useSchedulesPatient(profile.current);
 
@@ -135,4 +137,12 @@ export default function ScheduleCalendar({edit}) {
       </Stack>
     );
   return <Typography fontSize={40}>No appointments</Typography>;
+}
+
+ScheduleCalendar.prototype = {
+  edit:Proptypes.bool
+}
+
+ScheduleCalendar.defaultProps = {
+  edit:false
 }

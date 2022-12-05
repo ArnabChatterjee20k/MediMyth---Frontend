@@ -3,11 +3,11 @@ const ScheduleCalendar = lazy(()=>import("./ScheduleCalendar"))
 const Events = lazy(()=>import("./Events")) 
 import AppointmentContextProvider from "../context/AppointmentContextProvider"
 import AppointmentFormContextProvider from "../context/AppointmentFormContextProvider"
-const Appointment = () => {
+const Appointment = ({edit}) => {
   return (
     <AppointmentContextProvider>
       <AppointmentFormContextProvider>
-        <ScheduleCalendar/>
+        <ScheduleCalendar edit={edit}/>
         <Events/>
       </AppointmentFormContextProvider>
     </AppointmentContextProvider>
