@@ -75,7 +75,7 @@ export default function AppointmentCard({
             </Typography>
             <SecondaryButton
               disabled={edit ? false : !active}
-              onClick={active ? cardAction : null}
+              onClick={(edit || active) ? cardAction : null}
             >
               {buttonText}
             </SecondaryButton>
