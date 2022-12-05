@@ -2,11 +2,18 @@ import TableComponent from "../../../components/Table/TableComponent";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
 import TableRow from "@mui/material/TableRow";
+import useFetchAppointment from "../services/useFetchAppointment";
+import Typography from "@mui/material/Typography";
+import Stack from "@mui/material/Stack";
+import { useParams } from "react-router-dom";
 
+function Message({text}){
+    return <Stack width="100%" justifyContent="center" alignItems="center"><Typography fontSize="2rem" fontWeight="bold" marginY={3}>{text}</Typography></Stack>
+}
 function AppointmentTableBody({ tableData }) {
   return (
     <TableBody>
-      {tableData.map(({ name, appointment_id, age, contact_number }, index) => {
+      {tableData?.map(({ name, appointment_id, age, contact_number }, index) => {
         return (
           <TableRow key={index} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
             <TableCell component="th" scope="row">{name}</TableCell>
@@ -21,29 +28,12 @@ function AppointmentTableBody({ tableData }) {
 }
 export default function AppointmentTable() {
   const tableHeaders = ["name",  "appointment_id","age","contact_number",];
-  const tableData = [
-    {
-      age: 18,
-      date: "2022-12-04T15:12:08.987076",
-      person_id: null,
-      appointment_id: "MMA-33",
-      contact_number: "9064846599",
-      name: "Arnab CHatterjee",
-      appointment_date: "2022-12-05",
-      appointment_data: 17,
-      id: 33,
-    },
-    {
-      age: 18,
-      date: "2022-12-04T15:25:05.222374",
-      person_id: null,
-      appointment_id: "MMA-34",
-      contact_number: "9064846591",
-      name: "Arnab CHatterjee",
-      appointment_date: "2022-12-05",
-      appointment_data: 17,
-      id: 34,
-    },
-  ];
-  return <TableComponent tableHeaders={tableHeaders} body={<AppointmentTableBody tableData={tableData}/>} />;
+  const {id,date} = useParams()
+    const {data:tableData,isLoading,isError} = useFetchAppointment(id,date)
+    
+    if(isLoading) return <Message text="Loading......"/>
+    if(isError) return <Message text="Some Error Occured"/>
+    if(tableData.length===0) return <Message text="No Appointments...."/>
+    
+    return <TableComponent tableHeaders={tableHeaders} body={<AppointmentTableBody tableData={tableData}/>} /> 
 }

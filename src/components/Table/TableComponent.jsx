@@ -21,7 +21,7 @@ export default function TableComponent({ body, tableHeaders }) {
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
         <TableHead>
           <TableRow>
-            {tableHeaders.map((header, index) => (
+            {tableHeaders?.map((header, index) => (
               <TableCell key={index} align={index !== 0 ? "right" : "inherit"}>
                 {header}
               </TableCell>

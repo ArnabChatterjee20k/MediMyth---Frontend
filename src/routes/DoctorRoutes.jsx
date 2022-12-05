@@ -10,7 +10,8 @@ const NotFound = lazy(() => import("../pages/NotFound"));
 const Error = lazy(() => import("../pages/Error"));
 
 import BookingCalendar from "../components/DoctorProfile/BookingCalendar";
-import AppointmentTable from "../features/appointment-table-datewise/components/AppointmentTable";
+
+const AppointmentTable = lazy(()=>import("../features/appointment-table-datewise/components/AppointmentTable"))
 
 const DoctorRoutes = () => {
   return (
@@ -37,7 +38,7 @@ const DoctorRoutes = () => {
           </Route>
 
           {/* for viewing appointment of a schedule */}
-          <Route path="schedule/:date" element={<AppointmentTable/>} />
+          <Route path="schedule/:id/:date" element={<AppointmentTable/>} />
         </Route>
       </Route>
       <Route index path="/notfound" element={<NotFound />} />

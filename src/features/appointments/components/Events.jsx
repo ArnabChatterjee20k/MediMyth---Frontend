@@ -18,9 +18,9 @@ const Events = ({ edit }) => {
     setAppointmentDate(appointmentDate);
     handleOpen(<AppointmentForm schedule_id={id} />);
   };
-  const redirect = () => {
+  const redirect = (id) => {
     const date = getFormattedDate(appointmentDate, "yyyy-MM-dd");
-    naviagte(`/doctor/profile/schedule/${date}`);
+    naviagte(`/doctor/profile/schedule/${id}/${date}`);
   };
   return (
     <>
@@ -55,7 +55,7 @@ const Events = ({ edit }) => {
                 edit={edit}
                 buttonText={edit ? "View" : "Book"}
                 cardAction={() => {
-                  edit ? redirect() : openModal(id);
+                  edit ? redirect(id) : openModal(id);
                 }}
               />
             );
