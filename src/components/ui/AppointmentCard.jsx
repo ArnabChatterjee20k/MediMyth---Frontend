@@ -37,7 +37,15 @@ function SideHeader({ active }) {
   );
 }
 
-export default function AppointmentCard({active,time,patientLimit,totalPatient , cardAction}) {
+export default function AppointmentCard({
+  edit,
+  active,
+  time,
+  patientLimit,
+  totalPatient,
+  buttonText,
+  cardAction,
+}) {
   // main card component
   return (
     <Stack
@@ -45,7 +53,7 @@ export default function AppointmentCard({active,time,patientLimit,totalPatient ,
       sx={{
         position: "relative",
         maxWidth: "100%",
-        marginLeft:"1.5rem"
+        marginLeft: "1.5rem",
       }}
     >
       <SideHeader active={active} />
@@ -61,8 +69,16 @@ export default function AppointmentCard({active,time,patientLimit,totalPatient ,
         <CardContent>
           <Stack alignItems="flex-start" gap={1}>
             <Typography variant="body1">{time}</Typography>
-            <Typography variant="body1">Patients - {totalPatient}/{patientLimit===null?"Not Mentioned":patientLimit}</Typography>
-            <SecondaryButton disabled={!active} onClick={active ? cardAction:null}>Book</SecondaryButton>
+            <Typography variant="body1">
+              Patients - {totalPatient}/
+              {patientLimit === null ? "Not Mentioned" : patientLimit}
+            </Typography>
+            <SecondaryButton
+              disabled={edit ? false : !active}
+              onClick={active ? cardAction : null}
+            >
+              {buttonText}
+            </SecondaryButton>
           </Stack>
         </CardContent>
       </Card>

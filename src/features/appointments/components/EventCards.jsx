@@ -8,7 +8,7 @@ import {
   subtractHoursFromDate,
   isToday,
   isTimeBeforeNow,
-  format12hour
+  format12hour,
 } from "../../../utils/dateTime";
 import combineTodayWithTime from "../utils/combineTodayWithTime";
 const EventCards = ({
@@ -22,6 +22,8 @@ const EventCards = ({
   booking_end,
   limit,
   appointment_data,
+  buttonText,
+  edit,
 }) => {
   function checkBookingEnd() {
     if (isToday(date)) {
@@ -66,8 +68,12 @@ const EventCards = ({
       active={isInBookingRange && isSeatsAvailable}
       patientLimit={limit}
       totalPatient={seats}
-      time={`${format12hour(start)} - ${end ? format12hour(end) : "Not mentioned"}`}
+      time={`${format12hour(start)} - ${
+        end ? format12hour(end) : "Not mentioned"
+      }`}
+      buttonText={buttonText}
       cardAction={cardAction}
+      edit={edit}
     />
   );
 };
@@ -79,12 +85,16 @@ EventCards.prototype = {
   cardAction: Proptypes.func,
   date: Proptypes.number.isRequired, // primitive value of a date object
   booking_start: Proptypes.number.isRequired,
+  buttonText: Proptypes.string.isRequired,
+  edit: Proptypes.bool.isRequired,
 };
 
 EventCards.defaultProps = {
   start: "Starting time",
   end: "Ending time",
   address: "Address of the clinic",
+  buttonText: "Button Text",
+  edit: false,
   cardAction: () => alert("Card action"),
 };
 

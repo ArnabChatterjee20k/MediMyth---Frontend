@@ -5,17 +5,20 @@ import { useModalContext } from "../../../contexts/ModalContextProvider/ModalCon
 import ComponentModal from "../../../components/ui/ComponentModal";
 import AppointmentForm from "./AppointmentForm";
 import { useAppointmentFormContext } from "../context/AppointmentFormContextProvider";
+import { useNavigate } from "react-router-dom";
 
-const Events = () => {
+const Events = ({ edit }) => {
   const { appointment, appointmentDate } = useAppointment();
   const { handleOpen } = useModalContext();
-  const {setAppointmentDate,appointment_date} = useAppointmentFormContext(
+  const { setAppointmentDate, appointment_date } = useAppointmentFormContext();
 
-  )
+  const naviagte = useNavigate();
   const openModal = (id) => {
     setAppointmentDate(appointmentDate);
-    console.log(appointment_date);
-    handleOpen(<AppointmentForm schedule_id={id}/>);
+    handleOpen(<AppointmentForm schedule_id={id} />);
+  };
+  const redirect = () => {
+    naviagte("/doctor/1");
   };
   return (
     <>
@@ -47,7 +50,9 @@ const Events = () => {
                 booking_end={booking_end}
                 limit={patient_limit}
                 appointment_data={appointment_data}
-                cardAction={()=>openModal(id)}
+                edit={edit}
+                buttonText={edit ? "View" : "Book"}
+                cardAction={edit ? redirect : () => openModal(id)}
               />
             );
           }
