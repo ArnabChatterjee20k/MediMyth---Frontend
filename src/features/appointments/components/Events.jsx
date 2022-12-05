@@ -6,6 +6,7 @@ import ComponentModal from "../../../components/ui/ComponentModal";
 import AppointmentForm from "./AppointmentForm";
 import { useAppointmentFormContext } from "../context/AppointmentFormContextProvider";
 import { useNavigate } from "react-router-dom";
+import { getFormattedDate } from "../../../utils/dateTime";
 
 const Events = ({ edit }) => {
   const { appointment, appointmentDate } = useAppointment();
@@ -17,9 +18,9 @@ const Events = ({ edit }) => {
     setAppointmentDate(appointmentDate);
     handleOpen(<AppointmentForm schedule_id={id} />);
   };
-  const redirect = (id) => {
-    console.log("redirect");
-    naviagte(`/doctor/profile/schedule/${id}`);
+  const redirect = () => {
+    const date = getFormattedDate(appointmentDate, "yyyy-MM-dd");
+    naviagte(`/doctor/profile/schedule/${date}`);
   };
   return (
     <>
@@ -53,7 +54,9 @@ const Events = ({ edit }) => {
                 appointment_data={appointment_data}
                 edit={edit}
                 buttonText={edit ? "View" : "Book"}
-                cardAction={() => {edit ? redirect(id) :openModal(id)}}
+                cardAction={() => {
+                  edit ? redirect() : openModal(id);
+                }}
               />
             );
           }
