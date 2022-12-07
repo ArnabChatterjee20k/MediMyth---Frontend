@@ -42,7 +42,7 @@ const MultiStepperFormWrapper = ({steps}) => {
       {/* rendering a form for validation */}
         <Stack component="form" onSubmit={handleNext} padding={2} gap={4} sx={{width:{xs:"100%",sm:"50%"},marginInline:"auto"}}>
             <Suspense>
-              <Component/>
+              {Component}
             </Suspense>
             <MobileStepper
              sx={{width:"80%",alignSelf:"center"}}
