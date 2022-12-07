@@ -6,7 +6,7 @@ import Stack from "@mui/material/Stack";
 import DoctorInfo from "../../../components/DoctorProfile/DoctorInfo";
 import DoctorImage from "../../../components/DoctorProfile/DoctorImage";
 import PropTypes from "prop-types";
-import { useParams ,  Navigate} from "react-router-dom";
+import { useParams ,  Navigate, useNavigate} from "react-router-dom";
 import { useDoctorProfileById,useDoctorProfileByEmail } from "../../../services/useDoctorProfile";
 import Loader from "../../../components/ui/Loader";
 import { useDoctorProfileContext } from "../../../contexts/DoctorProfileContextProvider/DoctorProfileContextProvider";
@@ -14,6 +14,8 @@ import { Outlet } from "react-router-dom";
 import { useAuthUser} from "react-auth-kit";
 
 const AboutDoctor = ({ edit }) => {
+  const redirect = useNavigate()
+
   const { setProfile } = useDoctorProfileContext();
   
   // getting id which is required incase of a patient viewing the profile
@@ -77,7 +79,7 @@ const AboutDoctor = ({ edit }) => {
         >
           {/* if edit is true then edit profile other wise book appointment*/}
           {edit ? (
-            <SecondaryButton>Edit Profile</SecondaryButton>
+            <SecondaryButton onClick={()=>redirect("/account/doctor/update")}>Edit Profile</SecondaryButton>
           ) : (
             <SecondaryButton>Book</SecondaryButton>
           )}

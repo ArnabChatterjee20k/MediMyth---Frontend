@@ -5,13 +5,14 @@ import { useNotificationContext } from "../../../contexts/ToastContextProvider/N
 import { useSaveTokenQuery } from "../../../services/useSaveTokenQuery";
 import { useNavigate } from "react-router-dom";
 import { visibilityOptions } from "../data/visibilityOptions";
+import useUpdateDoctor from "../../../services/useUpdateDoctor";
 
 const RegisterContext = createContext();
 
 export const useRegisterContext = () => useContext(RegisterContext);
 
 const RegisterContextProvider = ({ children }) => {
-  const [data, setData] = useState({
+  const defaultData = {
     name: "",
     email: "",
     phone_no: "",
@@ -22,9 +23,11 @@ const RegisterContextProvider = ({ children }) => {
     reff_code: "",
     email_visibility: visibilityOptions["EveryOne"],
     reg_no_visibility: visibilityOptions["EveryOne"],
-    phone_no_visibility: visibilityOptions["EveryOne"]
-  });
+    phone_no_visibility: visibilityOptions["EveryOne"],
+  };
+  const [data, setData] = useState(defaultData);
 
+  const resetData = ()=>setData(defaultData)
   const [otp, setOTP] = useState("");
 
   // accessing notification
@@ -33,6 +36,9 @@ const RegisterContextProvider = ({ children }) => {
   const saveToStorage = useSaveTokenQuery();
 
   const navigate = useNavigate();
+
+  // accessing services
+  const {update} = useUpdateDoctor()
 
   // function for sending post request for creating doctor account
   const doctorRes = useMutation((body) =>
@@ -47,12 +53,12 @@ const RegisterContextProvider = ({ children }) => {
     doctorRes.mutate(data, {
       onSuccess: async (res) => {
         const data = await res.json();
-        const authToken = data.token
+        const authToken = data.token;
         const status = res.status;
 
         if (status == 200) {
           // receive the token and save it in the localstorage
-          if (saveToStorage({authToken})) {
+          if (saveToStorage({ authToken })) {
             notify("success", "success");
             navigate("/doctor/profile");
           } else {
@@ -68,9 +74,14 @@ const RegisterContextProvider = ({ children }) => {
     });
   };
 
+  const updateAccount = (accessToken)=>{
+    update(data,accessToken)
+    
+  }
+
   return (
     <RegisterContext.Provider
-      value={{ data, setData, otp, setOTP, sendOTP, createAccount }}
+      value={{ data, setData, otp, setOTP, sendOTP, createAccount ,resetData,updateAccount}}
     >
       {children}
     </RegisterContext.Provider>

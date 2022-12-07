@@ -1,13 +1,14 @@
 import RegisterContextProvider from "./context/RegisterContextProvider";
 
 import { lazy , Suspense} from "react";
-const FormCollection = lazy(()=>import( "./components/FormCollection"));
+const RegistrationFormCollection = lazy(()=>import( "./components/RegistrationFormCollection"));
+const UpdateFormCollection = lazy(()=>import( "./components/UpdateFormCollection"));
 
-const MultiStepDoctorRegistration = () => {
+const MultiStepDoctorRegistration = ({edit}) => {
   return (
     <Suspense>
       <RegisterContextProvider>
-          <FormCollection/>
+          {edit?<UpdateFormCollection/>:<RegistrationFormCollection/>}
       </RegisterContextProvider>
     </Suspense>
   )

@@ -6,16 +6,16 @@ const DegreeInfoForm =  lazy(()=>import("./DegreeInfoForm"));
 
 import { useRegisterContext } from "../context/RegisterContextProvider";
 
-const FormCollection = () => {
+const RegistrationFormCollection = () => {
   const { sendOTP,  createAccount } = useRegisterContext();
   const label = "Doctor Registration"
   // otp is at last so that all details and otp are validated togetherly
   const elements = [
-    { Component: ContactInfoForm , onSubmit: sendOTP ,label:label},
-    { Component: DegreeInfoForm ,label:label },
-    { Component: OTPForm, onSubmit: createAccount,label:label },
+    { Component: <ContactInfoForm/> , onSubmit: sendOTP ,label:label},
+    { Component: <DegreeInfoForm/> ,label:label },
+    { Component: <OTPForm/>, onSubmit: createAccount,label:label },
   ]
   return <MultiStepperFormWrapper steps={elements}/>;
 };
 
-export default FormCollection;
+export default RegistrationFormCollection;

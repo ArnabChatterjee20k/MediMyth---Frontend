@@ -6,8 +6,6 @@ const DoctorRegistration = lazy(() =>
 const DoctorLogin = lazy(() => import("../features/login/index"));
 const Auth = lazy(() => import("../components/Auth/AuthCard"));
 import { DoctorAccountActions } from "../data/DoctorAccountActions";
-import { useIsAuthenticated } from "react-auth-kit";
-import { Navigate } from "react-router-dom";
 const LoginRoutes = () => {
   // it will work for either doctor or patient.
   // so while building it for patients just see the patient or doctor in the url and redirects them accordingly
@@ -22,6 +20,7 @@ const LoginRoutes = () => {
         <Route path="doctor">
           <Route path="" element={<Auth links={DoctorAccountActions} />} />
           <Route path="register" element={<DoctorRegistration />} />
+          <Route path="update" element={<DoctorRegistration edit={true}/>} />
           <Route path="login" element={<DoctorLogin />} />
         </Route>
       </Route>
