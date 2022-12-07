@@ -4,6 +4,7 @@ import { createDoctor } from "../utils/createDoctor";
 import { useNotificationContext } from "../../../contexts/ToastContextProvider/NotificationContextProvider";
 import { useSaveTokenQuery } from "../../../services/useSaveTokenQuery";
 import { useNavigate } from "react-router-dom";
+import { visibilityOptions } from "../data/visibilityOptions";
 
 const RegisterContext = createContext();
 
@@ -19,6 +20,9 @@ const RegisterContextProvider = ({ children }) => {
     category: "",
     password: "",
     reff_code: "",
+    email_visibility: visibilityOptions["EveryOne"],
+    reg_no_visibility: visibilityOptions["EveryOne"],
+    phone_no_visibility: visibilityOptions["EveryOne"]
   });
 
   const [otp, setOTP] = useState("");
