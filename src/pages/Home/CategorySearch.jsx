@@ -30,8 +30,7 @@ export default function CategorySearch() {
         sx={{ paddingInline: { xs: 0, sm: 5 } }}
       >
         {
-          data && data.map(({category,id})=>{
-            console.log(category);
+          data.map(({category,id})=>{
           return <Grid2 xs={12} sm={3} md={2} xl={1.5} paddingX={1} key={id}><Tile title={category} /></Grid2>
         })
         }
