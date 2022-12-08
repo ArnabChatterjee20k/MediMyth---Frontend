@@ -7,7 +7,7 @@ import PropTypes from "prop-types"
 /**
  * children should be MenuItem component from mui for better result
  */
-export default function MenuSelect({name,value,onChange,children}) {
+export default function MenuSelect({name,value,onChange,required,children}) {
   return (
     <FormControl>
         <FormLabel>{name}</FormLabel>
@@ -15,6 +15,7 @@ export default function MenuSelect({name,value,onChange,children}) {
           value={value}
           name={name}
           onChange={onChange}
+          required={required}
         >
           {children}
         </Select>
@@ -25,5 +26,6 @@ export default function MenuSelect({name,value,onChange,children}) {
 MenuSelect.prototype = {
     value:PropTypes.any.isRequired,
     onChange : PropTypes.func.isRequired,
-    name:PropTypes.string.isRequired
+    name:PropTypes.string.isRequired,
+    required:PropTypes.bool
 }
