@@ -19,6 +19,10 @@ const DoctorInfo = ({ doctorInfo }) => {
           </Typography>
         )}
 
+        {doctorInfo?.description && (
+          <Typography>{doctorInfo?.description}</Typography>
+        )}
+        
         {doctorInfo?.active_id[0].active_doctor_id && (
           <Typography>@{doctorInfo.active_id[0].active_doctor_id}</Typography>
         )}
@@ -67,21 +71,19 @@ const DoctorInfo = ({ doctorInfo }) => {
 };
 
 DoctorInfo.propTypes = {
-  doctorInfo:PropTypes.shape(
-    {
-      name: PropTypes.string.isRequired,
-      reg: PropTypes.number,
-      activeDoctorId: PropTypes.string,
-      phoneNumber: PropTypes.string,
-      email:  PropTypes.string,
-      profilePicture:  PropTypes.string,
-      category:  PropTypes.string.isRequired,
-    }
-  )
+  doctorInfo: PropTypes.shape({
+    name: PropTypes.string.isRequired,
+    reg: PropTypes.number,
+    activeDoctorId: PropTypes.string,
+    phoneNumber: PropTypes.string,
+    email: PropTypes.string,
+    profilePicture: PropTypes.string,
+    category: PropTypes.string.isRequired,
+  }),
 };
 
 DoctorInfo.defaultProps = {
-  doctorInfo:{
+  doctorInfo: {
     name: "Arnab Chatterjee",
     reg: 3512,
     activeDoctorId: "MMD-12",
@@ -89,7 +91,7 @@ DoctorInfo.defaultProps = {
     email: "jennie.nichols@example.com",
     profilePicture: "https://randomuser.me/api/portraits/men/75.jpg",
     category: "Dentist",
-  }
+  },
 };
 
 export default DoctorInfo;

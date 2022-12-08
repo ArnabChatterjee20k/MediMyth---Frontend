@@ -21,6 +21,7 @@ const RegisterContextProvider = ({ children }) => {
     category: "",
     password: "",
     reff_code: "",
+    description:"",
     email_visibility: visibilityOptions["EveryOne"],
     reg_no_visibility: visibilityOptions["EveryOne"],
     phone_no_visibility: visibilityOptions["EveryOne"],
