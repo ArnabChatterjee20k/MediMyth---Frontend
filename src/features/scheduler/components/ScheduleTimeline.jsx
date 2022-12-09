@@ -5,8 +5,8 @@ import TimelineConnector from "@mui/lab/TimelineConnector";
 import TimelineContent from "@mui/lab/TimelineContent";
 import TimelineDot from "@mui/lab/TimelineDot";
 import AccessTimeFilledRoundedIcon from "@mui/icons-material/AccessTimeFilledRounded";
-import { days } from "../data/days";
-import { weeks } from "../data/weeks";
+import { days } from "../../../data/days";
+import { weeks } from "../../../data/weeks";
 import ScheduleCard from "./ScheduleCard";
 import { format12hour } from "../../../utils/dateTime";
 

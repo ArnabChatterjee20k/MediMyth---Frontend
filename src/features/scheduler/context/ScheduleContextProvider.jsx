@@ -1,6 +1,6 @@
 import { createContext, useState, useContext } from "react";
-import { weeks } from "../data/weeks";
-import { days } from "../data/days";
+import { weeks } from "../../../data/weeks";
+import { days } from "../../../data/days";
 import { useNotificationContext } from "../../../contexts/ToastContextProvider/NotificationContextProvider";
 
 const ScheduleContext = createContext();

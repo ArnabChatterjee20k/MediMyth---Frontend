@@ -6,7 +6,7 @@ import Box from "@mui/material/Box";
 import Stack from "@mui/material/Stack";
 import { PrimaryButton } from "../ui/Buttons";
 const MultiStepperFormWrapper = ({steps}) => {
-  const [activeForm, setActiveForm] = useState(0);
+  const [activeForm, setActiveForm] = useState(1);
   const maxSteps = steps.length;
   const {Component} = steps[activeForm];
   const handleNext = (e) => {
