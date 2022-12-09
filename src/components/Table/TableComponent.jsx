@@ -7,7 +7,8 @@ import Paper from "@mui/material/Paper";
 
 import Proptypes from "prop-types";
 
-export default function TableComponent({ body, tableHeaders }) {
+export default function TableComponent({ body, tableHeaders , ...tableProps}) {
+  console.log(tableProps);
   return (
     <TableContainer
       component={Paper}
@@ -17,6 +18,7 @@ export default function TableComponent({ body, tableHeaders }) {
         marginBlock: 4,
         width: { xs: "90%", sm: "80%", md: "60%" },
       }}
+      {...tableProps}
     >
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
         <TableHead>
