@@ -11,7 +11,6 @@ import SideDrawer from "./SideDrawer";
 import {
   PrimaryBgColor,
   PrimaryTextColor,
-  SecondaryTextColor,
 } from "../assets/styles/DefaultProperties";
 import { PrimaryLogo } from "../components/Logo/PrimaryLogo";
 import { SiteName } from "../data/Constants";
@@ -36,7 +35,7 @@ const Navbar = ({ links }) => {
             {links?.map((element, index) => (
               <React.Fragment key={index}>
                 <ListItem>
-                  <Typography color={SecondaryTextColor} fontWeight="bold" fontSize="1rem">{element}</Typography>
+                  <Typography fontWeight="bold" fontSize="1rem">{element}</Typography>
                 </ListItem>
               </React.Fragment>
             ))}

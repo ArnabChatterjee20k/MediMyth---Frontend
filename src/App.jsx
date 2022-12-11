@@ -10,39 +10,38 @@ import SuspenseLoader from "./components/ui/SuspenseLoader";
 import { AuthProvider } from "react-auth-kit";
 import LoginRoutes from "./routes/LoginRoutes";
 import { authTokenKey } from "./data/Constants";
-const Navbar = lazy(() => import("./layouts/Navbar"));
+import Navbar from "./layouts/Navbar";
 const Toast = lazy(() => import("./components/ui/Toast"));
 import Footer from "./layouts/Footer";
 import CommonRoutes from "./routes/CommonRoutes";
-import DoctorSearch from "./features/searchengine/components/DoctorSearch";
-
+import { PageLinks } from "./data/PageLinks";
 function App() {
   return (
-    <AuthProvider
-      authType="localstorage"
-      authName={authTokenKey}
-      cookieDomain={window.location.hostname}
-    >
-      <DoctorProfileContextProvider>
-        <NotificationContextProvider>
-          <ModalContextProvider>
-            <CssBaseline />
-            <Navbar />
-            <Stack paddingTop={10}>
-              <Suspense fallback={<SuspenseLoader />}>
-                <BrowserRouter>
+    <BrowserRouter>
+      <AuthProvider
+        authType="localstorage"
+        authName={authTokenKey}
+        cookieDomain={window.location.hostname}
+      >
+        <DoctorProfileContextProvider>
+          <NotificationContextProvider>
+            <ModalContextProvider>
+              <CssBaseline />
+              <Navbar links={PageLinks} />
+              <Stack paddingTop={10}>
+                <Suspense fallback={<SuspenseLoader />}>
                   <DoctorRoutes />
                   <LoginRoutes />
                   <CommonRoutes />
-                </BrowserRouter>
-                <Toast />
-              </Suspense>
-            </Stack>
-            <Footer/>
-          </ModalContextProvider>
-        </NotificationContextProvider>
-      </DoctorProfileContextProvider>
-    </AuthProvider>
+                  <Toast />
+                </Suspense>
+              </Stack>
+              <Footer />
+            </ModalContextProvider>
+          </NotificationContextProvider>
+        </DoctorProfileContextProvider>
+      </AuthProvider>
+    </BrowserRouter>
   );
 }
 
