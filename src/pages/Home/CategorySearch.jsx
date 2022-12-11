@@ -24,6 +24,7 @@ export default function CategorySearch() {
         rowSpacing={1}
         columnGap={2}
         rowGap={2}
+        justifyContent="space-between"
         columnSpacing={{ xs: 1, sm: 2, md: 3 }}
         marginX="auto"
         py={2}
@@ -31,7 +32,7 @@ export default function CategorySearch() {
       >
         {
           data.map(({category,id})=>{
-          return <Grid2 xs={12} sm={3} md={2} xl={1.5} paddingX={1} key={id}><Tile title={category} /></Grid2>
+          return <Grid2 xs={12} sm={3} paddingX={1} key={id}><Tile title={category} /></Grid2>
         })
         }
       </Grid2>

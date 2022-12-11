@@ -9,9 +9,9 @@ export default function AppointmentForm({schedule_id}) {
   const label = "Patient";
   const {sendOTP,registerPatient} = useAppointmentFormContext();
   const elements = [
-    { Component: PatientDetailsForm, label: label,onSubmit:sendOTP },
+    { Component: <PatientDetailsForm/>, label: label,onSubmit:sendOTP },
     {
-      Component: OTPForm,
+      Component: <OTPForm/>,
       onSubmit: () => sendOTP(),
       label: label,
       onSubmit:()=>registerPatient(schedule_id)
