@@ -4,7 +4,7 @@ import Stack  from '@mui/material/Stack'
 const Footer = () => {
   return (
     <Stack direction="row" justifyContent="center">
-        <Typography fontWeight={400} fontSize="2rem" lineHeight="44px">
+        <Typography fontWeight={400} fontSize="1rem" lineHeight="44px">
             MediMyth @ 2022 ALL RIGHTS RESERVED
         </Typography>
     </Stack>
