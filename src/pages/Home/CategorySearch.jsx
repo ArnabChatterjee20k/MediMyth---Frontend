@@ -9,7 +9,7 @@ export default function CategorySearch() {
   if(isLoading) return  <h1>Loading.....</h1>
   return (
     <Stack sx={{ width: "100%" }} padding={2}>
-      <Typography
+      {data && <Typography
         variant="h4"
         fontWeight="bold"
         sx={{
@@ -18,7 +18,7 @@ export default function CategorySearch() {
         }}
       >
         Search By Category
-      </Typography>
+      </Typography>}
       <Grid2
         container
         rowSpacing={1}
@@ -31,7 +31,7 @@ export default function CategorySearch() {
         sx={{ paddingInline: { xs: 0, sm: 5 } }}
       >
         {
-          data.map(({category,id})=>{
+          data?.map(({category,id})=>{
           return <Grid2 xs={12} sm={3} paddingX={1} key={id}><Tile title={category} /></Grid2>
         })
         }
