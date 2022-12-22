@@ -11,6 +11,7 @@ export default function CommonRoutes() {
         <Route path="/" element={<Home/>}/>
         <Route path={"/active-appointment/:id"} element={<AppointmentCreated/>}/>
         <Route path="/search" element={<SearchEngine/>}/>
+        <Route path="/search/:query" element={<SearchEngine/>}/>
     </Routes>
   )
 }

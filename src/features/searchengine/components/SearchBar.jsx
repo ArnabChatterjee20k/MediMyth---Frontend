@@ -2,10 +2,11 @@ import { connectSearchBox } from "react-instantsearch-dom";
 import { useEffect, useState } from "react";
 import useDebounce from "../../../hooks/useDebounce";
 import TextField from "@mui/material/TextField";
-
+import { useParams } from "react-router-dom";
 function SearchBox({
   refine
 }) {
+  const {query} = useParams()
   const [searchTerm, setSearchTerm] = useState("");
   const debouncedSearchTerm = useDebounce(searchTerm, 1000);
 
@@ -19,6 +20,10 @@ function SearchBox({
 
   const searchHandler = (e)=>{
     setSearchTerm(e.target.value)
+  }
+  if(query){
+    refine(query)
+    return <h3>Your Results for {query}</h3>
   }
   return <TextField sx={{width:{xs:"100%",sm:"80%",md:"60%"}}} onChange={searchHandler} placeholder="Search by name,category,etc"/>;
 }

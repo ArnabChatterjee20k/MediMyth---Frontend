@@ -3,6 +3,7 @@ import { InstantSearch} from "react-instantsearch-dom";
 import SearchBar from "./SearchBar";
 import Stack from "@mui/material/Stack";
 import CardsHolder from "./CardsHolder";
+import { useParams } from "react-router-dom";
 
 export default function DoctorSearch() {
   return (
