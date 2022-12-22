@@ -1,5 +1,5 @@
 export const weeks = {
-    "EveryWeek":"Every Week",
+    "EveryWeek":null,
     "1st week" : 1,
     "2nd week" : 2,
     "3rd week" : 3,

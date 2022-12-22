@@ -23,8 +23,8 @@ const WeekSelector = () => {
           multiple
           renderValue={(selected) => (
             <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
-              {selected.map((value) => (
-                <Chip key={value} label={value} />
+              {selected.map((value,index) => (
+                <Chip key={value} label={Object.keys(weeks)[index]} />
               ))}
             </Box>
           )}
