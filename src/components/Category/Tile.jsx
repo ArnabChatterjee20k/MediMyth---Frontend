@@ -5,8 +5,13 @@ import Avatar from "@mui/material/Avatar";
 import Typography from "@mui/material/Typography";
 import TileIcon from "../../assets/img/Category-Tile-Icon.svg";
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
+import { useNavigate } from "react-router-dom";
 
 const Tile = ({ title }) => {
+  const redirect = useNavigate();
+  const goToSearch = ()=>{
+    redirect(`/search/${title}`)
+  }
   return (
     <IconButton
       size="large"
@@ -25,6 +30,7 @@ const Tile = ({ title }) => {
             backgroundColor:"#5F75FF"
         }
       }}
+      onClick = {goToSearch}
     >
       <Avatar
         src={TileIcon}
