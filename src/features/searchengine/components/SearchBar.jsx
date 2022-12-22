@@ -7,7 +7,8 @@ function SearchBox({
   refine
 }) {
   const {query} = useParams()
-  const [searchTerm, setSearchTerm] = useState("");
+  const defaultSearch = query?query:""
+  const [searchTerm, setSearchTerm] = useState(defaultSearch);
   const debouncedSearchTerm = useDebounce(searchTerm, 1000);
 
   useEffect(() => {
@@ -22,7 +23,6 @@ function SearchBox({
     setSearchTerm(e.target.value)
   }
   if(query){
-    refine(query)
     return <h3>Your Results for {query}</h3>
   }
   return <TextField sx={{width:{xs:"100%",sm:"80%",md:"60%"}}} onChange={searchHandler} placeholder="Search by name,category,etc"/>;
