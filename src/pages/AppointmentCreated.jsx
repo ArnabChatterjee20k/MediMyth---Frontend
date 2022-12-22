@@ -10,7 +10,7 @@ export default function AppointmentCreated() {
     <Stack width="100%" justifyContent="center" alignItems="center" minHeight="80vh" gap={3}>
         <VerifiedSharpIcon sx={{fontSize:"15.5rem",marginTop:"2rem",color:"green"}}/>
         <SecondaryLogo text="Your Appointment Is Created"/>
-        {id && <SecondaryLogo text={`Your id is ${id}`}/>};
+        {id && <SecondaryLogo text={`Your id is ${id}`}/>}
     </Stack>
   )
 }

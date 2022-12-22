@@ -9,7 +9,8 @@ export default function CommonRoutes() {
   return (
     <Routes>
         <Route path="/" element={<Home/>}/>
-        <Route path={"/achievement/appointment/:id"} element={<AppointmentCreated/>}/>
+        <Route path={"/active-appointment/:id"} element={<AppointmentCreated/>}/>
+        <Route path="/search" element={<SearchEngine/>}/>
     </Routes>
   )
 }
