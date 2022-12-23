@@ -15,7 +15,7 @@ const useCreateSchedule = () =>{
             },
             onError: async(err)=>{
                 const errRes = err?.res
-                if(errRes){
+                if(errRes.length){
                     notify(`${errRes}`,"error")
                 }
                 else{

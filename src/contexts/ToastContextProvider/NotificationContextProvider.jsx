@@ -1,26 +1,24 @@
 import { createContext, useContext, useState } from "react";
+import { SnackbarProvider, useSnackbar } from "notistack";
 
 const NotificationContext = createContext()
 
 export const useNotificationContext = ()=>useContext(NotificationContext)
 
 const NotificationContextProvider = ({children}) => {
-    const [open,setOpen] = useState(false)
-    const [content,setContent] = useState("")
-    const [status,setStatus] = useState("")
+   
+    const {enqueueSnackbar} = useSnackbar()
 
     function notify(message,status) {
-      setOpen(true)
-      setContent(message)
-      setStatus(status)
+      enqueueSnackbar(message,{variant:status})
     }
     function handleClose(event,reason){
       setOpen(false);
     }
   return (
-    <NotificationContext.Provider value={{open,content,status,notify,handleClose}}>
+      <NotificationContext.Provider value={{notify}}>
         {children}
-    </NotificationContext.Provider>
+      </NotificationContext.Provider>
   )
 }
 

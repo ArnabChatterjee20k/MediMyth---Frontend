@@ -15,6 +15,8 @@ const Toast = lazy(() => import("./components/ui/Toast"));
 import Footer from "./layouts/Footer";
 import CommonRoutes from "./routes/CommonRoutes";
 import { PageLinks } from "./data/PageLinks";
+import { SnackbarProvider} from "notistack";
+
 function App() {
   return (
     <BrowserRouter>
@@ -24,6 +26,7 @@ function App() {
         cookieDomain={window.location.hostname}
       >
         <DoctorProfileContextProvider>
+          <SnackbarProvider maxSnack={10} anchorOrigin={{horizontal:"right",vertical:"top"}}>
           <NotificationContextProvider>
             <ModalContextProvider>
               <CssBaseline />
@@ -33,12 +36,13 @@ function App() {
                   <DoctorRoutes />
                   <LoginRoutes />
                   <CommonRoutes />
-                  <Toast />
+                  {/* <Toast /> */}
                 </Suspense>
               </Stack>
               <Footer />
             </ModalContextProvider>
           </NotificationContextProvider>
+          </SnackbarProvider>
         </DoctorProfileContextProvider>
       </AuthProvider>
     </BrowserRouter>
