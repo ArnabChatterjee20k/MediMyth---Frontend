@@ -11,13 +11,12 @@ export const useDoctorProfileById = (active_doctor_id) => {
     fetcherService.getFetcherUsers()
   );
 };
-export const useDoctorProfileByEmail = (token, condition = true) => {
+export const useDoctorProfileByEmail = (token) => {
   queryClient.invalidateQueries(["doctor_profile","myaccount"]) // invalidating queries to get the latest data
   const endpoint = `${route}/myaccount`;
   const fetcherService = new Fetcher(endpoint);
   return useQuery(
     ["doctor_profile", "myaccount"],
     () => fetcherService.getFetcherProfiles(token),
-    { enabled: condition }
   );
 };
