@@ -26,7 +26,7 @@ function App() {
         cookieDomain={window.location.hostname}
       >
         <DoctorProfileContextProvider>
-          <SnackbarProvider maxSnack={10} anchorOrigin={{horizontal:"right",vertical:"top"}}>
+          <SnackbarProvider maxSnack={10} anchorOrigin={{horizontal:"left",vertical:"top"}}>
           <NotificationContextProvider>
             <ModalContextProvider>
               <CssBaseline />

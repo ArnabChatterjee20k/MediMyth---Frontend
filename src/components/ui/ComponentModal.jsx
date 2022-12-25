@@ -24,13 +24,24 @@ export default function ComponentModal() {
           pt={2}
           borderBottom="1px dotted black"
           mb={2}
+          sx={{
+            position:"fixed",
+            top:0,
+            left:0,
+            right:0,
+            overflow:"hidden",
+            backgroundColor:"white",
+            zIndex:6
+          }}
         >
           <SecondaryLogo text="MediMyth" />
           <IconButton onClick={handleClose} sx={{ alignSelf: "flex-end" }}>
             <ClearIcon />
           </IconButton>
         </Stack>
-          {Component !== null ? Component : null}
+          <Box paddingTop="6rem">
+            {Component !== null ? Component : null}
+          </Box>
         </Box>
     </Modal>
   );
