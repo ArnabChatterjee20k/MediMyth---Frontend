@@ -16,6 +16,7 @@ import { PrimaryLogo } from "../components/Logo/PrimaryLogo";
 import { SiteName } from "../data/Constants";
 import { useTheme } from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
+import { useNavigate } from "react-router-dom";
 /**
  *
  * @param {Array} links Links must be an array of element. Element is suggested as link can <a></a> as well as <Link></Link>
@@ -25,12 +26,18 @@ const Navbar = ({ links }) => {
   
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
+
+  const redirect = useNavigate()
+
+  const redirectToHome = ()=>{
+    redirect("/")
+  }
   
   return (
     <AppBar component="nav" sx={{ backgroundColor: PrimaryBgColor }}>
       <Toolbar sx={{ justifyContent: "space-between", alignItems: "center" }}>
         <Stack direction={"row"} alignItems="center" columnGap={4}>
-          <PrimaryLogo text={SiteName} paddingBlock="0.5em" />
+          <PrimaryLogo text={SiteName} paddingBlock="0.5em" onClick={redirectToHome} sx={{cursor:"pointer"}}/>
           {!isMobile && <Stack direction={"row"} alignItems="center">
             {links?.map((element, index) => (
               <React.Fragment key={index}>
