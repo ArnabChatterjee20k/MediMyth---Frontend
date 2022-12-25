@@ -11,10 +11,6 @@ const NotificationContextProvider = ({children}) => {
 
     function notify(message,status) {
       const notificationId = enqueueSnackbar(message,{variant:status,onClick: () => closeSnackbar(notificationId)})
-      console.log({notificationId});
-    }
-    function handleClose(event,reason){
-      setOpen(false);
     }
   return (
       <NotificationContext.Provider value={{notify}}>
