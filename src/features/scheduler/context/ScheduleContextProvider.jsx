@@ -41,14 +41,15 @@ export const ScheduleContextProvider = ({ children }) => {
       return { ...prevScheduleData, [event.target.name]: value };
     });
   };
-
+222
   const reset = () => {
     setSchduleData(defaultScheduleStructure);
     notify("Fields Reset!", "warning");
   };
 
   const getScheduleData = () => {
-    return scheduleData
+    const patient_limit = scheduleData.patient_limit===""?null:Number.parseInt(scheduleData.patient_limit)
+    return {...scheduleData,patient_limit}
   };
   return (
     <ScheduleContext.Provider
