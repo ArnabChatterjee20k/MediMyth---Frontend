@@ -20,6 +20,7 @@ import { Navigate } from "react-router-dom";
 import { useAuthUser } from "react-auth-kit";
 
 import Proptypes from "prop-types"
+import { queryClient } from "../../../queryClient/queryClient";
 
 export default function ScheduleCalendar({edit}) {
   const [value, setValue] = useState("");
@@ -31,6 +32,9 @@ export default function ScheduleCalendar({edit}) {
   const token = auth()?.token
 
   if(!edit && !profile?.current) return <Navigate to="/error"/>
+
+  // refreshing the data for fresh data
+  edit?queryClient.invalidateQueries(["doctor-schedules-token",token]):queryClient.invalidateQueries(["doctor-schedules-id",profile.current])
 
   const { data, isLoading } = edit?useSchedulesDoctor(token):useSchedulesPatient(profile.current);
 
