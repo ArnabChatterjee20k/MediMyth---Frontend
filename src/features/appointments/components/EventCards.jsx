@@ -63,6 +63,10 @@ const EventCards = ({
   const isInBookingRange =
     beforeBookingStart && !checkBookingEnd() && isSeatsAvailable;
 
+  let helperText = ""; // by default nothing
+  if (!isInBookingRange && !isSeatsAvailable) helperText = "No Seats Available";
+  if (!isInBookingRange) helperText = "Booking Not Started or Over";
+
   return (
     <AppointmentCard
       active={isInBookingRange && isSeatsAvailable}
@@ -74,6 +78,7 @@ const EventCards = ({
       buttonText={buttonText}
       cardAction={cardAction}
       edit={edit}
+      helperText={helperText}
     />
   );
 };

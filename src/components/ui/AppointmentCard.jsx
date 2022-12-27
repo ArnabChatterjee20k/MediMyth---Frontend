@@ -45,6 +45,7 @@ export default function AppointmentCard({
   totalPatient,
   buttonText,
   cardAction,
+  helperText
 }) {
   // main card component
   return (
@@ -68,6 +69,7 @@ export default function AppointmentCard({
         <CardHeader title={<Header active={active} />} />
         <CardContent>
           <Stack alignItems="flex-start" gap={1}>
+            {helperText && <Typography variant="body1" fontWeight="bold" color={active?"green":"red"}>{helperText}</Typography>}
             <Typography variant="body1">{time}</Typography>
             <Typography variant="body1">
               Patients - {totalPatient}/
