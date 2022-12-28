@@ -3,6 +3,7 @@ import { useNotificationContext } from "../contexts/ToastContextProvider/Notific
 import updateDoctor from "../features/doctor-multistep-register/utils/updateDoctor";
 import { useSignOut } from 'react-auth-kit'
 import { useNavigate } from "react-router-dom";
+import { queryClient } from "../queryClient/queryClient";
 
 export default function useUpdateDoctor() {
     const updater =  useMutation(({body,accessToken})=>updateDoctor(body,accessToken))
@@ -16,6 +17,8 @@ export default function useUpdateDoctor() {
                 signOut()
                 notify("Signed Out!","warning")
                 redirect("/account/doctor/login")
+                queryClient.invalidateQueries(
+                    ["doctor_profile","myaccount",accessToken])
             },
             onError:(err)=>{
                 console.log("error",err);
