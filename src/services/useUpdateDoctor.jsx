@@ -12,8 +12,9 @@ export default function useUpdateDoctor() {
     function update(body,accessToken){
         const request = updater.mutate({body,accessToken},{
             onSuccess:(data)=>{
-                notify("success","success")
+                notify("Profile Updated!","success")
                 signOut()
+                notify("Signed Out!","warning")
                 redirect("/account/doctor/login")
             },
             onError:(err)=>{

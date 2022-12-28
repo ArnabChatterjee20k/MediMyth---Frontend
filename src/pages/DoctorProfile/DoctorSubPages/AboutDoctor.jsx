@@ -11,7 +11,10 @@ import { useDoctorProfileById,useDoctorProfileByEmail } from "../../../services/
 import Loader from "../../../components/ui/Loader";
 import { useDoctorProfileContext } from "../../../contexts/DoctorProfileContextProvider/DoctorProfileContextProvider";
 import { Outlet } from "react-router-dom";
-import { useAuthUser} from "react-auth-kit";
+import { useAuthUser , useSignIn, useSignOut} from "react-auth-kit";
+import LogoutIcon from '@mui/icons-material/Logout';
+import IconButton  from "@mui/material/IconButton";
+import { useNotificationContext } from "../../../contexts/ToastContextProvider/NotificationContextProvider";
 
 const AboutDoctor = ({ edit }) => {
   const redirect = useNavigate()
@@ -24,6 +27,10 @@ const AboutDoctor = ({ edit }) => {
   // collecting data from the localstorage which required in case of a doctor viewing his profile
   const auth = useAuthUser()
   const token = auth()?.token
+  const signout = useSignOut()
+  
+  // notifcation
+  const {notify} = useNotificationContext()
 
   // conditionally fetching the hooks
   const dataObj = edit?useDoctorProfileByEmail(token):useDoctorProfileById(active_doctor_id)
@@ -79,7 +86,13 @@ const AboutDoctor = ({ edit }) => {
         >
           {/* if edit is true then edit profile other wise book appointment*/}
           {edit ? (
-            <SecondaryButton onClick={()=>redirect("/account/doctor/update")}>Edit Profile</SecondaryButton>
+            <Stack flexDirection="row" gap={1}>
+              <SecondaryButton onClick={()=>redirect("/account/doctor/update")}>Edit Profile</SecondaryButton>
+              <IconButton onClick={()=>{
+                signout()
+                notify("Signed Out!","warning")
+              }}><LogoutIcon color="action"/></IconButton>
+            </Stack>
           ) : (
             <SecondaryButton>Book</SecondaryButton>
           )}
