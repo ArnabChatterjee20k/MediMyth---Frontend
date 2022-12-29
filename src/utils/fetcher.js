@@ -9,7 +9,7 @@ class Fetcher {
    * @param {Object} options
    * @returns {Promise}
    */
-  async #fetcher(options = null) {
+  async fetcher(options = null) {
     const data = await fetch(this.url, options);
     const res = await data.json();
     if (data.status === 200) {
@@ -25,7 +25,7 @@ class Fetcher {
    * @returns {Promise}
    */
   #getFetcher(headerOptions = {}) {
-    return this.#fetcher({ headers: headerOptions });
+    return this.fetcher({ headers: headerOptions });
   }
 
   /**
@@ -36,7 +36,7 @@ class Fetcher {
    */
   #postFetcher(body, headerOptions = {}) {
     const jsonBody = JSON.stringify(body);
-    return this.#fetcher({
+    return this.fetcher({
       body: jsonBody,
       method: "POST",
       headers: headerOptions,
@@ -49,7 +49,7 @@ class Fetcher {
    * @returns the response after delteing from the server
    */
   #deleteFetcher(headerOptions = {}) {
-    return this.#fetcher({
+    return this.fetcher({
       method: "DELETE",
       headers: headerOptions,
     });
@@ -63,7 +63,7 @@ class Fetcher {
    */
   #putFetcher(body, headerOptions = {}) {
     const jsonBody = JSON.stringify(body);
-    return this.#fetcher({
+    return this.fetcher({
       body: jsonBody,
       method: "PUT",
       headers: headerOptions,
@@ -126,10 +126,11 @@ class Fetcher {
    * @param {Object} body
    * @returns {Promise} made the put request
    */
-  putFetchProfiles(body, accessToken) {
+  putFetchProfiles(body, accessToken,headerOptions={}) {
     return this.#putFetcher(body, {
       "Content-Type": "application/json",
       "access-token": accessToken,
+      ...headerOptions
     });
   }
   
