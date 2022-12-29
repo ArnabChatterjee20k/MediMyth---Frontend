@@ -75,6 +75,7 @@ const AboutDoctor = ({ edit }) => {
         <DoctorImage
           profilePicture={doctorProfile?.profile_pic}
           name={doctorProfile?.name}
+          uploadOption={true}
         />
 
         {/* edit profile button */}
