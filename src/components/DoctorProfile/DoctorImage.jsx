@@ -7,6 +7,7 @@ import IconButton from "@mui/material/IconButton";
 import AddAPhotoIcon from "@mui/icons-material/AddAPhoto";
 import PictureUploader from "../PictureUploader/PictureUploader";
 import { useModalContext } from "../../contexts/ModalContextProvider/ModalContextProvider";
+import useUpdatePicture from "../../services/useUpdatePicture";
 
 const DoctorImage = ({
   profilePicture,
@@ -17,6 +18,7 @@ const DoctorImage = ({
   uploadOption,
 }) => {
   const {handleOpen} = useModalContext()
+  const {updateProfilePicture} = useUpdatePicture()
   return (
     <>
       <Box
@@ -70,7 +72,7 @@ const DoctorImage = ({
         {/* update / upload image */}
         {uploadOption && (
           <IconButton
-            onClick={()=>handleOpen(<PictureUploader name={name} defaultImage={profilePicture}/>)}
+            onClick={()=>handleOpen(<PictureUploader name={name} defaultImage={profilePicture} onUpload={updateProfilePicture}/>)}
             sx={{
               position: "absolute",
               top: "2rem",

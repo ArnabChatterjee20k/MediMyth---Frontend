@@ -2,6 +2,8 @@ import React, { useState,useRef } from "react";
 import DoctorImage from "../DoctorProfile/DoctorImage";
 import Stack from "@mui/material/Stack";
 import { PrimaryButton , SecondaryButton} from "../ui/Buttons";
+import { useNotificationContext } from "../../contexts/ToastContextProvider/NotificationContextProvider";
+
 
 /**
  * 
@@ -12,10 +14,12 @@ export default function PictureUploader({ name, defaultImage, onUpload }) {
   const [picture, setPicture] = useState(defaultImage);
   const uploadRef = useRef()
   const form = useRef({image:""})
-
+  const {notify} = useNotificationContext()
   const handleUpload = ()=>{
     const newForm = new FormData()
     newForm.set("image",form.current.image)
+    form.current.image!=="" && onUpload(newForm)
+    notify("Uploading Your Picture")
   }
   return (
     <Stack
