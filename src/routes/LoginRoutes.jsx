@@ -23,7 +23,7 @@ const LoginRoutes = () => {
       <Route path="/account">
         <Route path="created" element={<DoctorAccount />} />
         <Route path="doctor">
-          <Route path="" element={<Auth label={"Connect Your Account"} links={DoctorAccountActions} />} />
+          <Route path="" element={<Auth label={"Connect Your Account"} links={DoctorAccountActions} alternateLink="/account/doctor/update/password" alternateText="Forget Password?"/>}/>
           <Route path="register" element={<DoctorRegistration />} />
           <Route path="update">
             <Route path="" element={<Auth label={"Edit Options"} links={UpdateAccountOptions}/>} />

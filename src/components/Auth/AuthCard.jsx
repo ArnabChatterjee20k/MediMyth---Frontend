@@ -4,6 +4,7 @@ import { styled } from "@mui/material/styles";
 import { SecondaryLogo } from "../Logo/SecondaryLogo";
 import { grey } from "@mui/material/colors";
 import { Link, useLocation } from "react-router-dom";
+import Typography from "@mui/material/Typography";
 
 const LinkBox = styled(Paper)(({ theme }) => ({
   display: "flex",
@@ -15,7 +16,12 @@ const LinkBox = styled(Paper)(({ theme }) => ({
   },
   "&:disabled": { backgroundColor: grey[600] },
 }));
-export default function AuthCard({ label,links }) {
+export default function AuthCard({
+  label,
+  links,
+  alternateText,
+  alternateLink,
+}) {
   const { pathname } = useLocation();
   return (
     <Stack
@@ -30,7 +36,7 @@ export default function AuthCard({ label,links }) {
         {links.map(({ link, label, Icon }) => {
           return (
             <Link
-                key={link}
+              key={link}
               to={`${pathname}/${link}`}
               style={{ textDecoration: "none" }}
             >
@@ -48,6 +54,11 @@ export default function AuthCard({ label,links }) {
           );
         })}
       </Stack>
+      {alternateText && alternateLink && (
+        <Link to={`${alternateLink}`} style={{ textDecoration: "none" }}>
+          <Typography color="green">{alternateText}</Typography>
+        </Link>
+      )}
     </Stack>
   );
 }
