@@ -14,7 +14,7 @@ export default function SelectCategory({ categories }) {
   );
   return (
     <MenuSelect value={data["category"]} onChange={handleChange} name="Select Your Category" required={true}>
-      {categories.map(({ category, id }) => {
+      {categories?.map(({ category, id }) => {
         return (
             <MenuItem key={id} value={category}>
               {category}

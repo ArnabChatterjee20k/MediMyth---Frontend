@@ -21,7 +21,13 @@ export default function useUpdateDoctor() {
                     ["doctor_profile","myaccount",accessToken])
             },
             onError:(err)=>{
-                console.log("error",err);
+                try{
+                    const res = err?.res
+                    notify(res,"error")}
+                catch{
+
+                    notify("Some error occured","error")
+                }
             }
         })
     }

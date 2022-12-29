@@ -132,6 +132,15 @@ class Fetcher {
       "access-token": accessToken,
     });
   }
+  
+  /**
+   *
+   * @param {Object} body
+   * @returns {Promise} made the put request
+   */
+  putFetchUsers(body,headerOptions={}) {
+    return this.#putFetcher(body,headerOptions);
+  }
 }
 
 export default Fetcher;

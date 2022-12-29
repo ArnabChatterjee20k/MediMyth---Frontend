@@ -28,7 +28,7 @@ const AboutDoctor = ({ edit }) => {
   const auth = useAuthUser()
   const token = auth()?.token
   const signout = useSignOut()
-  
+
   // notifcation
   const {notify} = useNotificationContext()
 

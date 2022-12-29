@@ -15,7 +15,7 @@ const LinkBox = styled(Paper)(({ theme }) => ({
   },
   "&:disabled": { backgroundColor: grey[600] },
 }));
-export default function AuthCard({ links }) {
+export default function AuthCard({ label,links }) {
   const { pathname } = useLocation();
   return (
     <Stack
@@ -25,7 +25,7 @@ export default function AuthCard({ links }) {
       mt={10}
       gap={3}
     >
-      <SecondaryLogo text="Connect Your Account" />
+      <SecondaryLogo text={label} />
       <Stack gap={2}>
         {links.map(({ link, label, Icon }) => {
           return (
