@@ -3,6 +3,8 @@ import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
 import { SecondaryButton } from "../../../components/ui/Buttons";
 import { useNavigate } from "react-router-dom";
+import { s3ImageUrl } from "../../../data/Constants";
+
 export default function SearchedDoctorCards({name,profile_pic,id,category}) {
     const navigate = useNavigate()
 
@@ -27,7 +29,7 @@ export default function SearchedDoctorCards({name,profile_pic,id,category}) {
       <Stack flexDirection="row" alignItems="center" gap={2}>
         <DoctorImage
           name={name}
-          profilePicture={profile_pic}
+          profilePicture={profile_pic && `${s3ImageUrl}/${profile_pic}`}
           displayInFree={false}
           imageProps={{ width: "100px", height: "100px" }}
         />
