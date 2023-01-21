@@ -73,7 +73,7 @@ const AboutDoctor = ({ edit }) => {
       <Box sx={{ position: "relative", paddingInline: "2em" }}>
         {/* Profile image */}
         <DoctorImage
-          profilePicture={doctorProfile?.profile_pic}
+          profilePicture={doctorProfile?.profile_pic && `https://mmdoctorbucket.s3.ap-south-1.amazonaws.com/${doctorProfile.profile_pic}`}
           name={doctorProfile?.name}
           uploadOption={true}
         />
