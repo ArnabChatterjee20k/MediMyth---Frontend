@@ -59,12 +59,8 @@ const RegisterContextProvider = ({ children }) => {
 
         if (status == 200) {
           // receive the token and save it in the localstorage
-          if (saveToStorage({ authToken })) {
-            notify("success", "success");
-            navigate("/account/created");
-          } else {
-            notify("some problems occurred", "error");
-          }
+          notify("success", "success");
+          navigate("/account/created");
         } else {
           data.status && notify(data.status, "error");
         }
