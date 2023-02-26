@@ -36,7 +36,7 @@ export const ScheduleContextProvider = ({ children }) => {
     const {
       target: { value },
     } = event;
-    console.log(value)
+    // console.log(value)
     setSchduleData((prevScheduleData) => {
       return { ...prevScheduleData, [event.target.name]: value };
     });

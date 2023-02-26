@@ -14,6 +14,6 @@ export const createDoctor = (phone, receivedOTP, body) => {
         token: receivedOTP
     }
     const jsonBody = JSON.stringify(body)
-    console.log("🚀 ~ file: createDoctor.js ~ line 20 ~ createDoctor ~ phone,receivedOTP", phone, receivedOTP)
+    // console.log("🚀 ~ file: createDoctor.js ~ line 20 ~ createDoctor ~ phone,receivedOTP", phone, receivedOTP)
     return fetch(url, { headers: headers, body: jsonBody, method: "POST" })
 }

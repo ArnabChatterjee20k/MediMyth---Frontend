@@ -8,7 +8,7 @@ import Paper from "@mui/material/Paper";
 import Proptypes from "prop-types";
 
 export default function TableComponent({ body, tableHeaders , ...tableProps}) {
-  console.log(tableProps);
+  // console.log(tableProps);
   return (
     <TableContainer
       component={Paper}

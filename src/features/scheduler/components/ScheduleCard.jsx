@@ -29,7 +29,7 @@ export default function ScheduleCard({ id, header, subHeader, content }) {
     {
       label: "Delete",
       onClick: (deleteId) => {
-        console.log(deleteId);
+        // console.log(deleteId);
         deleteScheduleWithId(deleteId, token);
         handleClose();
       },

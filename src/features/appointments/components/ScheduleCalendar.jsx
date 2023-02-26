@@ -115,7 +115,6 @@ export default function ScheduleCalendar({edit}) {
                           backgroundColor: "white",
                         },
                       }}
-                      onClick={() => console.log(getWeekOfMonth(date))}
                     />
                   ));
               return picker;

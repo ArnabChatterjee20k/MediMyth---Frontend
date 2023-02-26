@@ -9,7 +9,7 @@ import Fetcher from "../../../utils/fetcher"
  * @returns 
  */
 export default function bookAppointment (schedule_id,contact_number,otp,body){
-    console.log({schedule_id,contact_number,otp,body});
+    // console.log({schedule_id,contact_number,otp,body});
     const endpoint = `appointment/${schedule_id}?phone=${contact_number}`
     return new Fetcher(endpoint).postFetchUsers(body,{
         token:otp
