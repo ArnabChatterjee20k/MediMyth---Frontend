@@ -99,7 +99,7 @@ const SchduleDetails = () => {
         name="medical_shop"
         value={scheduleData["medical_shop"]}
         placeholder="Name of the Medical Shop(if any)"
-        label="Clinic Name"
+        label="Medical Shop"
         InputLabelProps={{ shrink: true }}
       />
       <TextField

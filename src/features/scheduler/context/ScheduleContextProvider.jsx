@@ -49,7 +49,8 @@ export const ScheduleContextProvider = ({ children }) => {
 
   const getScheduleData = () => {
     const patient_limit = scheduleData.patient_limit===""?null:Number.parseInt(scheduleData.patient_limit)
-    return {...scheduleData,patient_limit}
+    const slot_end = scheduleData.slot_end===""?null:scheduleData.slot_end
+    return {...scheduleData,patient_limit,slot_end}
   };
   return (
     <ScheduleContext.Provider

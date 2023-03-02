@@ -13,7 +13,8 @@ import ComponentModal from "../../../components/ui/ComponentModal";
 const ScheduleTimeline = lazy(() => import("./ScheduleTimeline"));
 
 export default function ScheduleOperator() {
-  const { data, isLoading, isFetching, isError } = useSchedule();
+  const { data, isLoading, isFetching, isError , error } = useSchedule();
+  console.log({error})
   const { notify } = useNotificationContext();
   const { handleOpen } = useModalContext();
   if (isLoading) return <Loader />;

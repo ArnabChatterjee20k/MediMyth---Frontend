@@ -41,7 +41,7 @@ export default function ScheduleCalendar({edit}) {
   // creating this dataStructure to access the ORDERED_SCHEDULE easily and accessing data becomes more cleaner using key value pair
   const ORDERED_SCHEDULE = {};
   !isLoading &&
-    data.map((element) => {
+    data?.map((element) => {
       if (ORDERED_SCHEDULE[element.day]) {
         ORDERED_SCHEDULE[element.day].push(element);
       } else {
@@ -49,7 +49,7 @@ export default function ScheduleCalendar({edit}) {
       }
     });
   if (isLoading) return <h2>Loading</h2>;
-  if (data.length !== 0)
+  if (data && data.length !== 0)
     return (
       <Stack justifyContent="center" alignItems="center">
         <LocalizationProvider dateAdapter={AdapterDateFns}>
