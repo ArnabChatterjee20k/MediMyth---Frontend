@@ -54,6 +54,7 @@ const AboutDoctor = ({ edit }) => {
 
   if (isError) {
     if (error.status === "redirect") {
+      if(token) return <Navigate to="/account/created"/>
       return <Navigate to="/notfound"/>;
     }
     return <Navigate to="/error"/>;
