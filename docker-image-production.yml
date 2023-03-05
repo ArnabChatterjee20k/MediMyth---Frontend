@@ -1,0 +1,8 @@
+version: '3.8'
+
+services:
+  app:
+    container_name: medimyth-frontend
+    image: arnabchatterjee20k/medimyth-frontend:0.0.1.Release
+    ports:
+      - 8080:80
