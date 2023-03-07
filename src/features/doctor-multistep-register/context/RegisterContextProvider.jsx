@@ -6,6 +6,7 @@ import { useSaveTokenQuery } from "../../../services/useSaveTokenQuery";
 import { useNavigate } from "react-router-dom";
 import { visibilityOptions } from "../data/visibilityOptions";
 import useUpdateDoctor from "../../../services/useUpdateDoctor";
+import useOTP from "../../../services/useOTP";
 
 const RegisterContext = createContext();
 
@@ -40,6 +41,7 @@ const RegisterContextProvider = ({ children }) => {
 
   // accessing services
   const {update} = useUpdateDoctor()
+  const {refetch} = useOTP(data.phone_no)
 
   // function for sending post request for creating doctor account
   const doctorRes = useMutation((body) =>
@@ -47,7 +49,13 @@ const RegisterContextProvider = ({ children }) => {
   );
 
   const sendOTP = () => {
-    alert("sending otp to", data.phone_no);
+    try{
+      refetch();
+      notify(`Sending OTP to ${data.phone_no}`)
+    }
+    catch{
+      notify("Some problem occured","error")
+    }
   };
 
   const createAccount = () => {
