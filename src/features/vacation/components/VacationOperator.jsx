@@ -20,7 +20,7 @@ export default function VacationOperator() {
     <>
       <ComponentModal />
       <Stack sx={{ paddingBlock: 2 }}>
-        {data.length!==0 ?<VacationCardsViewer vacationData={data}/> :(
+        {data && data.length!==0 ?<VacationCardsViewer vacationData={data}/> :(
         <Stack flexDirection="row" justifyContent="center" alignItems="center">
           <SecondaryLogo text="No Vacations. Click + to add" />
         </Stack>

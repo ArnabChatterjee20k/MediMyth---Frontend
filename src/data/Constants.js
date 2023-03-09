@@ -1,6 +1,7 @@
 export const SiteName = "MediMyth"
 export const DateFormat = 'MM/dd/yyyy'
-export const serverAddress = "http://15.207.114.250/"
+export const serverAddress = "http://13.127.171.39/"
+// export const serverAddress = "http://15.207.114.250/"
 // export const serverAddress = "http://192.168.0.138:5000/"
 export const authTokenKey = "_medimythauth"
 const s3BucketName = "mmdoctorbucket"
