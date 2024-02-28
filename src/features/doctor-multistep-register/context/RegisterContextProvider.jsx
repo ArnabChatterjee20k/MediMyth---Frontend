@@ -30,7 +30,7 @@ const RegisterContextProvider = ({ children }) => {
   const [data, setData] = useState(defaultData);
 
   const resetData = ()=>setData(defaultData)
-  const [otp, setOTP] = useState("");
+  const [otp, setOTP] = useState(import.meta.env.VITE_OTP === "ENABLE"?"":123);
 
   // accessing notification
   const { notify } = useNotificationContext();
@@ -51,7 +51,7 @@ const RegisterContextProvider = ({ children }) => {
   const sendOTP = () => {
     try{
       refetch();
-      notify(`Sending OTP to ${data.phone_no}`)
+      if(import.meta.env.VITE_OTP_ENABLED === "ENABLE") notify(`Sending OTP to ${data.phone_no}`)
     }
     catch{
       notify("Some problem occured","error")

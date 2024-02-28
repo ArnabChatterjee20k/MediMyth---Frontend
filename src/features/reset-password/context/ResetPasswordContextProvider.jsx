@@ -33,7 +33,7 @@ export default function ResetPasswordContextProvider({ children }) {
     resetPassword(data.phone,data.email,data.password,otp)
   }
 
-  const [otp, setOTP] = useState("");
+  const [otp, setOTP] = useState(import.meta.env.VITE_OTP === "ENABLE"?"":123)
   return (
     <ResetPasswordContext.Provider value={{ data, setData, otp, setOTP , sendOTP,updatePassword}}>
       {children}
