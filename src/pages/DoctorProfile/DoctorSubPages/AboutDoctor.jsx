@@ -15,7 +15,7 @@ import { useAuthUser , useSignIn, useSignOut} from "react-auth-kit";
 import LogoutIcon from '@mui/icons-material/Logout';
 import IconButton  from "@mui/material/IconButton";
 import { useNotificationContext } from "../../../contexts/ToastContextProvider/NotificationContextProvider";
-import { s3ImageUrl } from "../../../data/Constants";
+import { imageBucketPublicURL } from "../../../data/Constants";
 
 const AboutDoctor = ({ edit }) => {
   const redirect = useNavigate()
@@ -75,7 +75,7 @@ const AboutDoctor = ({ edit }) => {
       <Box sx={{ position: "relative", paddingInline: "2em" }}>
         {/* Profile image */}
         <DoctorImage
-          profilePicture={doctorProfile?.profile_pic && `${s3ImageUrl}/${doctorProfile.profile_pic}`}
+          profilePicture={doctorProfile?.profile_pic && `${imageBucketPublicURL}/${doctorProfile.profile_pic}`}
           name={doctorProfile?.name}
           uploadOption={true}
         />

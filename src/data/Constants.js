@@ -6,6 +6,8 @@ export const serverAddress = import.meta.env.VITE_BACKEND_URL
 export const authTokenKey = "_medimythauth"
 const s3BucketName = "mmdoctorbucket"
 const regionName = "ap-south-1"
-export const s3ImageUrl = `https://${s3BucketName}.s3.${regionName}.amazonaws.com`
+// export const imageBucketPublicURL = `https://${s3BucketName}.s3.${regionName}.amazonaws.com`
+const CLOUDINARY_CLOUD_NAME = "dtlvequ8a"
+export const imageBucketPublicURL = `http://res.cloudinary.com/${CLOUDINARY_CLOUD_NAME}/image/upload/v1709197265`
 
 console.log({serverAddress})
